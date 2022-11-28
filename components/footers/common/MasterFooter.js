@@ -56,8 +56,7 @@ const MasterFooter = ({
                       <div>
                         <h4>KNOW IT ALL FIRST!</h4>
                         <p>
-                          Never Miss Anything From Multikart By Signing Up To
-                          Our Newsletter.
+                        Sign up and receive the latest tips via email.
                         </p>
                       </div>
                     </div>
@@ -111,9 +110,7 @@ const MasterFooter = ({
                       <LogoImage logo={logoName} />
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam,
+                    Start working with Landrick that can provide everything you need to generate awareness, drive traffic, connect.
                     </p>
                     <div className="footer-social">
                       <ul>

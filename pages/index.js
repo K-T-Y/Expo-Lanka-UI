@@ -22,7 +22,7 @@ const Fashion = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href={"/assets/images/favicon/1.png"} />
       </Helmet>
-      <ModalComponent />
+      {/* <ModalComponent /> */}
       <HeaderOne logoName={"logo.png"} topClass="top-header" />
       <Banner />
       <CollectionBanner />
