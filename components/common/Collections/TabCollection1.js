@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
@@ -10,6 +10,8 @@ import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
+import axios from "axios";
+import { InventoryService } from "../../../config/api-config";
 
 const GET_PRODUCTS = gql`
   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
@@ -51,6 +53,7 @@ const TabContent = ({
   endIndex,
   cartClass,
   backImage,
+  product,
 }) => {
   const context = useContext(CartContext);
   const wishListContext = useContext(WishlistContext);
@@ -88,17 +91,15 @@ const TabContent = ({
         ) : (
           <div className="row mx-0 margin-default">
             <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
+              <div className="card">
+                <div className="card-body">
+                  {/* <img src={product[0].productCategory.imageUrl} /> */}
+                </div>
+              </div>
             </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
-            <div className="col-xl-3 col-lg-4 col-6">
-              <PostLoader />
-            </div>
+            <div className="col-xl-3 col-lg-4 col-6"></div>
+            <div className="col-xl-3 col-lg-4 col-6"></div>
+            <div className="col-xl-3 col-lg-4 col-6"></div>
           </div>
         )
       ) : (
@@ -151,6 +152,27 @@ const SpecialProducts = ({
     },
   });
 
+  const [featuredProduct, setFeaturedProduct] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const getAllFeaturedProducts = () => {
+    axios.get(InventoryService + "/product/most-popular").then((response) => {
+      console.log("FEATURED_PRODUCTS_API==>", response);
+      console.log(response.data.data);
+      setFeaturedProduct(response.data.data);
+      setIsLoading(false);
+    });
+    if (isLoading == true) {
+      console.log("FEATURED", featuredProduct);
+    } else {
+      console.log("Loading", featuredProduct);
+    }
+  };
+  useEffect(() => {
+    if (featuredProduct == "") {
+      setIsLoading(true);
+      getAllFeaturedProducts();
+    }
+  });
 
   return (
     <div>
@@ -171,7 +193,7 @@ const SpecialProducts = ({
               )}
             </div>
           )}
-
+          {/* 
           <Tabs className="theme-tab">
             <TabList className="tabs tab-title">
               <Tab
@@ -205,7 +227,9 @@ const SpecialProducts = ({
               />
             </TabPanel>
             <TabPanel>
+
               <TabContent
+                product={featuredProduct}
                 data={data}
                 loading={loading}
                 startIndex={0}
@@ -224,7 +248,25 @@ const SpecialProducts = ({
                 backImage={backImage}
               />
             </TabPanel>
-          </Tabs>
+          </Tabs> */}
+          <div className="row mx-0 margin-default">
+            {featuredProduct &&
+              featuredProduct.map((item, index) => {
+                if (index < 4) {
+                  return (
+                    <div className="col-xl-3 col-lg-4 col-6">
+                      {/* Card Start */}
+                      <div className="card">
+                        <div className="card-body">
+                          <img src={item.productImages[0].imageUrl} />
+                        </div>
+                      </div>
+                      {/* Card End */}
+                    </div>
+                  );
+                }
+              })}
+          </div>
         </Container>
       </section>
     </div>

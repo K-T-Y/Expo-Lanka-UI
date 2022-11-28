@@ -121,11 +121,19 @@ const HeaderOne = ({
                         </li>
                         <Currency icon={settings.src} />
                         {/*Header Cart Component */}
-                        {direction === undefined ? (
-                          // <></>
-                          <CartContainer layout={direction} icon={cart.src} />
+                        {localStorage.getItem("User", "") ? (
+                          <>
+                            {direction === undefined ? (
+                              <CartContainer
+                                layout={direction}
+                                icon={cart.src}
+                              />
+                            ) : (
+                              <Cart layout={direction} icon={cart.src} />
+                            )}
+                          </>
                         ) : (
-                          <Cart layout={direction} icon={cart.src} />
+                          ""
                         )}
                       </ul>
                     </div>

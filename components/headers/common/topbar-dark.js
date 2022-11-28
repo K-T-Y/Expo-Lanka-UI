@@ -6,9 +6,13 @@ import { useRouter } from "next/router";
 
 const TopBarDark = ({ topClass, fluid }) => {
   const router = useRouter();
-  const firebaseLogout = () => {
-    firebase_app.auth().signOut();
-    router.push("/page/account/login-auth");
+  // const firebaseLogout = () => {
+  //   firebase_app.auth().signOut();
+  //   router.push("/page/account/login-auth");
+  // };
+  const LogoutAuth = () => {
+    localStorage.setItem("User", "");
+    window.location.reload();
   };
   return (
     <div className={topClass}>
@@ -37,19 +41,34 @@ const TopBarDark = ({ topClass, fluid }) => {
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i> My Account
                 <ul className="onhover-show-div">
-                  <li>
-                    <Link href={`/page/account/login`}>
-                      <a>Login</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href={`/page/account/register`}>
-                      <a>Register</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => firebaseLogout()}>
-                    <a>Logout</a>
-                  </li>
+                  {localStorage.getItem("User") && (
+                    <li>
+                      <Link href={`/page/account/profile`}>
+                        <a>Profile</a>
+                      </Link>
+                    </li>
+                  )}
+                  {localStorage.getItem("User") ? (
+                    ""
+                  ) : (
+                    <>
+                      <li>
+                        <Link href={`/page/account/login`}>
+                          <a>Login</a>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href={`/page/account/register`}>
+                          <a>Register</a>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  {localStorage.getItem("User") && (
+                    <li onClick={() => LogoutAuth()}>
+                      <a>Logout</a>
+                    </li>
+                  )}
                 </ul>
               </li>
             </ul>
