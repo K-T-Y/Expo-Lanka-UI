@@ -4,27 +4,27 @@ import { Container, Row, Col } from "reactstrap";
 import MasterBanner from "../../Fashion/Components/MasterBanner";
 
 const Data = [
-  {
-    img: "home9",
-    title: "every time",
-    desc: "mittnalier",
-    link: "#",
-    classes: "btn-outline btn-classic",
-  },
-  {
-    img: "home10",
-    title: "welcome to fashion",
-    desc: "men's shoes",
-    link: "#",
-    classes: "btn-outline btn-classic",
-  },
-  {
-    img: "home11",
-    title: "welcome to fashion",
-    desc: "men's shoes",
-    link: "#",
-    classes: "btn-outline btn-classic",
-  },
+  // {
+  //   img: "home9",
+  //   title: "every time",
+  //   desc: "mittnalier",
+  //   link: "#",
+  //   classes: "btn-outline btn-classic",
+  // },
+  // {
+  //   img: "home10",
+  //   title: "welcome to fashion",
+  //   desc: "men's shoes",
+  //   link: "#",
+  //   classes: "btn-outline btn-classic",
+  // },
+  // {
+  //   img: "home11",
+  //   title: "welcome to fashion",
+  //   desc: "men's shoes",
+  //   link: "#",
+  //   classes: "btn-outline btn-classic",
+  // },
 ];
 
 const Banner = () => {

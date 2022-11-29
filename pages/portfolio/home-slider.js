@@ -8,15 +8,15 @@ const Data = [
   {
     classes: " p-center text-center",
     img: "home7",
-    title: "welcome to fashion",
+    title: "welcome to",
     desc: "women fashion",
     link: "#",
   },
   {
     classes: " p-center text-center",
     img: "home8",
-    title: "welcome to fashion",
-    desc: "men fashion",
+    title: "welcome to",
+    desc: "Expo Sri Lanka",
     link: "#",
   },
 ];

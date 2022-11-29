@@ -145,7 +145,7 @@ const EmailTemplate2 = () => (
                                   textDecoration: "none",
                                 }}
                               >
-                                shop now
+                                track now
                               </span>
                             </a>
                           </td>
@@ -335,7 +335,7 @@ const EmailTemplate2 = () => (
                                   padding: "8px 12px",
                                 }}
                               >
-                                SHOP NOW
+                                track now
                               </a>
                             </div>
                           </td>
@@ -419,7 +419,7 @@ const EmailTemplate2 = () => (
                                   padding: "8px 12px",
                                 }}
                               >
-                                SHOP NOW
+                                track now
                               </a>
                             </div>
                           </td>
@@ -524,7 +524,7 @@ const EmailTemplate2 = () => (
                                   padding: "8px 12px",
                                 }}
                               >
-                                SHOP NOW
+                                track now
                               </a>
                             </div>
                           </td>

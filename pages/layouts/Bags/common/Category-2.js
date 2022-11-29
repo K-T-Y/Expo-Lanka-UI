@@ -30,7 +30,7 @@ const CategoryTwo = () => {
                 </a>
                 <a href="#">
                   <h6>
-                    <span>shop now</span>
+                    <span>track now</span>
                   </h6>
                 </a>
               </div>
@@ -57,7 +57,7 @@ const CategoryTwo = () => {
                 </a>
                 <a href="#">
                   <h6>
-                    <span>shop now</span>
+                    <span>track now</span>
                   </h6>
                 </a>
               </div>
@@ -84,7 +84,7 @@ const CategoryTwo = () => {
                 </a>
                 <a href="#">
                   <h6>
-                    <span>shop now</span>
+                    <span>track now</span>
                   </h6>
                 </a>
               </div>

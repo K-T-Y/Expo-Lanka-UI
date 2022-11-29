@@ -8,13 +8,13 @@ const Data = [
     img: "home15",
     offer: "save 30%",
     title: "Electronic",
-    btn: "shop now",
+    btn: "track now",
   },
   {
     img: "home16",
     offer: "save upto 30%",
     title: "headphone",
-    btn: "shop now",
+    btn: "track now",
   },
 ];
 

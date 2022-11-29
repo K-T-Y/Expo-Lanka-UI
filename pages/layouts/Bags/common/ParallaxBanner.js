@@ -12,7 +12,7 @@ const ParallaxBanner = () => {
                 <h3>leather bag</h3>
                 <h4>extra 50% off</h4>{" "}
                 <a href="#" className="btn btn-solid">
-                  shop now
+                  track now
                 </a>
               </div>
             </div>

@@ -106,7 +106,7 @@ const SocialEmailTemplate = ({ marginClass }) => {
                 <tr>
                   <td style={{ paddingBottom: "0" }}>
                     <p style={{ fontSize: "13px", margin: "0" }}>
-                      2021 - 22 Copy Right by Themeforest powerd by Pixel Strap
+                    2022 powered by Eyerax Technologies
                     </p>
                   </td>
                 </tr>

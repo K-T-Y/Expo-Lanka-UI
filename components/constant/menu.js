@@ -493,7 +493,7 @@
 // ];
 
 export const MENUITEMS = [
-  { path: "/page/collection", title: "Home", type: "link" },
+  { path: "/", title: "Home", type: "link" },
   { path: "/page/collection", title: "Products", type: "link" },
   { path: "/page/about-us", title: "About Us", type: "link" },
   { path: "/page/contact", title: "Contact Us", type: "link" },

@@ -18,7 +18,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: three,
@@ -27,7 +27,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: five,
@@ -36,7 +36,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: six,
@@ -45,7 +45,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: seven,
@@ -54,7 +54,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: eight,
@@ -63,7 +63,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: nine,
@@ -72,7 +72,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
   {
     img: eleven,
@@ -81,7 +81,7 @@ const MasterCollectionData = [
     about:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry....",
     link: "#",
-    btn: "shop now !",
+    btn: "track now !",
   },
 ];
 

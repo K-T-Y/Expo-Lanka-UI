@@ -16,7 +16,7 @@ const Home = () => {
             <h4>upto - 50%</h4>
             <h4>OFF</h4>
             <a href="#" className="btn btn-white" tabIndex="0">
-              shop now
+              Track Now
             </a>
           </div>
         </div>

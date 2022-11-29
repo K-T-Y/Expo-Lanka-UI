@@ -153,7 +153,7 @@ const MasterFooter = ({
                   </div>
                 </Collapse>
               </Col>
-              <Col className="offset-xl-1">
+              {/* <Col className="offset-xl-1">
                 <div className="sub-title">
                   <div
                     className={`footer-title ${isOpen && collapse == 2 ? "active" : ""
@@ -200,7 +200,7 @@ const MasterFooter = ({
                     </div>
                   </Collapse>
                 </div>
-              </Col>
+              </Col> */}
               <Col>
                 <div className="sub-title">
                   <div
@@ -225,19 +225,19 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul>
                         <li>
-                          <a href="#">shipping & return</a>
+                          <a>Safe and Faster Logistic Services</a>
                         </li>
                         <li>
-                          <a href="#">secure shopping</a>
+                          <a>Convenient service to deliver giftboxes</a>
                         </li>
                         <li>
-                          <a href="#">gallary</a>
+                          <a>Superior European food items to the Sri Lankan market.</a>
                         </li>
                         <li>
-                          <a href="#">affiliates</a>
+                          <a>Travel Partnership</a>
                         </li>
                         <li>
-                          <a href="#">contacts</a>
+                          <a>Export Smarter</a>
                         </li>
                       </ul>
                     </div>
@@ -258,7 +258,7 @@ const MasterFooter = ({
                         } else setIsOpen(true);
                       }}
                     >
-                      store information
+                      Contact Info
                       <span className="according-menu"></span>
                     </h4>
                   </div>
@@ -268,11 +268,10 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>Multikart Demo
-                          Store, Demo store India 345-659
+                          <i className="fa fa-map-marker"></i>VIA SANSOVINO, 8, 37138 VERONA VR.
                         </li>
                         <li>
-                          <i className="fa fa-phone"></i>Call Us: 123-456-7898
+                          <i className="fa fa-phone"></i>Call Us: +039 320 634 3988
                         </li>
                         <li>
                           <i className="fa fa-envelope-o"></i>Email Us:{" "}

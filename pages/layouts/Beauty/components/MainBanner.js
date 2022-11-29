@@ -10,14 +10,14 @@ const Data = [
     title: "welcome to beauty",
     about: "beauty products",
     link: "#",
-    btn: "shop now",
+    btn: "Track Now",
   },
   {
     imgClass: "home35",
     title: "save 30% off",
     about: "beauty products",
     link: "#",
-    btn: "shop now",
+    btn: "Track Now",
   },
 ];
 
@@ -47,7 +47,7 @@ const Banner = ({ imgClass, title, about, btn }) => {
 const MainBanner = () => {
   return (
     <Fragment>
-      <title>MultiKart | Beauty Store</title>
+      {/* <title>MultiKart | Beauty Store</title> */}
       <HeaderOne logoName={"layout3/logo.png"} topClass="top-header" />
       <section className="p-0">
         <Slider className="slide-1 home-slider">

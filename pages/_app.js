@@ -58,7 +58,7 @@ export default function MyApp({ Component, pageProps }) {
               <link rel="icon" type="image/x-icon" href={favicon} />
             </Head> */}
               <title>
-                Multikart - Multi-purpopse E-commerce React Template
+                Expo - SriLanka
               </title>
             </Helmet>
             <div>

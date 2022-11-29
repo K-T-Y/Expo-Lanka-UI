@@ -13,7 +13,7 @@ const FullBanner = () => {
                                     <h2>kids</h2>
                                     <h3>fashion trends</h3>
                                     <h4>special offer</h4>
-                                    <a href="#" className="btn btn-solid">shop now</a>
+                                    <a href="#" className="btn btn-solid">track now</a>
                                 </div>
                             </Col>
                         </Row>

@@ -20,7 +20,7 @@ const Banner = () => {
                         <h4>Welcome to tools</h4>
                         <h1>Auto Parts</h1>
                         <a href="!#" className="btn btn-solid">
-                          shop now
+                          track now
                         </a>
                       </div>
                     </div>
@@ -48,7 +48,7 @@ const Banner = () => {
                           href="!#"
                           className="btn btn-outline btn-classic btn-solid"
                         >
-                          shop now
+                          track now
                         </a>
                       </div>
                     </div>

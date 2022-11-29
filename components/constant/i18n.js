@@ -118,7 +118,7 @@ i18next
                 translations: {
                     'topbar_title': 'Bienvenue dans notre magasin {theme_name}',
                     'call_us': 'Appelez nous',
-                    'Home': 'maison',
+                    'Home': 'Home',
                     'features': 'fonctionnalités',
                     'new': 'Nouveau',
                     'blog': 'bloguer',

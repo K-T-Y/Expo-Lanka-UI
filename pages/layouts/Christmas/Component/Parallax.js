@@ -14,7 +14,7 @@ const ParallaxBanner = () => {
                                 <h3>New Collection Of Awesome Gift</h3>
                                 <h2>End Of The Year <span>SALE</span></h2>
                                 <h4>Get <span>50%</span> Extra Off</h4>
-                                <a href={null} className="btn btn-solid" tabIndex="0">shop now</a>
+                                <a href={null} className="btn btn-solid" tabIndex="0">track now</a>
                             </div>
                         </div>
                     </div>
