@@ -39,9 +39,8 @@ const MasterFooter = ({
     window.addEventListener("resize", changeCollapse);
 
     return () => {
-      window.removeEventListener('resize', changeCollapse)
-    }
-
+      window.removeEventListener("resize", changeCollapse);
+    };
   }, []);
   return (
     <div>
@@ -55,9 +54,7 @@ const MasterFooter = ({
                     <div className="subscribe">
                       <div>
                         <h4>KNOW IT ALL FIRST!</h4>
-                        <p>
-                        Sign up and receive the latest tips via email.
-                        </p>
+                        <p>Sign up and receive the latest tips via email.</p>
                       </div>
                     </div>
                   </Col>
@@ -89,8 +86,9 @@ const MasterFooter = ({
             <Row className="footer-theme partition-f">
               <Col lg="4" md="6">
                 <div
-                  className={`footer-title ${isOpen && collapse == 1 ? "active" : ""
-                    } footer-mobile-title`}
+                  className={`footer-title ${
+                    isOpen && collapse == 1 ? "active" : ""
+                  } footer-mobile-title`}
                 >
                   <h4
                     onClick={() => {
@@ -110,7 +108,8 @@ const MasterFooter = ({
                       <LogoImage logo={logoName} />
                     </div>
                     <p>
-                    Start working with Landrick that can provide everything you need to generate awareness, drive traffic, connect.
+                      Start working with Landrick that can provide everything
+                      you need to generate awareness, drive traffic, connect.
                     </p>
                     <div className="footer-social">
                       <ul>
@@ -204,8 +203,9 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 3 ? "active" : ""
-                      } `}
+                    className={`footer-title ${
+                      isOpen && collapse == 3 ? "active" : ""
+                    } `}
                   >
                     <h4
                       onClick={() => {
@@ -216,7 +216,7 @@ const MasterFooter = ({
                       }}
                     >
                       why we choose
-                      <span className="according-menu"></span>
+                      <span></span>
                     </h4>
                   </div>
                   <Collapse
@@ -225,19 +225,22 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul>
                         <li>
-                          <a>Safe and Faster Logistic Services</a>
+                          <p>Safe and Faster Logistic Services</p>
                         </li>
                         <li>
-                          <a>Convenient service to deliver giftboxes</a>
+                          <p>Convenient service to deliver giftboxes</p>
                         </li>
                         <li>
-                          <a>Superior European food items to the Sri Lankan market.</a>
+                          <p>
+                            Superior European food items to the Sri Lankan
+                            market.
+                          </p>
                         </li>
                         <li>
-                          <a>Travel Partnership</a>
+                          <p>Travel Partnership</p>
                         </li>
                         <li>
-                          <a>Export Smarter</a>
+                          <p>Export Smarter</p>
                         </li>
                       </ul>
                     </div>
@@ -247,8 +250,9 @@ const MasterFooter = ({
               <Col>
                 <div className="sub-title">
                   <div
-                    className={`footer-title ${isOpen && collapse == 4 ? "active" : ""
-                      } `}
+                    className={`footer-title ${
+                      isOpen && collapse == 4 ? "active" : ""
+                    } `}
                   >
                     <h4
                       onClick={() => {
@@ -268,10 +272,12 @@ const MasterFooter = ({
                     <div className="footer-contant">
                       <ul className="contact-list">
                         <li>
-                          <i className="fa fa-map-marker"></i>VIA SANSOVINO, 8, 37138 VERONA VR.
+                          <i className="fa fa-map-marker"></i>VIA SANSOVINO, 8,
+                          37138 VERONA VR.
                         </li>
                         <li>
-                          <i className="fa fa-phone"></i>Call Us: +039 320 634 3988
+                          <i className="fa fa-phone"></i>Call Us: +039 320 634
+                          3988
                         </li>
                         <li>
                           <i className="fa fa-envelope-o"></i>Email Us:{" "}

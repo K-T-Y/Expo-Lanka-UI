@@ -494,8 +494,12 @@
 
 export const MENUITEMS = [
   { path: "/", title: "Home", type: "link" },
-  { path: "/page/collection", title: "Products", type: "link" },
+  {
+    path: "/page/products/physical/product-list",
+    title: "Products",
+    type: "link",
+  },
   { path: "/page/about-us", title: "About Us", type: "link" },
   { path: "/page/contact", title: "Contact Us", type: "link" },
-  { path: "/page/collection", title: "Parcel Tracking", type: "link" },
+  { path: "/page/tracking", title: "Parcel Tracking", type: "link" },
 ];

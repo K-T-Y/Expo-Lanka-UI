@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
 import ProductItem from "../product-box/ProductBox1";
 import CartContext from "../../../helpers/cart/index";
-import { Container, Row, Col, Media } from "reactstrap";
+
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
 import PostLoader from "../PostLoader";
 import { CompareContext } from "../../../helpers/Compare/CompareContext";
@@ -12,7 +12,7 @@ import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
 import axios from "axios";
 import { InventoryService } from "../../../config/api-config";
-
+import { Button, Card, CardBody, Col, Container, Row, Media } from "reactstrap";
 const GET_PRODUCTS = gql`
   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
     products(type: $type, indexFrom: $indexFrom, limit: $limit) {
@@ -256,11 +256,75 @@ const SpecialProducts = ({
                   return (
                     <div className="col-xl-3 col-lg-4 col-6">
                       {/* Card Start */}
-                      <div className="card">
-                        <div className="card-body">
-                          <img src={item.productImages[0].imageUrl} />
+                      <Card>
+                        <div className="products-admin">
+                          <CardBody className="product-box">
+                            <div className="img-wrapper">
+                              <div className="lable-block">
+                                {/* {item.tag === "new" ? (
+                                  <span className="lable3">{myData.tag}</span>
+                                ) : (
+                                  ""
+                                )}
+                                {item.discount === "on sale" ? (
+                                  <span className="lable4">
+                                    {item.discount}
+                                  </span>
+                                ) : (
+                                  ""
+                                )} */}
+                              </div>
+                              <div className="front">
+                                <a href="/#" className="bg-size">
+                                  <img
+                                    style={{ Image: 100 }}
+                                    alt=""
+                                    className="img-fluid blur-up bg-img lazyloaded"
+                                    src={item.productImages[0].imageUrl}
+                                  />
+                                </a>
+                                <div className="product-hover">
+                                  <ul>
+                                    <li>
+                                      <Button color="btn" type="button">
+                                        {/* <Edit className="editBtn" /> */}
+                                      </Button>
+                                    </li>
+                                    <li>
+                                      <Button color="btn" type="button">
+                                        {/* <Trash2 className="deleteBtn" /> */}
+                                      </Button>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="product-detail">
+                              <div className="rating">
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                                <i className="fa fa-star"></i>
+                              </div>
+                              <a href="/#">
+                                <h6>{item.productCategory.description}</h6>
+                              </a>
+                              <h4>
+                                {item.sellingPrice}{" "}
+                                <del>
+                                  {item.discountedPrice && item.discountedPrice}
+                                </del>
+                              </h4>
+                              <ul className="color-variant">
+                                <li className="bg-light0"></li>
+                                <li className="bg-light1"></li>
+                                <li className="bg-light2"></li>
+                              </ul>
+                            </div>
+                          </CardBody>
                         </div>
-                      </div>
+                      </Card>
                       {/* <div className="card" style="width: 18rem;">
                       <img src={item.productImages[0].imageUrl} />
                       <div className="card-body">

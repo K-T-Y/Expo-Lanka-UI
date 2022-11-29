@@ -135,9 +135,15 @@ const AboutUs = () => {
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                   accusantium doloremque laudantium
                 </h4>
-                <p><b>
-                TEAM EXPO SRI LANKA is diversified and ever-growing. The portfolio of solutions, provide by the company covers a wide range of daily demands. Discover the expo Sri Lanka’s enhanced way of unveiling the finest of the Sri Lanka to the world.
-                </b></p>
+                <p>
+                  <b>
+                    TEAM EXPO SRI LANKA is diversified and ever-growing. The
+                    portfolio of solutions, provide by the company covers a wide
+                    range of daily demands. Discover the expo Sri Lanka’s
+                    enhanced way of unveiling the finest of the Sri Lanka to the
+                    world.
+                  </b>
+                </p>
                 <p>
                   On the other hand, we denounce with righteous indignation and
                   dislike men who are so beguiled and demoralized by the charms
