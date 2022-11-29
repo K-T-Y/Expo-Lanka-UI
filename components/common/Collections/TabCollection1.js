@@ -255,85 +255,73 @@ const SpecialProducts = ({
                 if (index < 4) {
                   return (
                     <div className="col-xl-3 col-lg-4 col-6">
-                      {/* Card Start */}
-                      <Card>
-                        <div className="products-admin">
-                          <CardBody className="product-box">
-                            <div className="img-wrapper">
-                              <div className="lable-block">
-                                {/* {item.tag === "new" ? (
-                                  <span className="lable3">{myData.tag}</span>
-                                ) : (
-                                  ""
-                                )}
-                                {item.discount === "on sale" ? (
-                                  <span className="lable4">
-                                    {item.discount}
-                                  </span>
-                                ) : (
-                                  ""
-                                )} */}
-                              </div>
-                              <div className="front">
-                                <a href="/#" className="bg-size">
-                                  <img
-                                    style={{ Image: 100 }}
-                                    alt=""
-                                    className="img-fluid blur-up bg-img lazyloaded"
-                                    src={item.productImages[0].imageUrl}
-                                  />
-                                </a>
-                                <div className="product-hover">
-                                  <ul>
-                                    <li>
-                                      <Button color="btn" type="button">
-                                        {/* <Edit className="editBtn" /> */}
-                                      </Button>
-                                    </li>
-                                    <li>
-                                      <Button color="btn" type="button">
-                                        {/* <Trash2 className="deleteBtn" /> */}
-                                      </Button>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="product-detail">
-                              <div className="rating">
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                                <i className="fa fa-star"></i>
-                              </div>
-                              <a href="/#">
-                                <h6>{item.productCategory.description}</h6>
-                              </a>
-                              <h4>
-                                {item.sellingPrice}{" "}
-                                <del>
-                                  {item.discountedPrice && item.discountedPrice}
-                                </del>
-                              </h4>
-                              <ul className="color-variant">
-                                <li className="bg-light0"></li>
-                                <li className="bg-light1"></li>
-                                <li className="bg-light2"></li>
-                              </ul>
-                            </div>
-                          </CardBody>
+                      {" "}
+                      <div class="product-box">
+                        <div class="img-wrapper">
+                          <div class="front">
+                            <a href="product-page(no-sidebar).html">
+                              <img
+                                src={item.productImages[0].imageUrl}
+                                class="img-fluid blur-up lazyload bg-img"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div class="back">
+                            <a href="product-page(no-sidebar).html">
+                              <img
+                                src={item.productImages[0].imageUrl}
+                                class="img-fluid blur-up lazyload bg-img"
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div class="cart-info cart-wrap">
+                            <button
+                              data-bs-toggle="modal"
+                              data-bs-target="#addtocart"
+                              title="Add to cart"
+                            >
+                              <i class="ti-shopping-cart"></i>
+                            </button>
+                            <a
+                              href="javascript:void(0)"
+                              title="Add to Wishlist"
+                            >
+                              <i class="ti-heart" aria-hidden="true"></i>
+                            </a>
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#quick-view"
+                              title="Quick View"
+                            >
+                              <i class="ti-search" aria-hidden="true"></i>
+                            </a>
+                            <a href="compare.html" title="Compare">
+                              <i class="ti-reload" aria-hidden="true"></i>
+                            </a>
+                          </div>
                         </div>
-                      </Card>
-                      {/* <div className="card" style="width: 18rem;">
-                      <img src={item.productImages[0].imageUrl} />
-                      <div className="card-body">
-                      <h5 className="card-title">Card title</h5>
-                      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" className="btn btn-primary">Go somewhere</a>
+                        <div class="product-detail">
+                          <div class="rating">
+                            <i class="fa fa-star"></i>{" "}
+                            <i class="fa fa-star"></i>{" "}
+                            <i class="fa fa-star"></i>{" "}
+                            <i class="fa fa-star"></i>{" "}
+                            <i class="fa fa-star"></i>
+                          </div>
+                          <a href="product-page(no-sidebar).html">
+                            <h6>Purple polo tshirt</h6>
+                          </a>
+                          <h4>$20.00</h4>
+                          <ul class="color-variant">
+                            <li class="bg-light0"></li>
+                            <li class="bg-light1"></li>
+                            <li class="bg-light2"></li>
+                          </ul>
+                        </div>
                       </div>
-                      </div> */}
-                      {/* Card End */}
                     </div>
                   );
                 }

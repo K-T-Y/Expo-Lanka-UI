@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
 import { Container, Row, Col, Media } from "reactstrap";
-import banner1 from "../../../../public/assets/images/sub-banner1.jpg";
-import banner2 from "../../../../public/assets/images/sub-banner2.jpg";
+import banner1 from "../../../../public/assets/images/warehouse.png";
+import banner2 from "../../../../public/assets/images/plane.jpg";
 
 const Data = [
   {
     img: banner1,
-    about: "men",
-    offer: "10% off",
+    about: "Sexy",
+    offer: "YASH",
     link: "/left-sidebar/collection",
     class: "p-right text-center",
   },
@@ -30,7 +30,7 @@ const MasterCollectionBanner = ({ img, about, offer, link, classes }) => {
             <Media src={img} className="img-fluid" alt="" />
             <div className="contain-banner">
               <div>
-                <h4>{offer}</h4>
+                <h4 >{offer}</h4>
                 <h2>{about}</h2>
               </div>
             </div>

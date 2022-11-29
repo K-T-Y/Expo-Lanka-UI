@@ -8,13 +8,13 @@ const Data = [
   {
     img: "home1",
     title: "welcome to",
-    desc: "Expo SriLanka",
+    desc: "Expo Sri Lanka",
     link: "/left-sidebar/collection ",
   },
   {
     img: "home2",
     title: "welcome to",
-    desc: "Expo SriLanka",
+    desc: "Expo Sri Lanka",
     link: "/left-sidebar/collection ",
   },
 ];

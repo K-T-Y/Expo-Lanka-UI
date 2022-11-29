@@ -163,6 +163,7 @@ const TopCollection = ({
                 loading ? (
                   <div className="row margin-default">
                     <div className="col-xl-3 col-lg-4 col-6">
+                    
                       <PostLoader />
                     </div>
                     <div className="col-xl-3 col-lg-4 col-6">

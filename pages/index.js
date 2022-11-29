@@ -14,6 +14,7 @@ import Paragraph from "../components/common/Paragraph";
 import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
+import Category from "../components/common/Category/category";
 
 const Fashion = () => {
   return (
@@ -36,7 +37,7 @@ const Fashion = () => {
         inner="title-inner1"
         hrClass={false}
       />
-      <TopCollection
+      {/* <TopCollection
         noTitle="null"
         backImage={true}
         type="fashion"
@@ -46,7 +47,8 @@ const Fashion = () => {
         designClass="section-b-space p-t-0 ratio_asos px-2"
         noSlider="false"
         cartClass="cart-info cart-wrap"
-      />
+      /> */}
+      <Category></Category>
       <Parallax />
       <SpecialProducts
         type="fashion"
