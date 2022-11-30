@@ -21,18 +21,24 @@ import { ApiUrl } from "../config/api-config";
 const Fashion = () => {
   const [User, setUser] = useState("");
   useEffect(() => {
-    console.log("User==>", User);
-    if (!localStorage.getItem("ShoppingSession")) {
-      getSession();
-      console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
-    }
     if (localStorage.getItem("User") != "") {
       setUser(JSON.parse(localStorage.getItem("User")));
+    }
+    if (
+      localStorage.getItem("User") != "" &&
+      localStorage.getItem("ShoppingSession") == ""
+    ) {
+      getSession();
+      console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
     }
   });
   const getSession = () => {
     axios
-      .get(ApiUrl + "/shopping-session/get/session/" + User.id)
+      .get(
+        ApiUrl +
+          "/shopping-session/get/session/" +
+          JSON.parse(localStorage.getItem("User")).id
+      )
       .then((sessionresponse) => {
         if (sessionresponse.status == 200) {
           localStorage.setItem(
