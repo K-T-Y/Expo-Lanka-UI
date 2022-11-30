@@ -6,27 +6,27 @@ const Data = [
   {
     img: "fa-phone",
     title: "Contact us",
-    desc1: "+91 123 - 456 - 7890",
-    desc2: "+86 163 - 451 - 7894",
+    desc1: "+039 320 634 3988",
+    // desc2: "+86 163 - 451 - 7894",
   },
   {
     img: "fa-map-marker",
     title: "ADDRESS",
-    desc1: "ABC Complex,Near xyz, New York",
-    desc2: "USA 123456",
+    desc1: "VIA SANSOVINO, 8, 37138 VERONA VR.",
+    // desc2: "USA 123456",
   },
   {
     img: "fa-envelope-o",
-    title: "ADDRESS",
-    desc1: "Support@Shopcart.com",
-    desc2: "info@shopcart.com",
+    title: "EMAIL",
+    desc1: "exposrilanka@gmail.com",
+    // desc2: "info@shopcart.com",
   },
-  {
-    img: "fa-fax",
-    title: "fax",
-    desc1: "Support@Shopcart.com",
-    desc2: "info@shopcart.com",
-  },
+  // {
+  //   img: "fa-fax",
+  //   title: "fax",
+  //   desc1: "Support@Shopcart.com",
+  //   desc2: "info@shopcart.com",
+  // },
 ];
 
 const ContactDetail = ({ img, title, desc1, desc2 }) => {
@@ -50,10 +50,11 @@ const Contact = () => {
         <Container>
           <Row className="section-b-space">
             <Col lg="7" className="map">
-              <iframe
+              {/* <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1605.811957341231!2d25.45976406005396!3d36.3940974010114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1550912388321"
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
+              <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1MdVy1JEGnRmFUQDvlVkK_QRXJ1yCF4k&ehbc=2E312F"></iframe>
             </Col>
             <Col lg="5">
               <div className="contact-right">
@@ -78,7 +79,9 @@ const Contact = () => {
               <Form className="theme-form">
                 <Row>
                   <Col md="6">
-                    <Label className="form-label" for="name">First Name</Label>
+                    <Label className="form-label" for="name">
+                      First Name
+                    </Label>
                     <Input
                       type="text"
                       className="form-control"
@@ -88,7 +91,9 @@ const Contact = () => {
                     />
                   </Col>
                   <Col md="6">
-                    <Label className="form-label" for="email">Last Name</Label>
+                    <Label className="form-label" for="email">
+                      Last Name
+                    </Label>
                     <Input
                       type="text"
                       className="form-control"
@@ -98,7 +103,9 @@ const Contact = () => {
                     />
                   </Col>
                   <Col md="6">
-                    <Label className="form-label" for="review">Phone number</Label>
+                    <Label className="form-label" for="review">
+                      Phone number
+                    </Label>
                     <Input
                       type="text"
                       className="form-control"
@@ -108,7 +115,9 @@ const Contact = () => {
                     />
                   </Col>
                   <Col md="6">
-                    <Label className="form-label" for="email">Email</Label>
+                    <Label className="form-label" for="email">
+                      Email
+                    </Label>
                     <Input
                       type="text"
                       className="form-control"
@@ -118,7 +127,9 @@ const Contact = () => {
                     />
                   </Col>
                   <Col md="12">
-                    <Label className="form-label" for="review">Write Your Message</Label>
+                    <Label className="form-label" for="review">
+                      Write Your Message
+                    </Label>
                     <textarea
                       className="form-control"
                       placeholder="Write Your Message"

@@ -280,12 +280,12 @@ const MasterFooter = ({
                           3988
                         </li>
                         <li>
-                          <i className="fa fa-envelope-o"></i>Email Us:{" "}
-                          <a href="#">Support@Fiot.com</a>
+                          <i className="fa fa-envelope-o"></i>Email Us:
+                          <a href="#">exposrilanka@gmail.com</a>
                         </li>
-                        <li>
+                        {/* <li>
                           <i className="fa fa-fax"></i>Fax: 123456
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </Collapse>

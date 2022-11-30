@@ -22,25 +22,13 @@ const Register = () => {
                   <Row>
                     <Col md="6">
                       <Label className="form-label" for="email">
-                        First Name
+                        Full Name
                       </Label>
                       <Input
                         type="text"
                         className="form-control"
                         id="fname"
-                        placeholder="First Name"
-                        required=""
-                      />
-                    </Col>
-                    <Col md="6">
-                      <Label className="form-label" for="review">
-                        Last Name
-                      </Label>
-                      <Input
-                        type="text"
-                        className="form-control"
-                        id="lname"
-                        placeholder="Last Name"
+                        placeholder="Full Name"
                         required=""
                       />
                     </Col>
@@ -67,6 +55,42 @@ const Register = () => {
                         className="form-control"
                         id="review"
                         placeholder="Enter your password"
+                        required=""
+                      />
+                    </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        Business Name
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="bname"
+                        placeholder="Business Name"
+                        required=""
+                      />
+                    </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        Business Type
+                      </Label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        id="btype"
+                        placeholder="Business Type"
+                        required=""
+                      />
+                    </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        Mobile No
+                      </Label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        id="mobileNo"
+                        placeholder="Enter your Mobile Number"
                         required=""
                       />
                     </Col>
