@@ -137,14 +137,16 @@ const AboutUs = () => {
                   style={{
                     fontSize: "20px",
                     textAlign: "center",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  MISSION
+                  VISION
                 </p>
                 <br></br>
                 <p
                   style={{
-                    fontSize: "20px",
+                    fontSize: "16px",
                     textAlign: "center",
                   }}
                 >
@@ -157,14 +159,16 @@ const AboutUs = () => {
                   style={{
                     fontSize: "20px",
                     textAlign: "center",
+                    color: "black",
+                    fontWeight: "bold",
                   }}
                 >
-                  VISION
+                  MISSION
                 </p>
                 <br></br>
                 <p
                   style={{
-                    fontSize: "20px",
+                    fontSize: "16px",
                     textAlign: "center",
                   }}
                 >
