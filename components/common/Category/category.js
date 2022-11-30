@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { InventoryService } from "../../../config/api-config";
+import { ApiUrl } from "../../../config/api-config";
 
 const Category = () => {
   const [categoryList, setCategoryList] = useState("");
 
   const getAllCategories = () => {
     axios
-      .post(InventoryService + "/product/category/findAll", {})
+      .post(ApiUrl + "/product/category/findAll", {})
       .then((response) => {
         console.log("GET_CATEGORY_LIST", response);
         setCategoryList(response.data.data);

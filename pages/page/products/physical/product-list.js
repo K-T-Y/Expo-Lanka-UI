@@ -5,17 +5,14 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Edit, Trash2 } from "react-feather";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import CommonLayout from "../../../../components/shop/common-layout";
-import { InventoryService } from "../../../../config/api-config";
+import { ApiUrl } from "../../../../config/api-config";
 
 const Product_list = () => {
   const [allProducts, setAllProducts] = useState("");
 
   const getAllProducts = (page, size) => {
     axios
-      .post(
-        InventoryService + "/product/search?page=" + page + "&size=" + size,
-        {}
-      )
+      .post(ApiUrl + "/product/search?page=" + page + "&size=" + size, {})
       .then((response) => {
         console.log("GET_ALL_PRODUCT_RESPONSE", response);
         setAllProducts(response.data.data.content);

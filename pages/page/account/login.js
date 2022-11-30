@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CommonLayout from "../../../components/shop/common-layout";
 import { Container, Row, Form, Label, Input, Col } from "reactstrap";
 import axios from "axios";
-import { AuthService } from "../../../config/api-config";
+import { ApiUrl } from "../../../config/api-config";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
@@ -18,10 +18,10 @@ const Login = () => {
       password: password,
     };
     axios
-      .post(AuthService + "/auth/login", model)
+      .post(ApiUrl + "/customers/login", model)
       .then((response) => {
         if (response.status == 200) {
-          localStorage.setItem("User", response.data);
+          localStorage.setItem("User", JSON.stringify(response.data.data));
           toast.success("Successfully Logged In");
           disabledButton = false;
           router.push("/");

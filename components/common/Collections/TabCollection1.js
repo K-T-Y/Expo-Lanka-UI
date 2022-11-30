@@ -11,7 +11,7 @@ import { CompareContext } from "../../../helpers/Compare/CompareContext";
 import { CurrencyContext } from "../../../helpers/Currency/CurrencyContext";
 import emptySearch from "../../../public/assets/images/empty-search.jpg";
 import axios from "axios";
-import { InventoryService } from "../../../config/api-config";
+import { ApiUrl } from "../../../config/api-config";
 import { Button, Card, CardBody, Col, Container, Row, Media } from "reactstrap";
 const GET_PRODUCTS = gql`
   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
@@ -155,7 +155,7 @@ const SpecialProducts = ({
   const [featuredProduct, setFeaturedProduct] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getAllFeaturedProducts = () => {
-    axios.get(InventoryService + "/product/most-popular").then((response) => {
+    axios.get(ApiUrl + "/product/most-popular").then((response) => {
       console.log("FEATURED_PRODUCTS_API==>", response);
       console.log(response.data.data);
       setFeaturedProduct(response.data.data);

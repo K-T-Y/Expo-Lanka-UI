@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import CartContext from "../../../../helpers/cart";
 import { Container, Row, Col, Media, Input } from "reactstrap";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
 import cart from "../../../../public/assets/images/icon-empty-cart.png";
+import { stringifyForDisplay } from "@apollo/client/utilities";
 
 const CartPage = () => {
   const context = useContext(CartContext);
@@ -43,6 +44,12 @@ const CartPage = () => {
       setStock("Out of Stock !");
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("User")) {
+      console.log("User==>", JSON.parse(localStorage.getItem("User")));
+    }
+  });
 
   return (
     <div>

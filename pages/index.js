@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "./layouts/Fashion/Components/Banner";
 import CollectionBanner from "./layouts/Fashion/Components/Collection-Banner";
 import TopCollection from "../components/common/Collections/Collection3";
@@ -15,8 +15,37 @@ import ModalComponent from "../components/common/Modal";
 import Helmet from "react-helmet";
 import MasterFooter from "../components/footers/common/MasterFooter";
 import Category from "../components/common/Category/category";
+import axios from "axios";
+import { ApiUrl } from "../config/api-config";
 
 const Fashion = () => {
+  const [User, setUser] = useState("");
+  useEffect(() => {
+    console.log("User==>", User);
+    if (!localStorage.getItem("ShoppingSession")) {
+      getSession();
+      console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+    }
+    if (localStorage.getItem("User") != "") {
+      setUser(JSON.parse(localStorage.getItem("User")));
+    }
+  });
+  const getSession = () => {
+    axios
+      .get(ApiUrl + "/shopping-session/get/session/" + User.id)
+      .then((sessionresponse) => {
+        if (sessionresponse.status == 200) {
+          localStorage.setItem(
+            "ShoppingSession",
+            JSON.stringify(sessionresponse.data)
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("SESSION_ERROR", error);
+      });
+  };
+
   return (
     <>
       <Helmet>
