@@ -49,7 +49,7 @@ const Fashion = () => {
         cartClass="cart-info cart-wrap"
       /> */}
       <Category></Category>
-      <Parallax />
+      {/* <Parallax /> */}
       <SpecialProducts
         type="fashion"
         backImage={true}

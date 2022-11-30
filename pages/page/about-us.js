@@ -11,6 +11,7 @@ import team2 from "../../public/assets/images/team/2.jpg";
 import team3 from "../../public/assets/images/team/3.jpg";
 import team4 from "../../public/assets/images/team/4.jpg";
 import ServiceLayout from "../../components/common/Service/service1.js";
+import { AlignCenter, AlignJustify } from "react-feather";
 
 const TeamData = [
   {
@@ -129,21 +130,31 @@ const AboutUs = () => {
                     alt=""
                   />
                 </div>
-              </Col>
+              </Col>{" "}
               <Col sm="12">
-                <h4>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium
-                </h4>
-                <p>
-                  <b>
-                    TEAM EXPO SRI LANKA is diversified and ever-growing. The
-                    portfolio of solutions, provide by the company covers a wide
-                    range of daily demands. Discover the expo Sri Lanka’s
-                    enhanced way of unveiling the finest of the Sri Lanka to the
-                    world.
-                  </b>
+                <br></br>
+                <h4
+                  style={{
+                    color: "black",
+                    fontSize: "30px",
+                    textAlign: "center",
+                  }}
+                >
+                  EXPO SRI LANKA - “අපේ දේ ලොවට” - Sri Lanka to the World
+                </h4>{" "}
+                <br></br>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  TEAM EXPO SRI LANKA is diversified and ever-growing. The
+                  portfolio of solutions, provide by the company covers a wide
+                  range of daily demands. Discover the expo Sri Lanka’s enhanced
+                  way of unveiling the finest of the Sri Lanka to the world.
                 </p>
+                <br></br>
                 <p>
                   On the other hand, we denounce with righteous indignation and
                   dislike men who are so beguiled and demoralized by the charms

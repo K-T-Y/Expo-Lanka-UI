@@ -7,15 +7,15 @@ import banner2 from "../../../../public/assets/images/plane.jpg";
 const Data = [
   {
     img: banner1,
-    about: "Sexy",
-    offer: "YASH",
+    // about: "men",
+    // offer: "10% off",
     link: "/left-sidebar/collection",
     class: "p-right text-center",
   },
   {
     img: banner2,
-    about: "women",
-    offer: "10% off",
+    // about: "women",
+    // offer: "10% off",
     link: "/left-sidebar/collection",
     class: "p-right text-center",
   },
@@ -24,19 +24,19 @@ const Data = [
 const MasterCollectionBanner = ({ img, about, offer, link, classes }) => {
   return (
     <Col md="6">
-      <Link href={link}>
-        <a>
-          <div className={`collection-banner ${classes}`}>
-            <Media src={img} className="img-fluid" alt="" />
-            <div className="contain-banner">
-              <div>
-                <h4 >{offer}</h4>
-                <h2>{about}</h2>
-              </div>
+      {/* <Link href={link}> */}
+      <a>
+        <div className={`collection-banner ${classes}`}>
+          <Media src={img} className="img-fluid" alt="" />
+          <div className="contain-banner">
+            <div>
+              <h4>{offer}</h4>
+              <h2>{about}</h2>
             </div>
           </div>
-        </a>
-      </Link>
+        </div>
+      </a>
+      {/* </Link> */}
     </Col>
   );
 };
