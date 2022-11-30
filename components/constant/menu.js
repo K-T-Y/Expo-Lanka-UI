@@ -500,6 +500,6 @@ export const MENUITEMS = [
     type: "link",
   },
   { path: "/page/about-us", title: "About Us", type: "link" },
-  { path: "/page/contact", title: "Contact Us", type: "link" },
+  { path: "/page/account/contact", title: "Contact Us", type: "link" },
   { path: "/page/tracking", title: "Parcel Tracking", type: "link" },
 ];

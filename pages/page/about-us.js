@@ -55,50 +55,26 @@ const Team = ({ img, name, post }) => {
 
 const TeamDetailData = [
   {
-    img: "/assets/images/avtar.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
-  },
-  {
     img: "/assets/images/2.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
+    name: " chair person",
+    post: "Chairman",
+    about1:
+      "My passion is to develop Sri Lanka to the world Market. The reason for that is, Sri Lanka has so much untapped potential that the world needs to know with that thought in mind, I started Expo Sri Lanka with the vision to bring Sri Lanka to the world by enriching employees and being ethical corporate citizen.",
+    about2:
+      " Our strategy to expose Sri Lanka to the world market is using the Sri Lankan network who reside in Europe. I strongly believe to give opportunities to young generation, as they have full of potential, and my job is to push them for excellence",
   },
   {
     img: "/assets/images/avtar.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
-  },
-  {
-    img: "/assets/images/avtar.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
-  },
-  {
-    img: "/assets/images/avtar.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
-  },
-  {
-    img: "/assets/images/avtar.jpg",
-    name: "mark jenco",
-    post: "designer",
-    about:
-      "you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.",
+    name: "Directors & Group  ",
+    post: "Management Comittee",
+    about1:
+      "Start working with Lanka Express is a Transport & Logistic company established in 2012 based in city of Rome. Through extensive exposure and vast transportation experience, Lanka Express has developed and established many special services to meet the demands of the customer. We grew faster each day expanding our business in different cities by providing a quality and affordable good service to Sri Lankan Community. We raised as a small air cargo company who has a simple thought of moving packaged from Italy to Sri Lanka door to door within 3-10 days’ time.",
+    about2:
+      "To constantly exceed customer expectations by providing superior freight forwarding and Europe to Sri Lanka transportation solutions including air, ocean, and customs brokerage and logistics services. We put forward a tremendous extra effort every day to give this level and quality of service and we are always striving to deliver the most efficient, convenient and effective solutions in the industry by utilizing highly trained friendly and experience staff as well as a solid infrastructure. We approach every need of our customer with utmost flexibility because we concentrate not on the processes but the end result - proper delivery of the shipment.",
   },
 ];
 
-const TeamDetail = ({ img, name, post, about }) => {
+const TeamDetail = ({ img, name, post, about1, about2 }) => {
   return (
     <div>
       <div className="media">
@@ -108,7 +84,9 @@ const TeamDetail = ({ img, name, post, about }) => {
           <h6>{post}</h6>
         </div>
         <div className="media-body">
-          <p>{about}</p>
+          <p style={{ textAlign: "justify" }}>{about1}</p>
+          <br></br>
+          <p style={{ textAlign: "justify" }}>{about2}</p>
         </div>
       </div>
     </div>
@@ -221,7 +199,8 @@ const AboutUs = () => {
                         img={data.img}
                         name={data.name}
                         post={data.post}
-                        about={data.about}
+                        about1={data.about1}
+                        about2={data.about2}
                       />
                     );
                   })}
@@ -233,7 +212,7 @@ const AboutUs = () => {
         {/* <!--Testimonial ends--> */}
 
         {/* <!--Team start--> */}
-        <section id="team" className="team section-b-space ratio_asos">
+        {/* <section id="team" className="team section-b-space ratio_asos">
           <Container>
             <Row>
               <Col sm="12">
@@ -253,7 +232,7 @@ const AboutUs = () => {
               </Col>
             </Row>
           </Container>
-        </section>
+        </section> */}
         {/* <!--Team ends--> */}
 
         <div className="section-b-space">
