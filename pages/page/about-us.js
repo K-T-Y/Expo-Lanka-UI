@@ -155,24 +155,50 @@ const AboutUs = () => {
                   way of unveiling the finest of the Sri Lanka to the world.
                 </p>
                 <br></br>
-                <p>
-                  On the other hand, we denounce with righteous indignation and
-                  dislike men who are so beguiled and demoralized by the charms
-                  of pleasure of the moment, so blinded by desire, that they
-                  cannot foresee the pain and trouble that are bound to ensue;
-                  and equal blame belongs to those who fail in their duty
-                  through weakness of will, which is the same as saying through
-                  shrinking from toil and pain. These cases are perfectly simple
-                  and easy to distinguish. In a free hour, when our power of
-                  choice is untrammelled and when nothing prevents our being
-                  able to do what we like best, every pleasure is to be welcomed
-                  and every pain avoided. But in certain circumstances and owing
-                  to the claims of duty or the obligations of business it will
-                  frequently occur that pleasures have to be repudiated and
-                  annoyances accepted. The wise man therefore always holds in
-                  these matters to this principle of selection: he rejects
-                  pleasures to secure other greater pleasures, or else he
-                  endures pains to avoid worse pains.
+                <p
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  MISSION
+                </p>
+                <br></br>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  Expo Sri Lanka's vision is to create world-class brand name
+                  for Sri Lanka by empowering employees and being a socially
+                  responsible corporate citizen.
+                </p>
+                <br></br>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  VISION
+                </p>
+                <br></br>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                  }}
+                >
+                  We aim to create superior value for all our stakeholders. With
+                  our company purpose at its core, the way we operate – the Expo
+                  Sri Lanka Way – is our lever to implement our strategy. By
+                  pushing the boundaries of technology and embedding
+                  sustainability in everything we do, our people drive the
+                  performance of our businesses to new levels. Together with our
+                  common values, strong brand and governance framework, the Expo
+                  Sri Lanka way provides the foundation to execute as a focused,
+                  successful, value-creating company.
                 </p>
               </Col>
             </Row>
