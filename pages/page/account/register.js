@@ -22,25 +22,25 @@ const Register = () => {
                   <Row>
                     <Col md="6">
                       <Label className="form-label" for="email">
-                        Full Name
+                        First Name
                       </Label>
                       <Input
                         type="text"
                         className="form-control"
                         id="fname"
-                        placeholder="Full Name"
+                        placeholder="First Name"
                         required=""
                       />
                     </Col>
                     <Col md="6">
                       <Label className="form-label" for="review">
-                        Mobile No
+                        Last Name
                       </Label>
                       <Input
                         type="password"
                         className="form-control"
-                        id="mobileNo"
-                        placeholder="Enter your Mobile Number"
+                        id="lname"
+                        placeholder="Last Name"
                         required=""
                       />
                     </Col>
@@ -48,13 +48,13 @@ const Register = () => {
                   <Row>
                     <Col md="6">
                       <Label className="form-label" for="email">
-                        email
+                        Email
                       </Label>
                       <Input
                         type="email"
                         className="form-control"
                         id="email"
-                        placeholder="Email"
+                        placeholder="Your email"
                         required=""
                       />
                     </Col>
@@ -72,25 +72,49 @@ const Register = () => {
                     </Col>
                     <Col md="6">
                       <Label className="form-label" for="review">
-                        Business Name
+                        Address 1
                       </Label>
                       <Input
                         type="text"
                         className="form-control"
-                        id="bname"
-                        placeholder="Business Name"
+                        id="addline1"
+                        placeholder="Address line 1"
                         required=""
                       />
                     </Col>
                     <Col md="6">
                       <Label className="form-label" for="review">
-                        Business Type
+                        Address 2
                       </Label>
                       <Input
-                        type="password"
+                        type="text"
                         className="form-control"
-                        id="btype"
-                        placeholder="Business Type"
+                        id="addline2"
+                        placeholder="Address line 2"
+                        required=""
+                      />
+                    </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        City
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="city"
+                        placeholder="City"
+                        required=""
+                      />
+                    </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        Mobile
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="mobile"
+                        placeholder="Mobile"
                         required=""
                       />
                     </Col>

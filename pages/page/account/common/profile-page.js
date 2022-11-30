@@ -2,17 +2,30 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Form, Input, Label, Col } from "reactstrap";
 
 const ProfilePage = () => {
-  const [User, setUser] = useState(JSON.parse(localStorage.getItem("User")));
+  const [User, setUser] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("User") != "") {
+      setUser(JSON.parse(localStorage.getItem("User")));
+      if (User != "") {
+        setFirstName(User.firstName);
+        setLastName(User.lastName);
+        setEmail(User.email);
+        setAddress1(User.addLine1);
+        setAddress2(User.addLine2);
+        setCity(User.city);
+        setMobile(User.mobile);
+        setPassword(User.password);
+      }
+    }
+  });
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [addLine1, setAddress1] = useState("");
+  const [addLine2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
   const [mobile, setMobile] = useState("");
-  useEffect(() => {
-    if (User != "") {
-      setFirstName(User.firstName);
-      setLastName(User.lastName);
-      setMobile(User.mobile);
-    }
-  }, []);
+  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -20,7 +33,7 @@ const ProfilePage = () => {
         <Container>
           <Row>
             <Col sm="12">
-              <h3>PERSONAL DETAIL</h3>
+              <h3>PERSONAL DETAILS</h3>
               <Form className="theme-form">
                 <Row>
                   <Col md="6">
@@ -31,8 +44,8 @@ const ProfilePage = () => {
                       value={firstName}
                       type="text"
                       className="form-control"
-                      id="name"
-                      placeholder="Enter Your name"
+                      id="firstName"
+                      placeholder="First name"
                       required=""
                     />
                   </Col>
@@ -44,33 +57,86 @@ const ProfilePage = () => {
                       value={lastName}
                       type="text"
                       className="form-control"
-                      id="last-name"
-                      placeholder="Last Name"
+                      id="lastName"
+                      placeholder="Last name"
+                      required=""
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Label className="form-label" for="name">
+                      Email
+                    </Label>
+                    <Input
+                      value={email}
+                      type="text"
+                      className="form-control"
+                      id="email"
+                      placeholder="Email"
                       required=""
                     />
                   </Col>
                   <Col md="6">
                     <Label className="form-label" for="review">
-                      Phone number
+                      Mobile
                     </Label>
                     <Input
                       value={mobile}
                       type="text"
                       className="form-control"
                       id="review"
-                      placeholder="Enter your number"
+                      placeholder="Mobile number"
                       required=""
                     />
                   </Col>
                   <Col md="6">
                     <Label className="form-label" for="email">
-                      Email
+                      Address 1
                     </Label>
                     <Input
-                      type="email"
+                      value={addLine1}
+                      type="text"
                       className="form-control"
                       id="email"
-                      placeholder="Email"
+                      placeholder="Address line 1"
+                      required=""
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Label className="form-label" for="email">
+                      Address 2
+                    </Label>
+                    <Input
+                      value={addLine2}
+                      type="text"
+                      className="form-control"
+                      id="email"
+                      placeholder="Address line 2"
+                      required=""
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Label className="form-label" for="email">
+                      City
+                    </Label>
+                    <Input
+                      value={city}
+                      type="text"
+                      className="form-control"
+                      id="email"
+                      placeholder="City"
+                      required=""
+                    />
+                  </Col>
+                  <Col md="6">
+                    <Label className="form-label" for="email">
+                      Password
+                    </Label>
+                    <Input
+                      value={password}
+                      type="text"
+                      className="form-control"
+                      id="email"
+                      placeholder="Password"
                       required=""
                     />
                   </Col>
