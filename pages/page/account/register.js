@@ -32,6 +32,18 @@ const Register = () => {
                         required=""
                       />
                     </Col>
+                    <Col md="6">
+                      <Label className="form-label" for="review">
+                        Mobile No
+                      </Label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        id="mobileNo"
+                        placeholder="Enter your Mobile Number"
+                        required=""
+                      />
+                    </Col>
                   </Row>
                   <Row>
                     <Col md="6">
@@ -82,18 +94,7 @@ const Register = () => {
                         required=""
                       />
                     </Col>
-                    <Col md="6">
-                      <Label className="form-label" for="review">
-                        Mobile No
-                      </Label>
-                      <Input
-                        type="password"
-                        className="form-control"
-                        id="mobileNo"
-                        placeholder="Enter your Mobile Number"
-                        required=""
-                      />
-                    </Col>
+
                     <Col md="12">
                       <a href="#" className="btn btn-solid w-auto">
                         create Account
