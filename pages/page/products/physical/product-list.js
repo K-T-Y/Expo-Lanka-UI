@@ -1,20 +1,34 @@
 import axios from "axios";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 // import Breadcrumb from "../../common/breadcrumb";
 
 import { Edit, Trash2 } from "react-feather";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import CommonLayout from "../../../../components/shop/common-layout";
+import { InventoryService } from "../../../../config/api-config";
 
 const Product_list = () => {
-  const getAllProducts = () => {
+  const [allProducts, setAllProducts] = useState("");
+
+  const getAllProducts = (page, size) => {
     axios
-      .get()
-      .then((response) => {})
+      .post(
+        InventoryService + "/product/search?page=" + page + "&size=" + size,
+        {}
+      )
+      .then((response) => {
+        console.log("GET_ALL_PRODUCT_RESPONSE", response);
+        setAllProducts(response.data.data.content);
+      })
       .catch((error) => {
         console.log("GET_ALL_PRODUCT_ERROR", error);
       });
   };
+  useEffect(() => {
+    if (allProducts == "") {
+      getAllProducts(0, 10);
+    }
+  });
   const data = [
     {
       //image: IMG34,
@@ -85,82 +99,198 @@ const Product_list = () => {
     <Fragment>
       <>
         <CommonLayout parent="home" title="Products">
-          <Container fluid={true}>
-            <Row className="products-admin ratio_asos">
-              {data.map((myData, i) => {
-                return (
-                  <Col xl="3" sm="6" key={i}>
-                    <Card>
-                      <div className="products-admin">
-                        <CardBody className="product-box">
-                          <div className="img-wrapper">
-                            <div className="lable-block">
-                              {myData.tag === "new" ? (
-                                <span className="lable3">{myData.tag}</span>
-                              ) : (
-                                ""
-                              )}
-                              {myData.discount === "on sale" ? (
-                                <span className="lable4">
-                                  {myData.discount}
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                            </div>
-                            <div className="front">
-                              <a href="/#" className="bg-size">
+          <div className="row mx-0 margin-default">
+            {allProducts &&
+              allProducts.map((item, index) => {
+                if (index < 9) {
+                  return (
+                    <div className="col-xl-3 col-lg-4 col-6" key={index}>
+                      <div class="product-box">
+                        <div class="img-wrapper">
+                          <div class="front">
+                            <a href="product-page(no-sidebar).html">
+                              {item.productImages != "" && (
                                 <img
+                                  src={item.productImages[0].imageUrl}
+                                  class="img-fluid blur-up lazyload bg-img"
                                   alt=""
-                                  className="img-fluid blur-up bg-img lazyloaded"
-                                  //   src={myData.image}
                                 />
-                              </a>
-                              <div className="product-hover">
-                                <ul>
-                                  <li>
-                                    <Button color="btn" type="button">
-                                      <Edit className="editBtn" />
-                                    </Button>
-                                  </li>
-                                  <li>
-                                    <Button color="btn" type="button">
-                                      <Trash2 className="deleteBtn" />
-                                    </Button>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="product-detail">
-                            <div className="rating">
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                              <i className="fa fa-star"></i>
-                            </div>
-                            <a href="/#">
-                              {" "}
-                              <h6>{myData.title}</h6>
+                              )}
                             </a>
-                            <h4>
-                              {myData.price} <del>{myData.discount_price}</del>
-                            </h4>
-                            <ul className="color-variant">
-                              <li className="bg-light0"></li>
-                              <li className="bg-light1"></li>
-                              <li className="bg-light2"></li>
-                            </ul>
                           </div>
-                        </CardBody>
+                          <div class="back">
+                            <a href="product-page(no-sidebar).html">
+                              {item.productImages != "" && (
+                                <img
+                                  src={item.productImages[0].imageUrl}
+                                  class="img-fluid blur-up lazyload bg-img"
+                                  alt=""
+                                />
+                              )}
+                            </a>
+                          </div>
+                          <div class="cart-info cart-wrap">
+                            <button
+                              data-bs-toggle="modal"
+                              data-bs-target="#addtocart"
+                              title="Add to cart"
+                            >
+                              <i class="ti-shopping-cart"></i>
+                            </button>
+                            <a
+                              href="javascript:void(0)"
+                              title="Add to Wishlist"
+                            >
+                              <i class="ti-heart" aria-hidden="true"></i>
+                            </a>
+                            <a
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#quick-view"
+                              title="Quick View"
+                            >
+                              <i class="ti-search" aria-hidden="true"></i>
+                            </a>
+                            <a href="compare.html" title="Compare">
+                              <i class="ti-reload" aria-hidden="true"></i>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="product-detail">
+                          {item.overallRating && item.overallRating == "" ? (
+                            <h4>Ratings Not Available Yet !!</h4>
+                          ) : (
+                            <>
+                              {item.overallRating == 0.5 ? (
+                                <div class="rating">
+                                  <i class="fa fa-star-half-o text-warning"></i>
+                                </div>
+                              ) : (
+                                <>
+                                  {item.overallRating == 1 ? (
+                                    <div class="rating">
+                                      <i class="fa fa-star"></i>
+                                    </div>
+                                  ) : (
+                                    <>
+                                      {item.overallRating == 1.5 ? (
+                                        <div class="rating">
+                                          <i class="fa fa-star"></i>
+
+                                          <i class="fa fa-star-half-o text-warning"></i>
+                                        </div>
+                                      ) : (
+                                        <>
+                                          {item.overallRating == 2 ? (
+                                            <div class="rating">
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                            </div>
+                                          ) : (
+                                            <>
+                                              {item.overallRating == 2.5 ? (
+                                                <div class="rating">
+                                                  <i class="fa fa-star"></i>
+
+                                                  <i class="fa fa-star"></i>
+                                                  <i class="fa fa-star-half-o text-warning"></i>
+                                                </div>
+                                              ) : (
+                                                <>
+                                                  {item.overallRating == 3 ? (
+                                                    <div class="rating">
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                      <i class="fa fa-star"></i>
+                                                    </div>
+                                                  ) : (
+                                                    <>
+                                                      {item.overallRating ==
+                                                      3.5 ? (
+                                                        <div class="rating">
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+                                                          <i class="fa fa-star"></i>
+
+                                                          <i class="fa fa-star-half-o text-warning"></i>
+                                                        </div>
+                                                      ) : (
+                                                        <>
+                                                          {item.overallRating ==
+                                                          4 ? (
+                                                            <div class="rating">
+                                                              <i class="fa fa-star"></i>
+                                                              <i class="fa fa-star"></i>
+                                                              <i class="fa fa-star"></i>
+                                                              <i class="fa fa-star"></i>
+                                                            </div>
+                                                          ) : (
+                                                            <>
+                                                              {item.overallRating ==
+                                                              4.5 ? (
+                                                                <div class="rating">
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star"></i>
+                                                                  <i class="fa fa-star-half-o text-warning"></i>
+                                                                </div>
+                                                              ) : (
+                                                                <>
+                                                                  {item.overallRating ==
+                                                                  5 ? (
+                                                                    <div class="rating">
+                                                                      <i class="fa fa-star"></i>
+                                                                      <i class="fa fa-star"></i>
+                                                                      <i class="fa fa-star"></i>
+                                                                      <i class="fa fa-star"></i>
+                                                                      <i class="fa fa-star"></i>
+                                                                    </div>
+                                                                  ) : (
+                                                                    <h4
+                                                                      style={{
+                                                                        fontWeight:
+                                                                          "normal",
+                                                                      }}
+                                                                    >
+                                                                      Ratings
+                                                                      Not
+                                                                      Available
+                                                                      Yet !!
+                                                                    </h4>
+                                                                  )}
+                                                                </>
+                                                              )}
+                                                            </>
+                                                          )}
+                                                        </>
+                                                      )}
+                                                    </>
+                                                  )}
+                                                </>
+                                              )}
+                                            </>
+                                          )}
+                                        </>
+                                      )}
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </>
+                          )}
+
+                          <a href="product-page(no-sidebar).html">
+                            <h6>{item.productName}</h6>
+                          </a>
+                          <h4>€{item.sellingPrice}</h4>
+                        </div>
                       </div>
-                    </Card>
-                  </Col>
-                );
+                    </div>
+                  );
+                }
               })}
-            </Row>
-          </Container>
+          </div>
         </CommonLayout>
       </>
     </Fragment>
