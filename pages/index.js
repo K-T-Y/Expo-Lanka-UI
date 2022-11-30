@@ -28,8 +28,10 @@ const Fashion = () => {
       localStorage.getItem("User") != "" &&
       localStorage.getItem("ShoppingSession") == ""
     ) {
-      getSession();
-      console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+      if (localStorage.getItem("ShoppingSession") == "") {
+        getSession();
+        console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+      }
     }
   });
   const getSession = () => {
