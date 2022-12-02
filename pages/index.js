@@ -33,7 +33,7 @@ const Fashion = () => {
         console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
       }
     }
-  });
+  }, []);
   const getSession = () => {
     axios
       .get(

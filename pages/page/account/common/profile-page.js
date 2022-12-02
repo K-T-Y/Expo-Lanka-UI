@@ -17,7 +17,7 @@ const ProfilePage = () => {
         setPassword(User.password);
       }
     }
-  });
+  }, []);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

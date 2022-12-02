@@ -102,43 +102,40 @@ const Product_list = () => {
                 if (index < 9) {
                   return (
                     <div className="col-xl-3 col-lg-4 col-6" key={index}>
-                      <div class="product-box">
-                        <div class="img-wrapper">
-                          <div class="front">
+                      <div className="product-box">
+                        <div className="img-wrapper">
+                          <div className="front">
                             <a href="product-page(no-sidebar).html">
                               {item.productImages != "" && (
                                 <img
                                   src={item.productImages[0].imageUrl}
-                                  class="img-fluid blur-up lazyload bg-img"
+                                  className="img-fluid blur-up lazyload bg-img"
                                   alt=""
                                 />
                               )}
                             </a>
                           </div>
-                          <div class="back">
+                          <div className="back">
                             <a href="product-page(no-sidebar).html">
                               {item.productImages != "" && (
                                 <img
                                   src={item.productImages[0].imageUrl}
-                                  class="img-fluid blur-up lazyload bg-img"
+                                  className="img-fluid blur-up lazyload bg-img"
                                   alt=""
                                 />
                               )}
                             </a>
                           </div>
-                          <div class="cart-info cart-wrap">
+                          <div className="cart-info cart-wrap">
                             <button
                               data-bs-toggle="modal"
                               data-bs-target="#addtocart"
                               title="Add to cart"
                             >
-                              <i class="ti-shopping-cart"></i>
+                              <i className="ti-shopping-cart"></i>
                             </button>
-                            <a
-                              href="javascript:void(0)"
-                              title="Add to Wishlist"
-                            >
-                              <i class="ti-heart" aria-hidden="true"></i>
+                            <a title="Add to Wishlist">
+                              <i className="ti-heart" aria-hidden="true"></i>
                             </a>
                             <a
                               href="#"
@@ -146,68 +143,68 @@ const Product_list = () => {
                               data-bs-target="#quick-view"
                               title="Quick View"
                             >
-                              <i class="ti-search" aria-hidden="true"></i>
+                              <i className="ti-search" aria-hidden="true"></i>
                             </a>
                             <a href="compare.html" title="Compare">
-                              <i class="ti-reload" aria-hidden="true"></i>
+                              <i className="ti-reload" aria-hidden="true"></i>
                             </a>
                           </div>
                         </div>
-                        <div class="product-detail">
+                        <div className="product-detail">
                           {item.overallRating && item.overallRating == "" ? (
                             <h4>Ratings Not Available Yet !!</h4>
                           ) : (
                             <>
                               {item.overallRating == 0.5 ? (
-                                <div class="rating">
-                                  <i class="fa fa-star-half-o text-warning"></i>
+                                <div className="rating">
+                                  <i className="fa fa-star-half-o text-warning"></i>
                                 </div>
                               ) : (
                                 <>
                                   {item.overallRating == 1 ? (
-                                    <div class="rating">
-                                      <i class="fa fa-star"></i>
+                                    <div className="rating">
+                                      <i className="fa fa-star"></i>
                                     </div>
                                   ) : (
                                     <>
                                       {item.overallRating == 1.5 ? (
-                                        <div class="rating">
-                                          <i class="fa fa-star"></i>
+                                        <div className="rating">
+                                          <i className="fa fa-star"></i>
 
-                                          <i class="fa fa-star-half-o text-warning"></i>
+                                          <i className="fa fa-star-half-o text-warning"></i>
                                         </div>
                                       ) : (
                                         <>
                                           {item.overallRating == 2 ? (
-                                            <div class="rating">
-                                              <i class="fa fa-star"></i>
-                                              <i class="fa fa-star"></i>
+                                            <div className="rating">
+                                              <i className="fa fa-star"></i>
+                                              <i className="fa fa-star"></i>
                                             </div>
                                           ) : (
                                             <>
                                               {item.overallRating == 2.5 ? (
-                                                <div class="rating">
-                                                  <i class="fa fa-star"></i>
+                                                <div className="rating">
+                                                  <i className="fa fa-star"></i>
 
-                                                  <i class="fa fa-star"></i>
-                                                  <i class="fa fa-star-half-o text-warning"></i>
+                                                  <i className="fa fa-star"></i>
+                                                  <i className="fa fa-star-half-o text-warning"></i>
                                                 </div>
                                               ) : (
                                                 <>
                                                   {item.overallRating == 3 ? (
-                                                    <div class="rating">
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
-                                                      <i class="fa fa-star"></i>
+                                                    <div className="rating">
+                                                      <i className="fa fa-star"></i>
+                                                      <i className="fa fa-star"></i>
+                                                      <i className="fa fa-star"></i>
                                                     </div>
                                                   ) : (
                                                     <>
                                                       {item.overallRating ==
                                                       3.5 ? (
-                                                        <div class="rating">
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
+                                                        <div className="rating">
+                                                          <i className="fa fa-star"></i>
+                                                          <i className="fa fa-star"></i>
+                                                          <i className="fa fa-star"></i>
 
                                                           <i class="fa fa-star-half-o text-warning"></i>
                                                         </div>
@@ -215,33 +212,33 @@ const Product_list = () => {
                                                         <>
                                                           {item.overallRating ==
                                                           4 ? (
-                                                            <div class="rating">
-                                                              <i class="fa fa-star"></i>
-                                                              <i class="fa fa-star"></i>
-                                                              <i class="fa fa-star"></i>
-                                                              <i class="fa fa-star"></i>
+                                                            <div className="rating">
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
                                                             </div>
                                                           ) : (
                                                             <>
                                                               {item.overallRating ==
                                                               4.5 ? (
-                                                                <div class="rating">
-                                                                  <i class="fa fa-star"></i>
-                                                                  <i class="fa fa-star"></i>
-                                                                  <i class="fa fa-star"></i>
-                                                                  <i class="fa fa-star"></i>
-                                                                  <i class="fa fa-star-half-o text-warning"></i>
+                                                                <div className="rating">
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star-half-o text-warning"></i>
                                                                 </div>
                                                               ) : (
                                                                 <>
                                                                   {item.overallRating ==
                                                                   5 ? (
-                                                                    <div class="rating">
-                                                                      <i class="fa fa-star"></i>
-                                                                      <i class="fa fa-star"></i>
-                                                                      <i class="fa fa-star"></i>
-                                                                      <i class="fa fa-star"></i>
-                                                                      <i class="fa fa-star"></i>
+                                                                    <div className="rating">
+                                                                      <i className="fa fa-star"></i>
+                                                                      <i className="fa fa-star"></i>
+                                                                      <i className="fa fa-star"></i>
+                                                                      <i className="fa fa-star"></i>
+                                                                      <i className="fa fa-star"></i>
                                                                     </div>
                                                                   ) : (
                                                                     <h4

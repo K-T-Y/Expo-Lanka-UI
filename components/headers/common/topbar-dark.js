@@ -18,16 +18,14 @@ const TopBarDark = ({ topClass, fluid }) => {
   useEffect(() => {
     if (localStorage.getItem("User") != "") {
       setUser(JSON.parse(localStorage.getItem("User")));
-    }
-    if (
-      localStorage.getItem("User") != "" &&
-      localStorage.getItem("ShoppingSession") == ""
-    ) {
-      if (localStorage.getItem("ShoppingSession") == "") {
-        console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+      {
+        if (localStorage.getItem("ShoppingSession") == "") {
+          console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+        }
       }
+    } else {
     }
-  });
+  }, []);
   return (
     <div className={topClass}>
       <Container fluid={fluid}>
@@ -54,7 +52,7 @@ const TopBarDark = ({ topClass, fluid }) => {
               </li> */}
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i>
-                {localStorage.getItem("User") != ""
+                {User != ""
                   ? User.firstName + " " + User.lastName
                   : "My Account"}
                 <ul className="onhover-show-div">

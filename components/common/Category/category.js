@@ -27,39 +27,39 @@ const Category = () => {
     <>
       <div className="row mx-0 margin-default">
         {categoryList &&
-          categoryList.map((item) => {
+          categoryList.map((item, index) => {
             return (
-              <div className="col-xl-3 col-lg-4 col-6">
-                <div class="product-box">
-                  <div class="img-wrapper">
-                    <div class="front">
+              <div className="col-xl-3 col-lg-4 col-6" key={index}>
+                <div className="product-box">
+                  <div className="img-wrapper">
+                    <div className="front">
                       <a href="product-page(no-sidebar).html">
                         <img
                           src={item.imageUrl}
-                          class="img-fluid blur-up lazyload bg-img"
+                          className="img-fluid blur-up lazyload bg-img"
                           alt=""
                         />
                       </a>
                     </div>
-                    <div class="back">
+                    <div className="back">
                       <a href="product-page(no-sidebar).html">
                         <img
                           src={item.imageUrl}
-                          class="img-fluid blur-up lazyload bg-img"
+                          className="img-fluid blur-up lazyload bg-img"
                           alt=""
                         />
                       </a>
                     </div>
-                    <div class="cart-info cart-wrap">
+                    <div className="cart-info cart-wrap">
                       <button
                         data-bs-toggle="modal"
                         data-bs-target="#addtocart"
                         title="Add to cart"
                       >
-                        <i class="ti-shopping-cart"></i>
+                        <i className="ti-shopping-cart"></i>
                       </button>
-                      <a href="javascript:void(0)" title="Add to Wishlist">
-                        <i class="ti-heart" aria-hidden="true"></i>
+                      <a title="Add to Wishlist">
+                        <i className="ti-heart" aria-hidden="true"></i>
                       </a>
                       <a
                         href="#"
@@ -67,10 +67,10 @@ const Category = () => {
                         data-bs-target="#quick-view"
                         title="Quick View"
                       >
-                        <i class="ti-search" aria-hidden="true"></i>
+                        <i className="ti-search" aria-hidden="true"></i>
                       </a>
                       <a href="compare.html" title="Compare">
-                        <i class="ti-reload" aria-hidden="true"></i>
+                        <i className="ti-reload" aria-hidden="true"></i>
                       </a>
                     </div>
                   </div>

@@ -6,6 +6,8 @@ import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
 import cart from "../../../../public/assets/images/icon-empty-cart.png";
 import { stringifyForDisplay } from "@apollo/client/utilities";
 import { use } from "i18next";
+import axios from "axios";
+import { ApiUrl } from "../../../../config/api-config";
 
 const CartPage = () => {
   const context = useContext(CartContext);
@@ -16,22 +18,22 @@ const CartPage = () => {
   const removeFromCart = context.removeFromCart;
   const [quantity, setQty] = useState(1);
   const [quantityError, setQuantityError] = useState(false);
-  const updateQty = context.updateQty;
+  //const updateQty = context.updateQty;
 
   const [cartItems, setCartItems] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
   const handleQtyUpdate = (item, quantity) => {
     if (quantity >= 1) {
       setQuantityError(false);
-      updateQty(item, quantity);
+      // updateQty(item, quantity);
     } else {
       setQuantityError(true);
     }
   };
 
-  const changeQty = (e) => {
-    setQuantity(parseInt(e.target.value));
-  };
+  // const changeQty = (e) => {
+  //   setQuantity(parseInt(e.target.value));
+  // };
 
   const minusQty = () => {
     if (quantity > 1) {
@@ -39,7 +41,28 @@ const CartPage = () => {
       setQty(quantity - 1);
     }
   };
+  const updateQty = (item, qty) => {
+    console.log("Update Item==>", item, "Qty==>", qty);
+  };
+  const deleteItem = (item) => {
+    const session = JSON.parse(localStorage.getItem("ShoppingSession"));
+    console.log("Delete Item==>", item);
 
+    axios
+      .put(
+        ApiUrl +
+          "/shopping-session/remove/cart-item/" +
+          session.data.id +
+          "/" +
+          item.id
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const plusQty = (product) => {
     if (product.stock >= quantity) {
       setQty(quantity + 1);
@@ -56,16 +79,38 @@ const CartPage = () => {
     });
     setCartTotal(total);
   };
+  const getSession = () => {
+    axios
+      .get(
+        ApiUrl +
+          "/shopping-session/get/session/" +
+          JSON.parse(localStorage.getItem("User")).id
+      )
+      .then((sessionresponse) => {
+        if (sessionresponse.status == 200) {
+          localStorage.setItem(
+            "ShoppingSession",
+            JSON.stringify(sessionresponse.data)
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("SESSION_ERROR", error);
+      });
+  };
 
   useEffect(() => {
+    //getSession();
     if (localStorage.getItem("User") != "") {
-      setCartItems(
-        JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList
-      );
+      if (cartItems == "") {
+        setCartItems(
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList
+        );
+      }
     }
 
     getCarttot();
-  });
+  }, []);
 
   return (
     <div>
@@ -86,6 +131,7 @@ const CartPage = () => {
                     </tr>
                   </thead>
                   {cartItems.map((item, index) => {
+                    let itemprice = item.product.sellingPrice;
                     return (
                       <tbody key={index}>
                         <tr>
@@ -112,13 +158,10 @@ const CartPage = () => {
                                 <div className="qty-box">
                                   <div className="input-group">
                                     <input
-                                      type="number"
+                                      type="text"
                                       name="quantity"
-                                      onChange={(e) =>
-                                        handleQtyUpdate(item, e.target.value)
-                                      }
                                       className="form-control input-number"
-                                      defaultValue={item.qty}
+                                      // defaultValue={item.qty}
                                       style={{
                                         borderColor: quantityError && "red",
                                       }}
@@ -156,7 +199,7 @@ const CartPage = () => {
                                   type="number"
                                   name="quantity"
                                   onChange={(e) =>
-                                    handleQtyUpdate(item, e.target.value)
+                                    updateQty(item, e.target.value)
                                   }
                                   className="form-control input-number"
                                   defaultValue={item.qty}
@@ -171,12 +214,12 @@ const CartPage = () => {
                           <td>
                             <i
                               className="fa fa-times"
-                              onClick={() => removeFromCart(item)}
+                              onClick={() => deleteItem(item)}
                             ></i>
                           </td>
                           <td>
                             <h2 className="td-color">
-                              €{item.qty * item.product.sellingPrice}
+                              €{item.qty * itemprice}
                             </h2>
                           </td>
                         </tr>
