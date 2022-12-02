@@ -108,7 +108,7 @@ const AboutUs = () => {
                     alt=""
                   />
                 </div>
-              </Col>{" "}
+              </Col>
               <Col sm="12">
                 <br></br>
                 <h4

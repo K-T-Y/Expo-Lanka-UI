@@ -86,7 +86,7 @@ const Contact = () => {
                       type="text"
                       className="form-control"
                       id="name"
-                      placeholder="Enter Your name"
+                      placeholder="First name"
                       required=""
                     />
                   </Col>
@@ -98,7 +98,7 @@ const Contact = () => {
                       type="text"
                       className="form-control"
                       id="last-name"
-                      placeholder="Email"
+                      placeholder="Last name"
                       required=""
                     />
                   </Col>
@@ -110,7 +110,7 @@ const Contact = () => {
                       type="text"
                       className="form-control"
                       id="review"
-                      placeholder="Enter your number"
+                      placeholder="Mobile number"
                       required=""
                     />
                   </Col>
