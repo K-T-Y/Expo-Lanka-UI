@@ -5,18 +5,21 @@ import { Container, Row, Col, Media, Input } from "reactstrap";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
 import cart from "../../../../public/assets/images/icon-empty-cart.png";
 import { stringifyForDisplay } from "@apollo/client/utilities";
+import { use } from "i18next";
 
 const CartPage = () => {
   const context = useContext(CartContext);
-  const cartItems = context.state;
+  //const cartItems = context.state;
   const curContext = useContext(CurrencyContext);
   const symbol = curContext.state.symbol;
-  const total = context.cartTotal;
+  //const total = context.cartTotal;
   const removeFromCart = context.removeFromCart;
   const [quantity, setQty] = useState(1);
   const [quantityError, setQuantityError] = useState(false);
   const updateQty = context.updateQty;
 
+  const [cartItems, setCartItems] = useState("");
+  const [cartTotal, setCartTotal] = useState(0);
   const handleQtyUpdate = (item, quantity) => {
     if (quantity >= 1) {
       setQuantityError(false);
@@ -44,11 +47,24 @@ const CartPage = () => {
       setStock("Out of Stock !");
     }
   };
+  const getCarttot = () => {
+    let total = 0;
+    JSON.parse(
+      localStorage.getItem("ShoppingSession")
+    ).data.cartItemList.forEach((element) => {
+      total = total + element.qty * element.product.sellingPrice;
+    });
+    setCartTotal(total);
+  };
 
   useEffect(() => {
-    if (localStorage.getItem("User")) {
-      console.log("User==>", JSON.parse(localStorage.getItem("User")));
+    if (localStorage.getItem("User") != "") {
+      setCartItems(
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList
+      );
     }
+
+    getCarttot();
   });
 
   return (
@@ -78,9 +94,9 @@ const CartPage = () => {
                               <a>
                                 <Media
                                   src={
-                                    item.images
-                                      ? item.images[0].src
-                                      : item.images[0].src
+                                    item.product.productImages != ""
+                                      ? item.product.productImages[0].imageUrl
+                                      : item.product.productImages[0].imageUrl
                                   }
                                   alt=""
                                 />
@@ -89,7 +105,7 @@ const CartPage = () => {
                           </td>
                           <td>
                             <Link href={`/left-sidebar/product/` + item.id}>
-                              <a>{item.title}</a>
+                              <a>{item.product.productName}</a>
                             </Link>
                             <div className="mobile-cart-content row">
                               <div className="col-xs-3">
@@ -113,7 +129,7 @@ const CartPage = () => {
                               </div>
                               <div className="col-xs-3">
                                 <h2 className="td-color">
-                                  {symbol}
+                                  €
                                   {item.price -
                                     (item.price * item.discount) / 100}
                                 </h2>
@@ -131,10 +147,7 @@ const CartPage = () => {
                             </div>
                           </td>
                           <td>
-                            <h2>
-                              {symbol}
-                              {item.price - (item.price * item.discount) / 100}
-                            </h2>
+                            <h2>€{item.product.sellingPrice}</h2>
                           </td>
                           <td>
                             <div className="qty-box">
@@ -163,8 +176,7 @@ const CartPage = () => {
                           </td>
                           <td>
                             <h2 className="td-color">
-                              {symbol}
-                              {item.total}
+                              €{item.qty * item.product.sellingPrice}
                             </h2>
                           </td>
                         </tr>
@@ -177,9 +189,7 @@ const CartPage = () => {
                     <tr>
                       <td>total price :</td>
                       <td>
-                        <h2>
-                          {symbol} {total}{" "}
-                        </h2>
+                        <h2>€ {cartTotal}</h2>
                       </td>
                     </tr>
                   </tfoot>

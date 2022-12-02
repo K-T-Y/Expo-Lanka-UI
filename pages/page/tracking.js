@@ -23,24 +23,47 @@ const Tracking = () => {
             Welcome to <b>Expo Srilanka</b>, Enter your reference number shared
             via order confirmation to track your parcel.
           </p>
-          <Col sm="6">
-            <Form className="form-inline tracking-form">
-              <div className="mx-lg-6">
-                <div className="mx-sm-3">
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="Enter your tracking code"
-                    style={{ height: "50px", width: "500px" }}
-                  />
+          <br></br>
+          <div>
+            <Row>
+              <Col sm="4"></Col>
+              <Col sm="8">
+                <Form className="form-inline subscribe-form">
+                  <Row>
+                    <Col>
+                      <Input
+                        type="text"
+                        className="form-control col-sm-12"
+                        id="exampleFormControlInput1"
+                        placeholder="Enter your tracking code"
+                      />
+                    </Col>
+                    <Col>
+                      <Button type="submit" className="btn btn-solid">
+                        Track
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+
+                {/* <Form className="form-inline tracking-form">
+                <div className="mx-lg-6">
+                  <div className="mx-sm-3">
+                    <Input
+                      type="text"
+                      className="form-control col-sm-12"
+                      id="exampleFormControlInput1"
+                      placeholder="Enter your tracking code"
+                    />
+                  </div>
                 </div>
-              </div>
-              <Button type="submit" className="btn btn-solid">
-                Track
-              </Button>
-            </Form>
-          </Col>
+                <Button type="submit" className="btn btn-solid">
+                  Track
+                </Button>
+              </Form> */}
+              </Col>
+            </Row>
+          </div>
         </Container>
       </section>
     </CommonLayout>

@@ -21,19 +21,24 @@ const Login = () => {
       .post(ApiUrl + "/customers/login", model)
       .then((response) => {
         if (response.status == 200) {
-          localStorage.setItem("User", JSON.stringify(response.data.data));
-          toast.success("Successfully Logged In");
-          disabledButton = false;
-          router.push("/");
+          if (response.data.responseCode == 200) {
+            localStorage.setItem("User", JSON.stringify(response.data.data));
+            toast.success("Successfully Logged In");
+            disabledButton = false;
+            router.push("/");
+          } else {
+            toast.error("Username or Password Incorrect ");
+            disabledButton = false;
+          }
         } else {
           // toast.error(error);
-          toast.error("Username or Password Incorrect ");
+          toast.error("Connection Error !! ");
           disabledButton = false;
         }
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Username or Password Incorrect");
+        toast.error("Connection Error !!");
         disabledButton = false;
       });
   };

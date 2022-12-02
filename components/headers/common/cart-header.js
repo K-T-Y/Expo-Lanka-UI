@@ -11,7 +11,11 @@ const CartHeader = ({ item, symbol }) => {
         <div className="media">
           <Link href={"/product/" + item.id}>
             <a>
-              <Media alt="" className="me-3" src={`${item.images[0].src}`} />
+              <Media
+                alt=""
+                className="me-3"
+                src={`${item.product.productImages[0].src}`}
+              />
             </a>
           </Link>
           <div className="media-body">

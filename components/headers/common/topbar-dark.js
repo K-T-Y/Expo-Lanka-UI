@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Link from "next/link";
 import { firebase_app } from "../../../config/base";
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 const TopBarDark = ({ topClass, fluid }) => {
   const router = useRouter();
+  const [User, setUser] = useState("");
   // const firebaseLogout = () => {
   //   firebase_app.auth().signOut();
   //   router.push("/page/account/login-auth");
@@ -14,6 +15,19 @@ const TopBarDark = ({ topClass, fluid }) => {
     localStorage.setItem("User", "");
     window.location.reload();
   };
+  useEffect(() => {
+    if (localStorage.getItem("User") != "") {
+      setUser(JSON.parse(localStorage.getItem("User")));
+    }
+    if (
+      localStorage.getItem("User") != "" &&
+      localStorage.getItem("ShoppingSession") == ""
+    ) {
+      if (localStorage.getItem("ShoppingSession") == "") {
+        console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+      }
+    }
+  });
   return (
     <div className={topClass}>
       <Container fluid={fluid}>
@@ -39,7 +53,10 @@ const TopBarDark = ({ topClass, fluid }) => {
                 </Link>
               </li> */}
               <li className="onhover-dropdown mobile-account">
-                <i className="fa fa-user" aria-hidden="true"></i> My Account
+                <i className="fa fa-user" aria-hidden="true"></i>
+                {localStorage.getItem("User") != ""
+                  ? User.firstName + " " + User.lastName
+                  : "My Account"}
                 <ul className="onhover-show-div">
                   {localStorage.getItem("User") && (
                     <li>
