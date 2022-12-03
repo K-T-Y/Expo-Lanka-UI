@@ -79,6 +79,7 @@ const Register = () => {
         .then((response) => {
           if (response.status == 200) {
             toast.success("Registered Successfully !!");
+
             setFirstName("");
             setlastName("");
             setEmail("");

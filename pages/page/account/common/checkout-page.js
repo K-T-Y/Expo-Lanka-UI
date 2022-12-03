@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Media, Container, Form, Row, Col } from "reactstrap";
 import CartContext from "../../../../helpers/cart";
 import paypal from "../../../../public/assets/images/paypal.png";
@@ -8,42 +8,52 @@ import { useRouter } from "next/router";
 import { CurrencyContext } from "../../../../helpers/Currency/CurrencyContext";
 
 const CheckoutPage = () => {
-  const cartContext = useContext(CartContext);
-  const cartItems = cartContext.state;
-  const cartTotal = cartContext.cartTotal;
-  const curContext = useContext(CurrencyContext);
-  const symbol = curContext.state.symbol;
-  const [obj, setObj] = useState({});
-  const [payment, setPayment] = useState("stripe");
-  const { register, handleSubmit, formState: { errors } } = useForm(); // initialise the hook
-  const router = useRouter();
+  // const cartContext = useContext(CartContext);
+  // const cartItems = cartContext.state;
+  // const cartTotal = cartContext.cartTotal;
+  // const curContext = useContext(CurrencyContext);
+  // const symbol = curContext.state.symbol;
+  // const [obj, setObj] = useState({});
+  // const [payment, setPayment] = useState("stripe");
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm(); // initialise the hook
+  // const router = useRouter();
 
-  const checkhandle = (value) => {
-    setPayment(value);
-  };
+  // const checkhandle = (value) => {
+  //   setPayment(value);
+  // };
 
-  const onSubmit = (data) => {
-    if (data !== "") {
-      alert("You submitted the form and stuff!");
-      router.push({
-        pathname: "/page/order-success",
-        state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
-      });
-    } else {
-      errors.showMessages();
+  // const onSubmit = (data) => {
+  //   if (data !== "") {
+  //     alert("You submitted the form and stuff!");
+  //     router.push({
+  //       pathname: "/page/order-success",
+  //       state: { items: cartItems, orderTotal: cartTotal, symbol: symbol },
+  //     });
+  //   } else {
+  //     errors.showMessages();
+  //   }
+  // };
+
+  // const setStateFromInput = (event) => {
+  //   obj[event.target.name] = event.target.value;
+  //   setObj(obj);
+  // };
+
+  const [User, setUser] = useState();
+  useEffect(() => {
+    if (localStorage.getItem("User") != "") {
+      setUser(JSON.parse(localStorage.getItem("User")));
     }
-  };
-
-  const setStateFromInput = (event) => {
-    obj[event.target.name] = event.target.value;
-    setObj(obj);
-  };
-
+  }, []);
   return (
     <section className="section-b-space">
       <Container>
         <div className="checkout-page">
-          <div className="checkout-form">
+          {/* <div className="checkout-form">
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Row>
                 <Col lg="6" sm="12" xs="12">
@@ -310,6 +320,31 @@ const CheckoutPage = () => {
                 </Col>
               </Row>
             </Form>
+          </div> */}
+          <div>
+            <Row>
+              <Col sm="6">
+                {User && (
+                  <div>
+                    <h3 style={{ color: "black" }}>Shipping Details</h3>
+                    <br></br>
+                    <p style={{ color: "black", textAlign: "justify" }}>
+                      {User.firstName} {User.lastName}
+                    </p>
+                    <p style={{ color: "black", textAlign: "justify" }}>
+                      {User.email}
+                    </p>
+                    <p style={{ color: "black", textAlign: "justify" }}>
+                      {User.mobile}
+                    </p>
+                    <p style={{ color: "black", textAlign: "justify" }}>
+                      {User.addLine1},{User.addLine2},{User.city}
+                    </p>
+                  </div>
+                )}
+              </Col>
+              <Col sm="6"></Col>
+            </Row>
           </div>
         </div>
       </Container>
