@@ -73,11 +73,7 @@ const ProductItem = ({
           <a href={null} title="Compare" onClick={toggleCompare}>
             <i className="fa fa-refresh" aria-hidden="true"></i>
           </a>
-          <Modal
-            isOpen={modalCompare}
-            toggle={toggleCompare}
-            centered
-          >
+          <Modal isOpen={modalCompare} toggle={toggleCompare} centered>
             <ModalHeader toggle={toggleCompare}>Quick View</ModalHeader>
             <ModalBody>
               <Row className="compare-modal">

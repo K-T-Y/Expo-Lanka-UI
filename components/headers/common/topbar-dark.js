@@ -52,9 +52,9 @@ const TopBarDark = ({ topClass, fluid }) => {
               </li> */}
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i>
-                {User != ""
+                {/* {User != ""
                   ? User.firstName + " " + User.lastName
-                  : "My Account"}
+                  : "My Account"} */}
                 <ul className="onhover-show-div">
                   {localStorage.getItem("User") && (
                     <li>

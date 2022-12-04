@@ -126,7 +126,7 @@ const ProductBox = ({ product, addCart, addWish, addCompare }) => {
         centered
       >
         <ModalHeader toggle={toggle}>
-          <h5 className="modal-title">Quick View</h5> 
+          <h5 className="modal-title">Quick View</h5>
         </ModalHeader>
         <ModalBody>
           <Row>
