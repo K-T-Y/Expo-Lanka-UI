@@ -77,17 +77,21 @@ const Register = () => {
       axios
         .post(ApiUrl + "/customers/create", model)
         .then((response) => {
+          console.log("Response while registering", response);
           if (response.status == 200) {
-            toast.success("Registered Successfully !!");
-
-            setFirstName("");
-            setlastName("");
-            setEmail("");
-            setAddress1("");
-            setAddress2("");
-            setPassword("");
-            setmobile("");
-            setCity("");
+            if (response.data.responseCode == 500) {
+              toast.warn("Email Already Registered !!");
+            } else {
+              toast.success("Registered Successfully !!");
+              setFirstName("");
+              setlastName("");
+              setEmail("");
+              setAddress1("");
+              setAddress2("");
+              setPassword("");
+              setmobile("");
+              setCity("");
+            }
           } else {
             toast.error("Error While Registering !!");
           }

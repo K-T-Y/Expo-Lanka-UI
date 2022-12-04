@@ -22,17 +22,18 @@ const Fashion = () => {
   const [User, setUser] = useState("");
   //localStorage.setItem("User", "");
   useEffect(() => {
-    if (localStorage.getItem("User") != "") {
+    if (localStorage.getItem("User")) {
       setUser(JSON.parse(localStorage.getItem("User")));
-    }
-    if (
-      localStorage.getItem("User") != "" &&
-      localStorage.getItem("ShoppingSession") == ""
-    ) {
-      if (localStorage.getItem("ShoppingSession") == "") {
+
+      if (localStorage.getItem("User") != "") {
         getSession();
-        console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
+        if (localStorage.getItem("ShoppingSession")) {
+          if (localStorage.getItem("ShoppingSession") == "") {
+            getSession();
+          }
+        }
       }
+    } else {
     }
   }, []);
   const getSession = () => {
@@ -44,6 +45,7 @@ const Fashion = () => {
       )
       .then((sessionresponse) => {
         if (sessionresponse.status == 200) {
+          console.log("SHOPPING_SESSION", sessionresponse);
           localStorage.setItem(
             "ShoppingSession",
             JSON.stringify(sessionresponse.data)

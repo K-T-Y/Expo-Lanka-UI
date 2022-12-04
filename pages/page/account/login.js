@@ -20,6 +20,7 @@ const Login = () => {
     axios
       .post(ApiUrl + "/customers/login", model)
       .then((response) => {
+        console;
         if (response.status == 200) {
           if (response.data.responseCode == 200) {
             localStorage.setItem("User", JSON.stringify(response.data.data));
