@@ -103,9 +103,8 @@ const CartPage = () => {
     //getSession();
     if (localStorage.getItem("User") != "") {
       if (cartItems == "") {
-        setCartItems(
-          JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList
-        );
+        let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
+        setCartItems(temp.data.cartItemList);
       }
     }
 

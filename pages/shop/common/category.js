@@ -15,6 +15,7 @@ const Category = (props) => {
     setSelectedCategory(category);
   };
   const getAllProducts = (page, size) => {
+    localStorage.setItem("Search", "");
     axios
       .post(ApiUrl + "/product/search?page=" + page + "&size=" + size, {})
       .then((response) => {

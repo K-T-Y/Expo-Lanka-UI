@@ -13,14 +13,14 @@ const TopBarDark = ({ topClass, fluid }) => {
   // };
   const LogoutAuth = () => {
     localStorage.setItem("User", "");
+    localStorage.setItem("ShoppingSession", "");
     window.location.reload();
   };
   useEffect(() => {
-    if (localStorage.getItem("User") != "") {
+    if (localStorage.getItem("User") != "" || localStorage.getItem("User")) {
       setUser(JSON.parse(localStorage.getItem("User")));
       {
         if (localStorage.getItem("ShoppingSession") == "") {
-          console.log(JSON.parse(localStorage.getItem("ShoppingSession")));
         }
       }
     } else {
@@ -52,9 +52,7 @@ const TopBarDark = ({ topClass, fluid }) => {
               </li> */}
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i>
-                {/* {User != ""
-                  ? User.firstName + " " + User.lastName
-                  : "My Account"} */}
+                {User ? User.firstName + " " + User.lastName : "My Account"}
                 <ul className="onhover-show-div">
                   {localStorage.getItem("User") && (
                     <li>

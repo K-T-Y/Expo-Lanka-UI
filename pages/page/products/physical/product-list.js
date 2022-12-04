@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 // import Breadcrumb from "../../common/breadcrumb";
 
-import { Edit, Trash2 } from "react-feather";
+import { Edit, Search, Trash2 } from "react-feather";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import CommonLayout from "../../../../components/shop/common-layout";
 import { ApiUrl } from "../../../../config/api-config";
@@ -22,11 +22,11 @@ const Product_list = () => {
         console.log("GET_ALL_PRODUCT_ERROR", error);
       });
   };
-  useEffect(() => {
-    // if (allProducts == "") {
-    //   getAllProducts(0, 10);
-    // }
-  });
+  // useEffect(() => {
+  //   // if (allProducts == "") {
+  //   //   getAllProducts(0, 10);
+  //   // }
+  // });
   const data = [
     {
       //image: IMG34,
@@ -119,6 +119,12 @@ const Product_list = () => {
   useEffect(() => {
     if (categoryList == "") {
       getAllCategories();
+    }
+    if (
+      localStorage.getItem("Search") &&
+      localStorage.getItem("Search") != ""
+    ) {
+      setAllProducts(JSON.parse(localStorage.getItem("Search")));
     }
   }, []);
 
