@@ -22,31 +22,27 @@ const Tracking = () => {
   const [deliveryClass, setDeliveryClass] = useState("step");
   const [deliveredClass, setDeliveredClass] = useState("step");
   const [refNumber, setRefNumber] = useState("");
+  const [trackingDetails, setTrackingDetails] = useState("");
+
   const [User, setUser] = useState("");
-  const parcelSearch = (page, size) => {
+
+  const parcelSearch = () => {
     if (User != "") {
       setUser(JSON.parse(localStorage.getItem("User")));
     } else {
     }
-    const model = {
-      customerId: 189,
-      referenceNo: "LXP/OD/0537",
-      shippingDetailsDTO: {
-        id: 610,
-        fullName: "Mewan Ayomal",
-        addLine1: null,
-        addLine2: null,
-        city: "panadura",
-        country: "",
-        postalCode: "",
-        mobileNo: "0717487808",
-        mobileNo2: "",
-        email: "mewanayomall@gmail.com",
-      },
-    };
-    axios.post(ApiUrl + "/orders/search?page=" + 0 + "&size=" + 10);
+
+    axios
+      .get(ApiUrl + "/parcel/getParcel?ref=" + refNumber)
+      .then((response) => {
+        console.log("TRACKING_RESPONSE", response.data.data);
+        setTrackingDetails(response.data.data);
+      })
+      .catch((error) => {
+        console.log("TRACKING_ERROR", error);
+      });
   };
-  const data = { status: 1 };
+  const data = trackingDetails;
   useEffect(() => {
     if (data) {
       if (data.status == 1) {
@@ -107,10 +103,16 @@ const Tracking = () => {
                         className="form-control col-sm-12"
                         id="exampleFormControlInput1"
                         placeholder="Enter your tracking code"
+                        onChange={(e) => {
+                          setRefNumber(e.target.value);
+                        }}
                       />
                     </Col>
                     <Col>
-                      <Button type="submit" className="btn btn-solid">
+                      <Button
+                        onClick={() => parcelSearch()}
+                        className="btn btn-solid"
+                      >
                         Track
                       </Button>
                     </Col>
@@ -136,127 +138,132 @@ const Tracking = () => {
             </Row>
             <Row>
               {/* strat*/}
-              <div className="container">
-                <article className="card">
-                  <header className="card-header">My Orders / Tracking</header>
-                  <div className="card-body">
-                    <h6>Order ID: OD45345345435</h6>
-                    <article className="card">
-                      <div className="card-body row">
-                        <div className="col">
-                          <strong>Estimated Delivery time:</strong> <br></br>
-                          29 nov 2019
+              {trackingDetails && (
+                <div className="container">
+                  <article className="card">
+                    <header className="card-header">
+                      My Orders / Tracking
+                    </header>
+                    <div className="card-body">
+                      <h6>Order ID: OD45345345435</h6>
+                      <article className="card">
+                        <div className="card-body row">
+                          <div className="col">
+                            <strong>Estimated Delivery time:</strong> <br></br>
+                            29 nov 2019
+                          </div>
+                          <div className="col">
+                            <strong>Shipping BY:</strong> <br></br> BLUEDART, |
+                            <i className="fa fa-phone"></i> +1598675986
+                          </div>
+                          <div className="col">
+                            <strong>Status:</strong> <br></br> Picked by the
+                            courier
+                          </div>
+                          <div className="col">
+                            <strong>Tracking #:</strong> <br></br>
+                            BD045903594059
+                          </div>
                         </div>
-                        <div className="col">
-                          <strong>Shipping BY:</strong> <br></br> BLUEDART, |
-                          <i className="fa fa-phone"></i> +1598675986
+                      </article>
+                      <div className="track">
+                        <div className={acceptedClass}>
+                          <span className="icon">
+                            <i className="fa fa-check"></i>
+                          </span>
+                          <span className="text">Parcel Accepted</span>
                         </div>
-                        <div className="col">
-                          <strong>Status:</strong> <br></br> Picked by the
-                          courier
+                        <div className={dispatchedClass}>
+                          <span className="icon">
+                            <i className="fa fa-exchange"></i>
+                          </span>
+                          <span className="text"> Dispatched</span>
                         </div>
-                        <div className="col">
-                          <strong>Tracking #:</strong> <br></br>
-                          BD045903594059
+                        <div className={transitClass}>
+                          <span className="icon">
+                            <i className="fa fa-truck"></i>
+                          </span>
+                          <span className="text"> In Transit </span>
+                        </div>
+                        <div className={clearanceClass}>
+                          <span className="icon">
+                            <i className="fa fa-archive"></i>
+                          </span>
+                          <span className="text">Pacel On Clearance</span>
+                        </div>
+                        <div className={deliveryClass}>
+                          <span className="icon">
+                            <i className="fa fa-paper-plane"></i>
+                          </span>
+                          <span className="text"> In Delivery </span>
+                        </div>
+                        <div className={deliveredClass}>
+                          <span className="icon">
+                            <i className="fa fa-user"></i>
+                          </span>
+                          <span className="text">Delivered </span>
                         </div>
                       </div>
-                    </article>
-                    <div className="track">
-                      <div className={acceptedClass}>
-                        <span className="icon">
-                          <i className="fa fa-check"></i>
-                        </span>
-                        <span className="text">Parcel Accepted</span>
-                      </div>
-                      <div className={dispatchedClass}>
-                        <span className="icon">
-                          <i className="fa fa-exchange"></i>
-                        </span>
-                        <span className="text"> Dispatched</span>
-                      </div>
-                      <div className={transitClass}>
-                        <span className="icon">
-                          <i className="fa fa-truck"></i>
-                        </span>
-                        <span className="text"> In Transit </span>
-                      </div>
-                      <div className={clearanceClass}>
-                        <span className="icon">
-                          <i className="fa fa-archive"></i>
-                        </span>
-                        <span className="text">Pacel On Clearance</span>
-                      </div>
-                      <div className={deliveryClass}>
-                        <span className="icon">
-                          <i className="fa fa-paper-plane"></i>
-                        </span>
-                        <span className="text"> In Delivery </span>
-                      </div>
-                      <div className={deliveredClass}>
-                        <span className="icon">
-                          <i className="fa fa-user"></i>
-                        </span>
-                        <span className="text">Delivered </span>
-                      </div>
+                      <hr></hr>
+                      <ul className="row">
+                        <li className="col-md-4">
+                          <figure className="itemside mb-3">
+                            <div className="aside">
+                              <img
+                                src="https://i.imgur.com/iDwDQ4o.png"
+                                className="img-sm border"
+                              />
+                            </div>
+                            <figcaption className="info align-self-center">
+                              <p className="title">
+                                Dell Laptop with 500GB HDD <br></br> 8GB RAM
+                              </p>
+                              <span className="text-muted">$950 </span>
+                            </figcaption>
+                          </figure>
+                        </li>
+                        <li className="col-md-4">
+                          <figure className="itemside mb-3">
+                            <div className="aside">
+                              <img
+                                src="https://i.imgur.com/tVBy5Q0.png"
+                                className="img-sm border"
+                              />
+                            </div>
+                            <figcaption className="info align-self-center">
+                              <p className="title">
+                                HP Laptop with 500GB HDD <br></br> 8GB RAM
+                              </p>
+                              <span className="text-muted">$850 </span>
+                            </figcaption>
+                          </figure>
+                        </li>
+                        <li className="col-md-4">
+                          <figure className="itemside mb-3">
+                            <div className="aside">
+                              <img
+                                src="https://i.imgur.com/Bd56jKH.png"
+                                className="img-sm border"
+                              />
+                            </div>
+                            <figcaption className="info align-self-center">
+                              <p className="title">
+                                ACER Laptop with 500GB HDD <br></br> 8GB RAM
+                              </p>
+                              <span className="text-muted">$650 </span>
+                            </figcaption>
+                          </figure>
+                        </li>
+                      </ul>
+                      <hr></hr>
+                      <a href="#" className="btn btn-warning" data-abc="true">
+                        <i className="fa fa-chevron-left"></i> Back to orders
+                      </a>
                     </div>
-                    <hr></hr>
-                    <ul className="row">
-                      <li className="col-md-4">
-                        <figure className="itemside mb-3">
-                          <div className="aside">
-                            <img
-                              src="https://i.imgur.com/iDwDQ4o.png"
-                              className="img-sm border"
-                            />
-                          </div>
-                          <figcaption className="info align-self-center">
-                            <p className="title">
-                              Dell Laptop with 500GB HDD <br></br> 8GB RAM
-                            </p>
-                            <span className="text-muted">$950 </span>
-                          </figcaption>
-                        </figure>
-                      </li>
-                      <li className="col-md-4">
-                        <figure className="itemside mb-3">
-                          <div className="aside">
-                            <img
-                              src="https://i.imgur.com/tVBy5Q0.png"
-                              className="img-sm border"
-                            />
-                          </div>
-                          <figcaption className="info align-self-center">
-                            <p className="title">
-                              HP Laptop with 500GB HDD <br></br> 8GB RAM
-                            </p>
-                            <span className="text-muted">$850 </span>
-                          </figcaption>
-                        </figure>
-                      </li>
-                      <li className="col-md-4">
-                        <figure className="itemside mb-3">
-                          <div className="aside">
-                            <img
-                              src="https://i.imgur.com/Bd56jKH.png"
-                              className="img-sm border"
-                            />
-                          </div>
-                          <figcaption className="info align-self-center">
-                            <p className="title">
-                              ACER Laptop with 500GB HDD <br></br> 8GB RAM
-                            </p>
-                            <span className="text-muted">$650 </span>
-                          </figcaption>
-                        </figure>
-                      </li>
-                    </ul>
-                    <hr></hr>
-                    <a href="#" className="btn btn-warning" data-abc="true">
-                      <i className="fa fa-chevron-left"></i> Back to orders
-                    </a>
-                  </div>
-                </article>
-              </div>
+                  </article>
+                </div>
+              )}
+
               {/* end*/}
             </Row>
           </div>
