@@ -213,6 +213,15 @@ const Product_list = () => {
                                       </a>
                                     </div>
                                   </div>
+                                  <br></br>
+                                  {/* fa fa-shopping-cart */}
+                                  <Button
+                                    className="btn btn-solid"
+                                    type="submit"
+                                  >
+                                    <t />
+                                    Add to cart
+                                  </Button>
                                   <div className="product-detail">
                                     {item.overallRating &&
                                     item.overallRating == "" ? (
