@@ -25,12 +25,11 @@
 
 // module.exports = {swcMinify: true}, withPlugins([withImages], nextConfig);
 
-
 const nextConfig = {
   env: {
     API_URL: "http://localhost:4000/graphql",
   },
-  reactStrictMode:true,
+  reactStrictMode: true,
   webpack(config, options) {
     config.module.rules.push({
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
