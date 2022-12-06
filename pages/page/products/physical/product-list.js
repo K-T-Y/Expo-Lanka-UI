@@ -215,12 +215,25 @@ const Product_list = () => {
                                   </div>
                                   <br></br>
                                   {/* fa fa-shopping-cart */}
-                                  <Button
+                                  {/* <Button
                                     className="btn btn-solid"
                                     type="submit"
                                   >
                                     Add to cart
-                                  </Button>
+                                  </Button> */}
+                                  <div class="product-buttons">
+                                    <a
+                                      href="javascript:void(0)"
+                                      id="cartEffect"
+                                      class="btn btn-solid hover-solid btn-animation"
+                                    >
+                                      <i
+                                        class="fa fa-shopping-cart me-1"
+                                        aria-hidden="true"
+                                      ></i>{" "}
+                                      add to cart
+                                    </a>{" "}
+                                  </div>
 
                                   <div className="product-detail">
                                     {item.overallRating &&
