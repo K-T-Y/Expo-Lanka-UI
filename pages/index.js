@@ -67,11 +67,11 @@ const Fashion = () => {
           href={"/assets/images/favicon/1.png"}
         />
       </Helmet>
-      {/* <ModalComponent /> */}
+      <ModalComponent />
       <HeaderOne logoName={"logo.png"} topClass="top-header" />
       <Banner />
 
-      <CollectionBanner />
+      {/* <CollectionBanner /> */}
       <Paragraph
         title="title1 section-t-space"
         inner="title-inner1"

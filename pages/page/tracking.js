@@ -81,7 +81,7 @@ const Tracking = () => {
     }
   }, []);
   return (
-    <CommonLayout parent="home" title="Tacking">
+    <CommonLayout parent="home" title="Tracking">
       <section className="tracking page section-b-space">
         <Container>
           <h2 style={{ textAlign: "center" }}>Track your order</h2>
