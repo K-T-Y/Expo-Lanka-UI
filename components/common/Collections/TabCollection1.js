@@ -351,14 +351,22 @@ const SpecialProducts = ({
                           </div>
                         </div>
                         <br></br>
-                        <Button
-                          className="btn btn-solid"
-                          onClick={() => {
-                            addtoCart(item.id);
-                          }}
-                        >
-                          Add to cart
-                        </Button>
+                        <div class="product-buttons">
+                          <a
+                            onClick={() => {
+                              addtoCart(item.id);
+                            }}
+                            id="cartEffect"
+                            class="btn btn-solid hover-solid btn-animation"
+                          >
+                            <i
+                              class="fa fa-shopping-cart me-1"
+                              aria-hidden="true"
+                            ></i>
+                            Add to cart
+                          </a>
+                        </div>
+
                         <div className="product-detail">
                           {item.overallRating && item.overallRating == "" ? (
                             <h4>Ratings Not Available.</h4>

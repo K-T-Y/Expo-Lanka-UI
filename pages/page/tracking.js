@@ -37,46 +37,90 @@ const Tracking = () => {
       .then((response) => {
         console.log("TRACKING_RESPONSE", response.data.data);
         setTrackingDetails(response.data.data);
+
+        if (response.data.data.status) {
+          if (response.data.data.status == 1) {
+            console.log("st");
+            setAcceptedClass("step active");
+          }
+          if (response.data.data.status == 2) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+          }
+          if (response.data.data.status == 3) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+          }
+          if (response.data.data.status == 11) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+          }
+          if (response.data.data.status == 5) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+            setDeliveryClass("step active");
+          }
+          if (response.data.data.status == 6) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+            setDeliveryClass("step active");
+            setDeliveredClass("step active");
+          }
+        }
       })
       .catch((error) => {
         console.log("TRACKING_ERROR", error);
       });
   };
-  const data = trackingDetails;
+
   useEffect(() => {
-    if (data) {
-      if (data.status == 1) {
-        setAcceptedClass("step active");
-      }
-      if (data.status == 2) {
-        setAcceptedClass("step active");
-        setDispatchedClass("step active");
-      }
-      if (data.status == 3) {
-        setAcceptedClass("step active");
-        setDispatchedClass("step active");
-        setTransitClass("step active");
-      }
-      if (data.status == 11) {
-        setAcceptedClass("step active");
-        setDispatchedClass("step active");
-        setTransitClass("step active");
-        setClearanceClass("step active");
-      }
-      if (data.status == 5) {
-        setAcceptedClass("step active");
-        setDispatchedClass("step active");
-        setTransitClass("step active");
-        setClearanceClass("step active");
-        setDeliveryClass("step active");
-      }
-      if (data.status == 6) {
-        setAcceptedClass("step active");
-        setDispatchedClass("step active");
-        setTransitClass("step active");
-        setClearanceClass("step active");
-        setDeliveryClass("step active");
-        setDeliveredClass("step active");
+    if (localStorage.getItem("Tracking")) {
+      if (JSON.parse(localStorage.getItem("Tracking"))) {
+        setTrackingDetails(JSON.parse(localStorage.getItem("Tracking")));
+        if (JSON.parse(localStorage.getItem("Tracking")).status) {
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 1) {
+            console.log("st");
+            setAcceptedClass("step active");
+          }
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 2) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+          }
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 3) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+          }
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 11) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+          }
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 5) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+            setDeliveryClass("step active");
+          }
+          if (JSON.parse(localStorage.getItem("Tracking")).status == 6) {
+            setAcceptedClass("step active");
+            setDispatchedClass("step active");
+            setTransitClass("step active");
+            setClearanceClass("step active");
+            setDeliveryClass("step active");
+            setDeliveredClass("step active");
+          }
+        }
+        localStorage.setItem("Tracking", "");
       }
     }
   }, []);
@@ -154,7 +198,8 @@ const Tracking = () => {
                           </div>
                           <div className="col">
                             <strong>Shipping BY:</strong> <br></br> BLUEDART, |
-                            <i className="fa fa-phone"></i> +1598675986
+                            <i className="fa fa-phone"></i>{" "}
+                            {JSON.parse(localStorage.getItem("User")).mobile}
                           </div>
                           <div className="col">
                             <strong>Status:</strong> <br></br> Picked by the
@@ -162,7 +207,7 @@ const Tracking = () => {
                           </div>
                           <div className="col">
                             <strong>Tracking #:</strong> <br></br>
-                            BD045903594059
+                            {refNumber}
                           </div>
                         </div>
                       </article>
