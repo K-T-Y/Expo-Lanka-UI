@@ -57,9 +57,7 @@ export default function MyApp({ Component, pageProps }) {
               {/* <Head>
               <link rel="icon" type="image/x-icon" href={favicon} />
             </Head> */}
-              <title>
-                Expo - SriLanka
-              </title>
+              <title>Expo - SriLanka</title>
             </Helmet>
             <div>
               <SettingProvider>
