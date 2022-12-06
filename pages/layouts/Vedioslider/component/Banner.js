@@ -1,26 +1,26 @@
 import React, { Fragment } from "react";
 import { Container, Row, Col, Media } from "reactstrap";
-import Banner5 from "../../../../public/assets/images/fashion/banner/47.jpg";
-import Banner6 from "../../../../public/assets/images/fashion/banner/40.jpg";
+// import Banner5 from "../../../../public/assets/images/fashion/banner/47.jpg";
+// import Banner6 from "../../../../public/assets/images/fashion/banner/40.jpg";
 import Banner8 from "../../../../public/assets/images/fashion/banner/9.jpg";
 
 const Data = [
   {
-    img: Banner5,
+    img: "Banner5",
     title: "casual collection",
     desc: "festival sale",
     link: "#",
     classes: "p-left text-start",
   },
   {
-    img: Banner6,
+    img: "Banner6",
     title: "going out collection",
     desc: "upto 80% off",
     link: "#",
     classes: "p-left text-start",
   },
   {
-    img: Banner8,
+    img: "Banner8",
     title: "shoes & sandle",
     desc: "new collection",
     link: "#",

@@ -27,14 +27,16 @@ const TopBarDark = ({ topClass, fluid }) => {
     }
   }, []);
   return (
-    <div className={topClass}>
+    <div className={topClass} style={{ backgroundColor: "#FF4C3B" }}>
       <Container fluid={fluid}>
         <Row>
           <Col lg="6">
             <div className="header-contact">
               <ul>
-                {/* <li>Welcome to Our store Multikart</li> */}
-                <li>
+                <li style={{ fontWeight: "bold", color: "white" }}>
+                  Welcome to our store Expo Sri Lanka
+                </li>
+                <li style={{ fontWeight: "bold", color: "white" }}>
                   <i className="fa fa-phone text-white" aria-hidden="true"></i>
                   Call Us: +039 320 634 3988
                 </li>
@@ -50,7 +52,10 @@ const TopBarDark = ({ topClass, fluid }) => {
                   </a>
                 </Link>
               </li> */}
-              <li className="onhover-dropdown mobile-account">
+              <li
+                className="onhover-dropdown mobile-account"
+                style={{ fontWeight: "bold", color: "white" }}
+              >
                 <i className="fa fa-user" aria-hidden="true"></i>
                 {User ? User.firstName + " " + User.lastName : "My Account"}
                 <ul className="onhover-show-div">
@@ -76,6 +81,11 @@ const TopBarDark = ({ topClass, fluid }) => {
                         </Link>
                       </li>
                     </>
+                  )}
+                  {localStorage.getItem("User") && (
+                    <Link href={`/page/order-history`}>
+                      <a>Order History</a>
+                    </Link>
                   )}
                   {localStorage.getItem("User") && (
                     <li onClick={() => LogoutAuth()}>

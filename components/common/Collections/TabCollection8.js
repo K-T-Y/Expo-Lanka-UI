@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { TabList, TabPanel, Tabs, Tab } from "react-tabs";
 import { Col, Container, Row } from "reactstrap";
 import { useQuery } from "@apollo/client";
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 import ProductItem from "../product-box/ProductBox6";
 import CartContext from "../../../helpers/cart/index";
 import { WishlistContext } from "../../../helpers/wishlist/WishlistContext";
@@ -101,7 +101,7 @@ const TabCollection = ({ type, cartClass }) => {
   return (
     <>
       <div className="title1  section-t-space">
-        <h4>special offer</h4>
+        <h4>Categories</h4>
         <h2 className="title-inner1">top collection</h2>
       </div>
       <section className="game-product ratio_asos pt-0">

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Slider from "react-slick";
 import Link from "next/link";
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { Slider3 } from "../../../services/script";
 import { Media, Container, Row, Col } from "reactstrap";
@@ -31,8 +31,8 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
           <Row>
             <Col md="12">
               <div className={title}>
-                <h4>our collection</h4>
-                <h2 className={inner}>special products</h2>
+                <h4>offers</h4>
+                <h2 className={inner}>special promotions</h2>
                 {hrClass ? (
                   <hr role="tournament6"></hr>
                 ) : (

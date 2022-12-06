@@ -300,6 +300,10 @@ const SpecialProducts = ({
                             </a>
                           </div>
                         </div>
+                        <br></br>
+                        <Button className="btn btn-solid" type="submit">
+                          Add to cart
+                        </Button>
                         <div className="product-detail">
                           <div className="rating">
                             <i className="fa fa-star"></i>{" "}
@@ -308,15 +312,16 @@ const SpecialProducts = ({
                             <i className="fa fa-star"></i>{" "}
                             <i className="fa fa-star"></i>
                           </div>
+                          <br></br>
                           <a href="product-page(no-sidebar).html">
                             <h6>Purple polo tshirt</h6>
                           </a>
                           <h4>$20.00</h4>
-                          <ul className="color-variant">
+                          {/* <ul className="color-variant">
                             <li className="bg-light0"></li>
                             <li className="bg-light1"></li>
                             <li className="bg-light2"></li>
-                          </ul>
+                          </ul> */}
                         </div>
                       </div>
                     </div>

@@ -1,22 +1,22 @@
 import React, { Fragment } from "react";
 import { Container, Media, Row, Col } from "reactstrap";
-import cart1 from "../../../../public/assets/images/shoes/cat1.jpg";
-import cart2 from "../../../../public/assets/images/shoes/cat2.jpg";
-import cart3 from "../../../../public/assets/images/shoes/cat3.jpg";
+// import cart1 from "../../../../public/assets/images/shoes/cat1.jpg";
+// import cart2 from "../../../../public/assets/images/shoes/cat2.jpg";
+// import cart3 from "../../../../public/assets/images/shoes/cat3.jpg";
 
 const Data = [
   {
-    img: cart1,
+    img: "cart1",
     title: "men",
     link: "#",
   },
   {
-    img: cart2,
+    img: "cart2",
     title: "women",
     link: "#",
   },
   {
-    img: cart3,
+    img: "cart3",
     title: "kids",
     link: "#",
   },
@@ -49,7 +49,9 @@ const CategoryTwo = () => (
       <Container fluid={true}>
         <Row className="category-border">
           {Data.map((data, i) => {
-            return <MasterCategory key={i} img={data.img.src} title={data.title} />;
+            return (
+              <MasterCategory key={i} img={data.img.src} title={data.title} />
+            );
           })}
         </Row>
       </Container>

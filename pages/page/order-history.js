@@ -14,7 +14,7 @@ const OrderHistory = () => {
   return (
     <CommonLayout parent="home" title="Order History">
       <section className="order history section-b-space">
-        {/* <Container>
+        <Container>
           <Row>
             <section class="h-100 gradient-custom">
               <div class="container py-5 h-100">
@@ -211,7 +211,7 @@ const OrderHistory = () => {
               </div>
             </section>
           </Row>
-        </Container> */}
+        </Container>
       </section>
     </CommonLayout>
   );

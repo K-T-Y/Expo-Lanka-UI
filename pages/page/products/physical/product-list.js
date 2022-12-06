@@ -219,13 +219,13 @@ const Product_list = () => {
                                     className="btn btn-solid"
                                     type="submit"
                                   >
-                                    <t />
                                     Add to cart
                                   </Button>
+
                                   <div className="product-detail">
                                     {item.overallRating &&
                                     item.overallRating == "" ? (
-                                      <h4>Ratings Not Available Yet !!</h4>
+                                      <h4>Ratings Not Available.</h4>
                                     ) : (
                                       <>
                                         {item.overallRating == 0.5 ? (
@@ -322,11 +322,9 @@ const Product_list = () => {
                                                                                     "normal",
                                                                                 }}
                                                                               >
-                                                                                Ratings
+                                                                                {/* Ratings
                                                                                 Not
-                                                                                Available
-                                                                                Yet
-                                                                                !!
+                                                                                Available. */}
                                                                               </h4>
                                                                             )}
                                                                           </>
@@ -349,10 +347,11 @@ const Product_list = () => {
                                         )}
                                       </>
                                     )}
-
+                                    <br></br>
                                     <a href="product-page(no-sidebar).html">
                                       <h6>{item.productName}</h6>
                                     </a>
+                                    <br></br>
                                     <h4>€{item.sellingPrice}</h4>
                                   </div>
                                 </div>

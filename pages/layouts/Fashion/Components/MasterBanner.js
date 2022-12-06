@@ -16,16 +16,22 @@ import {
 const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
   const [selected, setSelected] = useState("Quote");
   const [quoteButtonColor, setQuoteButtonColor] = useState("#FF4C3B");
-  const [TrackingButtonColor, setTrackingButtonColor] = useState("#a8b1bd");
+  const [TrackingButtonColor, setTrackingButtonColor] = useState("white");
+  const [quotTextColor, setQuoteTextColor] = useState("white");
+  const [trackingTextColor, setTrackingTextColor] = useState("black");
   const selectQuote = () => {
     setSelected("Quote");
     setQuoteButtonColor("#FF4C3B");
-    setTrackingButtonColor("#a8b1bd");
+    setTrackingButtonColor("white");
+    setQuoteTextColor("white");
+    setTrackingTextColor("black");
   };
   const selectTrack = () => {
     setSelected("Track");
-    setQuoteButtonColor("#a8b1bd");
+    setQuoteButtonColor("white");
     setTrackingButtonColor("#FF4C3B");
+    setQuoteTextColor("black");
+    setTrackingTextColor("white");
   };
   return (
     <div>
@@ -36,8 +42,8 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
               <div className="slider-contain">
                 <div>
                   <h4 style={{ color: "white", fontSize: "25px" }}>{title}</h4>
-                  <h1>{desc}</h1>
-                  <Link href={link}>
+                  <h1 style={{ color: "white" }}>{desc}</h1>
+                  <Link href="/page/tracking">
                     <a className={`btn ${btnClass ? btnClass : "btn-solid"}`}>
                       {btn ? btn : "track now"}{" "}
                     </a>
@@ -46,7 +52,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
               </div>
             </Col>
             <Col className="pt-4 ">
-              <Card className="mt-5 ml-4 ">
+              <Card className="mt-5 ml-4 " style={{ borderRadius: "25px" }}>
                 <CardBody>
                   <Row>
                     <Col md="6">
@@ -54,9 +60,20 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                         onClick={() => {
                           selectQuote();
                         }}
-                        style={{ background: quoteButtonColor }}
+                        style={{
+                          background: quoteButtonColor,
+                        }}
                       >
-                        Quote
+                        <a
+                          onClick={() => {
+                            selectQuote();
+                          }}
+                          style={{
+                            color: quotTextColor,
+                          }}
+                        >
+                          Quote
+                        </a>
                       </Button>
                       <Button
                         onClick={() => {
@@ -64,7 +81,16 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                         }}
                         style={{ background: TrackingButtonColor }}
                       >
-                        Tracking
+                        <a
+                          onClick={() => {
+                            selectQuote();
+                          }}
+                          style={{
+                            color: trackingTextColor,
+                          }}
+                        >
+                          Tracking
+                        </a>
                       </Button>
                     </Col>
                     <Col sm="6"></Col>
@@ -72,50 +98,50 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                   {selected == "Quote" ? (
                     <Form className="mt-4 ">
                       <Row>
-                        <Col>
+                        <Col style={{ textAlign: "left" }}>
                           <Label style={{ fontWeight: "bold" }}>Name</Label>
-                          <Input placeholder="Name"></Input>
+                          <Input placeholder="Enter your name"></Input>
                         </Col>
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Mobile</Label>
-                            <Input placeholder="Mobile"></Input>
+                            <Input placeholder="Enter your mobile"></Input>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row className="mt-4">
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Email</Label>
-                            <Input placeholder="Email"></Input>
+                            <Input placeholder="Enter your email"></Input>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row className="mt-4">
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Width</Label>
-                            <Input placeholder="Width"></Input>
+                            <Input placeholder="Enter width"></Input>
                           </FormGroup>
                         </Col>
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Height</Label>
-                            <Input placeholder="Height"></Input>
+                            <Input placeholder="Enter height"></Input>
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row className="mt-4">
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Length</Label>
-                            <Input placeholder="Length"></Input>
+                            <Input placeholder="Enter length"></Input>
                           </FormGroup>
                         </Col>
                         <Col>
-                          <FormGroup>
+                          <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Weight</Label>
-                            <Input placeholder="Weight"></Input>
+                            <Input placeholder="Enter weight"></Input>
                           </FormGroup>
                         </Col>
                       </Row>
@@ -130,8 +156,11 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                   ) : (
                     <Form className="mt-4">
                       <Row className="mt-4">
-                        <FormGroup>
-                          <Input placeholder="Tracking Number or Invoice Number"></Input>
+                        <FormGroup style={{ textAlign: "left" }}>
+                          <Label style={{ fontWeight: "bold" }}>
+                            Tracking Number
+                          </Label>
+                          <Input placeholder="Enter tracking number or invoice number"></Input>
                         </FormGroup>
                       </Row>
                       <Row className="mt-4">

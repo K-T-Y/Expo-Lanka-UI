@@ -112,7 +112,11 @@ const Register = () => {
                 <Form className="">
                   <Row>
                     <Col md="6">
-                      <Label className="form-label" for="email">
+                      <Label
+                        className="form-label"
+                        for="email"
+                        style={{ fontWeight: "bold" }}
+                      >
                         First Name
                       </Label>
                       <Input
@@ -133,7 +137,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Last Name
                       </Label>
                       <Input
@@ -156,7 +164,11 @@ const Register = () => {
                   </Row>
                   <Row>
                     <Col md="6">
-                      <Label className="form-label" for="email">
+                      <Label
+                        className="form-label"
+                        for="email"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Email
                       </Label>
                       <Input
@@ -177,7 +189,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Password
                       </Label>
                       <Input
@@ -198,7 +214,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Address 1
                       </Label>
                       <Input
@@ -219,7 +239,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Address 2
                       </Label>
                       <Input
@@ -240,7 +264,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         City
                       </Label>
                       <Input
@@ -261,7 +289,11 @@ const Register = () => {
                       )}
                     </Col>
                     <Col md="6">
-                      <Label className="form-label" for="review">
+                      <Label
+                        className="form-label"
+                        for="review"
+                        style={{ fontWeight: "bold" }}
+                      >
                         Mobile
                       </Label>
                       <Input
