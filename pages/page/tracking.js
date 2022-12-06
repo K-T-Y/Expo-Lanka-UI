@@ -33,7 +33,7 @@ const Tracking = () => {
     }
 
     axios
-      .get(ApiUrl + "/parcel/getParcel?ref=" + refNumber)
+      .get("http://185.196.21.84:8088/parcel/getParcel?ref=" + refNumber)
       .then((response) => {
         console.log("TRACKING_RESPONSE", response.data.data);
         setTrackingDetails(response.data.data);
