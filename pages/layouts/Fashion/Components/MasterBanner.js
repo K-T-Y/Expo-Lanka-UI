@@ -15,6 +15,7 @@ import {
   Label,
   Row,
 } from "reactstrap";
+import { ApiUrl } from "../../../../config/api-config";
 
 const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
   const [selected, setSelected] = useState("Quote");
@@ -82,7 +83,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
   const router = useRouter();
   const parcelSearch = () => {
     axios
-      .get("http://185.196.21.84:8088/parcel/getParcel?ref=" + refNumber)
+      .get(ApiUrl + "/orders/track?reference=" + refNumber)
       .then((response) => {
         console.log("TRACKING_RESPONSE", response.data.data);
         localStorage.setItem("Tracking", JSON.stringify(response.data.data));
