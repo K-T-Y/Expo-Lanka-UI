@@ -129,7 +129,8 @@ const HeaderOne = ({
                                 icon={cart.src}
                               />
                             ) : (
-                              <Cart layout={direction} icon={cart.src} />
+                              // <Cart layout={direction} icon={cart.src} />
+                              ""
                             )}
                           </>
                         ) : (
