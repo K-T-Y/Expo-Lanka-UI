@@ -148,15 +148,19 @@ const NavBar = () => {
                   className={` ${menuItem.megaMenu ? "mega-menu" : ""}`}
                 >
                   {menuItem.type == "link" ? (
-                    <a className="nav-link" href={menuItem.path}>
-                      {t(menuItem.title)}
-                      <span className=""></span>
-                    </a>
+                    <Link href={`${menuItem.path}`}>
+                      <a className="nav-link">
+                        {t(menuItem.title)}
+                        <span className=""></span>
+                      </a>
+                    </Link>
                   ) : (
-                    <a className="nav-link" onClick={(e) => openMblNav(e)}>
-                      {t(menuItem.title)}
-                      <span className="sub-arrow"></span>
-                    </a>
+                    <Link>
+                      <a className="nav-link" onClick={(e) => openMblNav(e)}>
+                        {t(menuItem.title)}
+                        <span className="sub-arrow"></span>
+                      </a>
+                    </Link>
                   )}
 
                   {

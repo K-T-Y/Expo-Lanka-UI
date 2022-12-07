@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 // import Breadcrumb from "../../common/breadcrumb";
 
 import { Edit, Search, Trash2 } from "react-feather";
+import { toast } from "react-toastify";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 import CommonLayout from "../../../../components/shop/common-layout";
 import { ApiUrl } from "../../../../config/api-config";
@@ -22,11 +23,7 @@ const Product_list = () => {
         console.log("GET_ALL_PRODUCT_ERROR", error);
       });
   };
-  // useEffect(() => {
-  //   // if (allProducts == "") {
-  //   //   getAllProducts(0, 10);
-  //   // }
-  // });
+
   const data = [
     {
       //image: IMG34,
@@ -117,8 +114,21 @@ const Product_list = () => {
   };
 
   useEffect(() => {
+    if (allProducts == "") {
+      getAllProducts(0, 10);
+    }
     if (categoryList == "") {
       getAllCategories();
+    }
+    if (localStorage.getItem("Category_Item") != "") {
+      setAllProducts(JSON.parse(localStorage.getItem("Category_Item")));
+      localStorage.setItem("Category_Item", "");
+    } else if (
+      localStorage.getItem("Category_Item") == "" ||
+      !localStorage.getItem("Category_Item") ||
+      localStorage.getItem("Category_Item") == []
+    ) {
+      toast.warn("No Products In Selected Category !!");
     }
     if (
       localStorage.getItem("Search") &&

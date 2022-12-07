@@ -84,7 +84,9 @@ const TopBarDark = ({ topClass, fluid }) => {
                   )}
                   {localStorage.getItem("User") && (
                     <Link href={`/page/order-history`}>
-                      <a>Order History</a>
+                      <a style={{ fontWeight: "bold", color: "black" }}>
+                        Order History
+                      </a>
                     </Link>
                   )}
                   {localStorage.getItem("User") && (

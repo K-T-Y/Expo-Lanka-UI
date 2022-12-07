@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { ApiUrl } from "../../../config/api-config";
 
@@ -16,7 +17,27 @@ const Category = () => {
         console.log("GET_CATEGORY-ERROR", error);
       });
   };
-
+  const router = useRouter();
+  const findCategoryProducts = (categoryId) => {
+    axios
+      .get(
+        ApiUrl + "/product/by-category/{categoryId}?categoryId=" + categoryId
+      )
+      .then((response) => {
+        console.log(
+          "RESPONSE_FINDALL_CATEGORY_PRODUCTS==>",
+          response.data.data
+        );
+        localStorage.setItem(
+          "Category_Item",
+          JSON.stringify(response.data.data)
+        );
+        router.push("/page/products/physical/product-list");
+      })
+      .catch((error) => {
+        console.log("RESPONSE_FINDALL_CATEGORY_PRODUCTS_ERROR==>", error);
+      });
+  };
   useEffect(() => {
     if (categoryList == "") {
       getAllCategories();
@@ -29,11 +50,21 @@ const Category = () => {
         {categoryList &&
           categoryList.map((item, index) => {
             return (
-              <div className="col-xl-3 col-lg-4 col-6" key={index}>
+              <div
+                className="col-xl-3 col-lg-4 col-6"
+                key={index}
+                onClick={() => {
+                  findCategoryProducts(item.id);
+                }}
+              >
                 <div className="product-box">
                   <div className="img-wrapper">
                     <div className="front">
-                      <a href="product-page(no-sidebar).html">
+                      <a
+                        onClick={() => {
+                          findCategoryProducts(item.id);
+                        }}
+                      >
                         <img
                           src={item.imageUrl}
                           className="img-fluid blur-up lazyload bg-img"
@@ -42,7 +73,11 @@ const Category = () => {
                       </a>
                     </div>
                     <div className="back">
-                      <a href="product-page(no-sidebar).html">
+                      <a
+                        onClick={() => {
+                          findCategoryProducts(item.id);
+                        }}
+                      >
                         <img
                           src={item.imageUrl}
                           className="img-fluid blur-up lazyload bg-img"

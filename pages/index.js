@@ -20,7 +20,7 @@ import { ApiUrl } from "../config/api-config";
 
 const Fashion = () => {
   const [User, setUser] = useState("");
-  //localStorage.setItem("User", "");
+
   useEffect(() => {
     if (localStorage.getItem("User")) {
       setUser(JSON.parse(localStorage.getItem("User")));
