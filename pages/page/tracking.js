@@ -84,9 +84,9 @@ const Tracking = () => {
     if (localStorage.getItem("Tracking")) {
       if (JSON.parse(localStorage.getItem("Tracking"))) {
         setTrackingDetails(JSON.parse(localStorage.getItem("Tracking")));
+
         if (JSON.parse(localStorage.getItem("Tracking")).status) {
           if (JSON.parse(localStorage.getItem("Tracking")).status == 1) {
-            console.log("st");
             setAcceptedClass("step active");
           }
           if (JSON.parse(localStorage.getItem("Tracking")).status == 2) {
@@ -162,22 +162,6 @@ const Tracking = () => {
                     </Col>
                   </Row>
                 </Form>
-
-                {/* <Form className="form-inline tracking-form">
-                <div className="mx-lg-6">
-                  <div className="mx-sm-3">
-                    <Input
-                      type="text"
-                      className="form-control col-sm-12"
-                      id="exampleFormControlInput1"
-                      placeholder="Enter your tracking code"
-                    />
-                  </div>
-                </div>
-                <Button type="submit" className="btn btn-solid">
-                  Track
-                </Button>
-              </Form> */}
               </Col>
             </Row>
             <Row>

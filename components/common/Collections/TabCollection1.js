@@ -14,6 +14,7 @@ import axios from "axios";
 import { ApiUrl } from "../../../config/api-config";
 import { Button, Card, CardBody, Col, Container, Row, Media } from "reactstrap";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 const GET_PRODUCTS = gql`
   query products($type: _CategoryType!, $indexFrom: Int!, $limit: Int!) {
     products(type: $type, indexFrom: $indexFrom, limit: $limit) {
@@ -52,7 +53,7 @@ const TabContent = ({
   loading,
   startIndex,
   endIndex,
-  cartClass,
+  cartclassName,
   backImage,
   product,
 }) => {
@@ -115,7 +116,7 @@ const TabContent = ({
               addCompare={() => compareContext.addToCompare(product)}
               addCart={() => context.addToCart(product, quantity)}
               addWishlist={() => wishListContext.addToWish(product)}
-              cartClass={cartClass}
+              cartclassName={cartclassName}
               backImage={backImage}
             />
           ))
@@ -127,14 +128,14 @@ const TabContent = ({
 const SpecialProducts = ({
   type,
   fluid,
-  designClass,
-  cartClass,
+  designclassName,
+  cartclassName,
   heading,
   noTitle,
   title,
   inner,
   line,
-  hrClass,
+  hrclassName,
   backImage,
 }) => {
   const [activeTab, setActiveTab] = useState(type);
@@ -145,13 +146,13 @@ const SpecialProducts = ({
   const currency = curContext.state;
   const quantity = context.quantity;
 
-  var { loading, data } = useQuery(GET_PRODUCTS, {
-    variables: {
-      type: activeTab,
-      indexFrom: 0,
-      limit: 8,
-    },
-  });
+  // var { loading, data } = useQuery(GET_PRODUCTS, {
+  //   variables: {
+  //     type: activeTab,
+  //     indexFrom: 0,
+  //     limit: 8,
+  //   },
+  // });
 
   const [featuredProduct, setFeaturedProduct] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -218,6 +219,11 @@ const SpecialProducts = ({
     );
     console.log("Model", model);
   };
+  const router = useRouter();
+  const selectProduct = (item) => {
+    localStorage.setItem("selectedProduct", JSON.stringify(item));
+    router.push("/page/product-detail");
+  };
   useEffect(() => {
     if (featuredProduct == "") {
       setIsLoading(true);
@@ -227,7 +233,7 @@ const SpecialProducts = ({
 
   return (
     <div>
-      <section className={designClass}>
+      <section className={designclassName}>
         <Container fluid={fluid}>
           {noTitle ? (
             ""
@@ -237,7 +243,7 @@ const SpecialProducts = ({
               <h2 className={inner}>special products</h2>
               {line ? (
                 <div className="line"></div>
-              ) : hrClass ? (
+              ) : hrclassName ? (
                 <hr role="tournament6"></hr>
               ) : (
                 ""
@@ -273,7 +279,7 @@ const SpecialProducts = ({
                 loading={loading}
                 startIndex={0}
                 endIndex={8}
-                cartClass={cartClass}
+                cartclassName={cartclassName}
                 backImage={backImage}
               />
             </TabPanel>
@@ -285,7 +291,7 @@ const SpecialProducts = ({
                 loading={loading}
                 startIndex={0}
                 endIndex={8}
-                cartClass={cartClass}
+                cartclassName={cartclassName}
                 backImage={backImage}
               />
             </TabPanel>
@@ -295,7 +301,7 @@ const SpecialProducts = ({
                 loading={loading}
                 startIndex={0}
                 endIndex={8}
-                cartClass={cartClass}
+                cartclassName={cartclassName}
                 backImage={backImage}
               />
             </TabPanel>
@@ -306,7 +312,12 @@ const SpecialProducts = ({
                 if (index < 4) {
                   return (
                     <div className="col-xl-3 col-lg-4 col-6" key={index}>
-                      <div className="product-box">
+                      <div
+                        className="product-box"
+                        onClick={() => {
+                          selectProduct(item);
+                        }}
+                      >
                         <div className="img-wrapper">
                           <div className="front">
                             <a href="product-page(no-sidebar).html">
@@ -351,16 +362,16 @@ const SpecialProducts = ({
                           </div>
                         </div>
                         <br></br>
-                        <div class="product-buttons">
+                        <div className="product-buttons">
                           <a
                             onClick={() => {
                               addtoCart(item.id);
                             }}
                             id="cartEffect"
-                            class="btn btn-solid hover-solid btn-animation"
+                            className="btn btn-solid hover-solid btn-animation"
                           >
                             <i
-                              class="fa fa-shopping-cart me-1"
+                              className="fa fa-shopping-cart me-1"
                               aria-hidden="true"
                             ></i>
                             Add to cart
@@ -423,7 +434,7 @@ const SpecialProducts = ({
                                                           <i className="fa fa-star"></i>
                                                           <i className="fa fa-star"></i>
 
-                                                          <i class="fa fa-star-half-o text-warning"></i>
+                                                          <i className="fa fa-star-half-o text-warning"></i>
                                                         </div>
                                                       ) : (
                                                         <>
