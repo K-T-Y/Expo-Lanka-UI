@@ -44,11 +44,11 @@ const CartPage = () => {
   const updateQty = (item, qty) => {
     console.log("Update Item==>", item, "Qty==>", qty);
   };
-  const deleteItem = (item) => {
+  const deleteItem = async (item) => {
     const session = JSON.parse(localStorage.getItem("ShoppingSession"));
     console.log("Delete Item==>", item);
 
-    axios
+    await axios
       .put(
         ApiUrl +
           "/shopping-session/remove/cart-item/" +
@@ -88,8 +88,8 @@ const CartPage = () => {
 
     setCartTotal(total);
   };
-  const getSession = () => {
-    axios
+  const getSession = async () => {
+    await axios
       .get(
         ApiUrl +
           "/shopping-session/get/session/" +
@@ -97,11 +97,12 @@ const CartPage = () => {
       )
       .then((sessionresponse) => {
         if (sessionresponse.status == 200) {
+          console.log("Session_Refresh==>", sessionresponse.data);
+          setCartItems(sessionresponse.data.data.cartItemList);
           localStorage.setItem(
             "ShoppingSession",
             JSON.stringify(sessionresponse.data)
           );
-          setCartItems(response.data.data.cartItemList);
         }
       })
       .catch((error) => {
