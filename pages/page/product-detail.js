@@ -2,7 +2,7 @@ import CommonLayout from "../../components/shop/common-layout";
 
 const ProductDetail = () => {
   return (
-    <CommonLayout parent="home" title="Order History">
+    <CommonLayout parent="home" title="Product Detail">
       <section className="order history section-b-space">
         <section>
           <div class="collection-wrapper">
@@ -17,7 +17,7 @@ const ProductDetail = () => {
                         class="img-fluid blur-up lazyload image_zoom_cls-0"
                       />
                     </div>
-                    <div>
+                    {/* <div>
                       <img
                         src="../assets/images/pro3/2.jpg"
                         alt=""
@@ -37,19 +37,19 @@ const ProductDetail = () => {
                         alt=""
                         class="img-fluid blur-up lazyload image_zoom_cls-3"
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div class="row">
                     <div class="col-12 p-0">
                       <div class="slider-nav">
-                        <div>
+                        {/* <div>
                           <img
                             src="../assets/images/pro3/1.jpg"
                             alt=""
                             class="img-fluid blur-up lazyload"
                           />
-                        </div>
-                        <div>
+                        </div> */}
+                        {/* <div>
                           <img
                             src="../assets/images/pro3/2.jpg"
                             alt=""
@@ -69,14 +69,14 @@ const ProductDetail = () => {
                             alt=""
                             class="img-fluid blur-up lazyload"
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6 rtl-text">
                   <div class="product-right">
-                    <div class="product-count">
+                    {/* <div class="product-count">
                       <ul>
                         <li>
                           <img
@@ -97,7 +97,7 @@ const ProductDetail = () => {
                           <span class="lang">active view this</span>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                     <h2>Women Pink Shirt</h2>
                     <div class="rating-section">
                       <div class="rating">
@@ -105,22 +105,23 @@ const ProductDetail = () => {
                         <i class="fa fa-star"></i> <i class="fa fa-star"></i>{" "}
                         <i class="fa fa-star"></i>
                       </div>
-                      <h6>120 ratings</h6>
+                      {/* <h6>120 ratings</h6> */}
                     </div>
-                    <div class="label-section">
+                    <br></br>
+                    {/* <div class="label-section">
                       <span class="badge badge-grey-color">#1 Best seller</span>
                       <span class="label-text">in fashion</span>
-                    </div>
+                    </div> */}
                     <h3 class="price-detail">
                       $32.96 <del>$459.00</del>
-                      <span>55% off</span>
+                      {/* <span> 55% off</span> */}
                     </h3>
-                    <ul class="color-variant">
+                    {/* <ul class="color-variant">
                       <li class="bg-light0 active"></li>
                       <li class="bg-light1"></li>
                       <li class="bg-light2"></li>
-                    </ul>
-                    <div
+                    </ul> */}
+                    {/* <div
                       id="selectSize"
                       class="addeffect-section product-description border-product"
                     >
@@ -189,38 +190,36 @@ const ProductDetail = () => {
                           </li>
                         </ul>
                       </div>
-                      <h6 class="product-title">quantity</h6>
-                      <div class="qty-box">
-                        <div class="input-group">
-                          <span class="input-group-prepend">
-                            <button
-                              type="button"
-                              class="btn quantity-left-minus"
-                              data-type="minus"
-                              data-field=""
-                            >
-                              <i class="ti-angle-left"></i>
-                            </button>{" "}
-                          </span>
-                          <input
-                            type="text"
-                            name="quantity"
-                            class="form-control input-number"
-                            value="1"
-                          />
-                          <span class="input-group-prepend">
-                            <button
-                              type="button"
-                              class="btn quantity-right-plus"
-                              data-type="plus"
-                              data-field=""
-                            >
-                              <i class="ti-angle-right"></i>
-                            </button>
-                          </span>
-                        </div>
+                      <div className="mobile-cart-content row">
+                              <div className="col-xs-3">
+                                <div className="qty-box">
+                                  <div className="input-group">
+                                    <input
+                                      type="text"
+                                      name="quantity"
+                                      className="form-control input-number"
+                                      // defaultValue={item.qty}
+                                      style={{
+                                        borderColor: quantityError && "red",
+                                      }}
+                                    />
+                                  </div>
+                                </div>
+                                {item.qty >= item.stock ? "out of Stock" : ""}
+                              </div>
+                    </div> */}
+                    {/* <div className="qty-box">
+                      <div className="input-group">
+                        <input
+                          type="number"
+                          name="quantity"
+                          className="form-control input-number"
+                        />
                       </div>
-                    </div>
+                    </div> */}
+
+                    <br></br>
+                    <br></br>
                     <div class="product-buttons">
                       <a
                         href="javascript:void(0)"
@@ -233,15 +232,17 @@ const ProductDetail = () => {
                         ></i>{" "}
                         add to cart
                       </a>{" "}
-                      <a href="#" class="btn btn-solid">
+                      <br></br>
+                      <br></br>
+                      {/* <a href="#" class="btn btn-solid">
                         <i
                           class="fa fa-bookmark fz-16 me-2"
                           aria-hidden="true"
                         ></i>
                         wishlist
-                      </a>
+                      </a> */}
                     </div>
-                    <div class="product-count">
+                    {/* <div class="product-count">
                       <ul>
                         <li>
                           <img
@@ -254,13 +255,13 @@ const ProductDetail = () => {
                           </span>
                         </li>
                       </ul>
-                    </div>
-                    <div class="border-product">
+                    </div> */}
+                    {/* <div class="border-product">
                       <h6 class="product-title">Sales Ends In</h6>
                       <div class="timer">
                         <p id="demo"></p>
                       </div>
-                    </div>
+                    </div> */}
                     <div class="border-product">
                       <h6 class="product-title">shipping info</h6>
                       <ul class="shipping-info">
@@ -270,7 +271,7 @@ const ProductDetail = () => {
                         <li>Easy 30 days returns and exchanges</li>
                       </ul>
                     </div>
-                    <div class="border-product">
+                    {/* <div class="border-product">
                       <h6 class="product-title">share it</h6>
                       <div class="product-icon">
                         <ul class="product-social">
@@ -301,7 +302,7 @@ const ProductDetail = () => {
                           </li>
                         </ul>
                       </div>
-                    </div>
+                    </div> */}
                     <div class="border-product">
                       <h6 class="product-title">100% secure payment</h6>
                       <image

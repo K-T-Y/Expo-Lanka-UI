@@ -24,6 +24,7 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
       type: type,
     },
   });
+
   return (
     <Fragment>
       <section className={sectionClass}>
@@ -41,7 +42,7 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                   </div>
                 )}
               </div>
-              <Slider {...Slider3} className="slide-3 no-arrow ">
+              {/* <Slider {...Slider3} className="slide-3 no-arrow ">
                 {data &&
                   data.blog.map((item, index) => (
                     <Col md="12" key={index}>
@@ -61,7 +62,8 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                       </div>
                     </Col>
                   ))}
-              </Slider>
+              </Slider> */}
+              <div className="row mx-0 margin-default"></div>
             </Col>
           </Row>
         </Container>
