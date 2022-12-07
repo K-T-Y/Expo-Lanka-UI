@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { Fragment, useEffect, useState } from "react";
 // import Breadcrumb from "../../common/breadcrumb";
 
@@ -12,6 +13,8 @@ import FilterPage from "../../../shop/common/filter";
 const Product_list = () => {
   const [allProducts, setAllProducts] = useState("");
 
+  const router = new useRouter();
+
   const getAllProducts = (page, size) => {
     axios
       .post(ApiUrl + "/product/search?page=" + page + "&size=" + size, {})
@@ -22,6 +25,63 @@ const Product_list = () => {
       .catch((error) => {
         console.log("GET_ALL_PRODUCT_ERROR", error);
       });
+  };
+
+  const getSession = () => {
+    axios
+      .get(
+        ApiUrl +
+          "/shopping-session/get/session/" +
+          JSON.parse(localStorage.getItem("User")).id
+      )
+      .then((sessionresponse) => {
+        if (sessionresponse.status == 200) {
+          console.log("SHOPPING_SESSION", sessionresponse);
+          localStorage.setItem(
+            "ShoppingSession",
+            JSON.stringify(sessionresponse.data)
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("SESSION_ERROR", error);
+      });
+  };
+
+  const selectProduct = (item) => {
+    localStorage.setItem("selectedProduct", JSON.stringify(item));
+    router.push("/page/product-detail");
+  };
+
+  const addtoCart = (itemId) => {
+    const model = {
+      id: JSON.parse(localStorage.getItem("User")).id,
+      productId: itemId,
+      qty: 1,
+    };
+    axios
+      .post(
+        ApiUrl +
+          "/shopping-session/add/cart-item/" +
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+        model
+      )
+      .then((response) => {
+        if (response.status == 200) {
+          toast.success("Item Added To Cart !!");
+          getSession();
+        }
+      })
+      .then((error) => {
+        console.log("ERROR_ADDING_CART==>", error);
+      });
+    console.log(
+      "APIURL",
+      ApiUrl +
+        "/shopping-session/add/cart-item/" +
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+    );
+    console.log("Model", model);
   };
 
   const data = [
@@ -128,7 +188,7 @@ const Product_list = () => {
       !localStorage.getItem("Category_Item") ||
       localStorage.getItem("Category_Item") == []
     ) {
-      toast.warn("No Products In Selected Category !!");
+      // toast.warn("No Products In Selected Category !!");
     }
     if (
       localStorage.getItem("Search") &&
@@ -167,9 +227,14 @@ const Product_list = () => {
                                 key={index}
                               >
                                 <div className="product-box">
-                                  <div className="img-wrapper">
+                                  <div
+                                    className="img-wrapper"
+                                    onClick={() => {
+                                      selectProduct(item);
+                                    }}
+                                  >
                                     <div className="front">
-                                      <a href="product-page(no-sidebar).html">
+                                      <a>
                                         {item.productImages != "" && (
                                           <img
                                             src={item.productImages[0].imageUrl}
@@ -180,7 +245,7 @@ const Product_list = () => {
                                       </a>
                                     </div>
                                     <div className="back">
-                                      <a href="product-page(no-sidebar).html">
+                                      <a>
                                         {item.productImages != "" && (
                                           <img
                                             src={item.productImages[0].imageUrl}
@@ -225,12 +290,27 @@ const Product_list = () => {
                                   </div>
                                   <br></br>
                                   {/* fa fa-shopping-cart */}
-                                  <Button
+                                  {/* <Button
                                     className="btn btn-solid"
                                     type="submit"
                                   >
                                     Add to cart
-                                  </Button>
+                                  </Button> */}
+                                  <div class="product-buttons">
+                                    <a
+                                      onClick={() => {
+                                        addtoCart(item.id);
+                                      }}
+                                      id="cartEffect"
+                                      class="btn btn-solid hover-solid btn-animation"
+                                    >
+                                      <i
+                                        class="fa fa-shopping-cart me-1"
+                                        aria-hidden="true"
+                                      ></i>{" "}
+                                      add to cart
+                                    </a>{" "}
+                                  </div>
 
                                   <div className="product-detail">
                                     {item.overallRating &&
