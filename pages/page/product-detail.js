@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import CommonLayout from "../../components/shop/common-layout";
 
 const ProductDetail = () => {
+  const [item, setItem] = useState();
+  useEffect(() => {
+    setItem(JSON.parse(localStorage.getItem("selectedProduct")));
+  }, []);
   return (
     <CommonLayout parent="home" title="Product Detail">
       <section className="order history section-b-space">
@@ -98,7 +103,8 @@ const ProductDetail = () => {
                         </li>
                       </ul>
                     </div> */}
-                    <h2>Women Pink Shirt</h2>
+                    {item && <h2>{item.productName}</h2>}
+
                     <div class="rating-section">
                       <div class="rating">
                         <i class="fa fa-star"></i> <i class="fa fa-star"></i>{" "}
