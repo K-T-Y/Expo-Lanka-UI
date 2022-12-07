@@ -501,7 +501,7 @@ const SpecialProducts = ({
                             </>
                           )}
                           <br></br>
-                          <a href="product-page(no-sidebar).html">
+                          <a>
                             <h6>{item.productName}</h6>
                           </a>
                           <h4>€{item.sellingPrice}</h4>
