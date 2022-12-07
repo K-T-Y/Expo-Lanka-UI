@@ -312,15 +312,15 @@ const SpecialProducts = ({
                 if (index < 4) {
                   return (
                     <div className="col-xl-3 col-lg-4 col-6" key={index}>
-                      <div
-                        className="product-box"
-                        onClick={() => {
-                          selectProduct(item);
-                        }}
-                      >
-                        <div className="img-wrapper">
+                      <div className="product-box">
+                        <div
+                          className="img-wrapper"
+                          onClick={() => {
+                            selectProduct(item);
+                          }}
+                        >
                           <div className="front">
-                            <a href="product-page(no-sidebar).html">
+                            <a>
                               <img
                                 src={item.productImages[0].imageUrl}
                                 className="img-fluid blur-up lazyload bg-img"
@@ -329,7 +329,7 @@ const SpecialProducts = ({
                             </a>
                           </div>
                           <div className="back">
-                            <a href="product-page(no-sidebar).html">
+                            <a>
                               <img
                                 src={item.productImages[0].imageUrl}
                                 className="img-fluid blur-up lazyload bg-img"

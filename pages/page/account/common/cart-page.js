@@ -58,6 +58,9 @@ const CartPage = () => {
       )
       .then((response) => {
         console.log(response);
+        if (response.status == 200) {
+          getSession();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -92,6 +95,7 @@ const CartPage = () => {
             "ShoppingSession",
             JSON.stringify(sessionresponse.data)
           );
+          setCartItems(response.data.data.cartItemList);
         }
       })
       .catch((error) => {
