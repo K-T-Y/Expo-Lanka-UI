@@ -151,18 +151,16 @@ const CartPage = () => {
                       <tbody key={index}>
                         <tr>
                           <td>
-                            <Link href={`/left-sidebar/product/` + item.id}>
-                              <a>
-                                <Media
-                                  src={
-                                    item.product.productImages != ""
-                                      ? item.product.productImages[0].imageUrl
-                                      : item.product.productImages[0].imageUrl
-                                  }
-                                  alt=""
-                                />
-                              </a>
-                            </Link>
+                            <a>
+                              <Media
+                                src={
+                                  item.product.productImages != ""
+                                    ? item.product.productImages[0].imageUrl
+                                    : item.product.productImages[0].imageUrl
+                                }
+                                alt=""
+                              />
+                            </a>
                           </td>
                           <td>
                             <Link href={`/left-sidebar/product/` + item.id}>
@@ -194,7 +192,7 @@ const CartPage = () => {
                               </div>
                               <div className="col-xs-3">
                                 <h2 className="td-color">
-                                  <a href="#" className="icon">
+                                  <a className="icon">
                                     <i
                                       className="fa fa-times"
                                       onClick={() => removeFromCart(item)}
@@ -256,7 +254,7 @@ const CartPage = () => {
             </Row>
             <Row className="cart-buttons">
               <Col xs="6">
-                <Link href={`/shop/left_sidebar`}>
+                <Link href={`/page/products/physical/product-list`}>
                   <a className="btn btn-solid">continue shopping</a>
                 </Link>
               </Col>

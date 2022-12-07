@@ -1,11 +1,66 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CommonLayout from "../../components/shop/common-layout";
+import { ApiUrl } from "../../config/api-config";
 
 const ProductDetail = () => {
   const [item, setItem] = useState();
   useEffect(() => {
     setItem(JSON.parse(localStorage.getItem("selectedProduct")));
   }, []);
+
+  const addtoCart = () => {
+    const model = {
+      id: JSON.parse(localStorage.getItem("User")).id,
+      productId: JSON.parse(localStorage.getItem("selectedProduct")).id,
+      qty: 1,
+    };
+    axios
+      .post(
+        ApiUrl +
+          "/shopping-session/add/cart-item/" +
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+        model
+      )
+      .then((response) => {
+        console.log("Response", response);
+        if (response.status == 200) {
+          toast.success("Item Added To Cart !!");
+          getSession();
+        }
+      })
+      .then((error) => {
+        console.log("ERROR_ADDING_CART==>", error);
+      });
+    console.log(
+      "APIURL",
+      ApiUrl +
+        "/shopping-session/add/cart-item/" +
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+    );
+    console.log("Model", model);
+  };
+  const getSession = () => {
+    axios
+      .get(
+        ApiUrl +
+          "/shopping-session/get/session/" +
+          JSON.parse(localStorage.getItem("User")).id
+      )
+      .then((sessionresponse) => {
+        if (sessionresponse.status == 200) {
+          console.log("SHOPPING_SESSION", sessionresponse);
+          localStorage.setItem(
+            "ShoppingSession",
+            JSON.stringify(sessionresponse.data)
+          );
+        }
+      })
+      .catch((error) => {
+        console.log("SESSION_ERROR", error);
+      });
+  };
   return (
     <CommonLayout parent="home" title="Product Detail">
       <section className="order history section-b-space">
@@ -16,11 +71,16 @@ const ProductDetail = () => {
                 <div class="col-lg-6">
                   <div class="product-slick">
                     <div>
-                      <img
-                        src="../assets/images/pro3/1.jpg"
-                        alt=""
-                        class="img-fluid blur-up lazyload image_zoom_cls-0"
-                      />
+                      {JSON.parse(localStorage.getItem("selectedProduct")) && (
+                        <img
+                          src={
+                            JSON.parse(localStorage.getItem("selectedProduct"))
+                              .productImages[0].imageUrl
+                          }
+                          alt=""
+                          class="img-fluid blur-up lazyload image_zoom_cls-0"
+                        />
+                      )}
                     </div>
                     {/* <div>
                       <img
@@ -103,26 +163,40 @@ const ProductDetail = () => {
                         </li>
                       </ul>
                     </div> */}
-                    {item && <h2>{item.productName}</h2>}
+                    {JSON.parse(localStorage.getItem("selectedProduct")) && (
+                      <h2>
+                        {
+                          JSON.parse(localStorage.getItem("selectedProduct"))
+                            .productName
+                        }
+                      </h2>
+                    )}
 
                     <div className="product-detail">
-                      {item.overallRating && item.overallRating == "" ? (
+                      {JSON.parse(localStorage.getItem("selectedProduct")) &&
+                      JSON.parse(localStorage.getItem("selectedProduct"))
+                        .overallRating == "" ? (
                         <h4>Ratings Not Available.</h4>
                       ) : (
                         <>
-                          {item.overallRating == 0.5 ? (
+                          {JSON.parse(localStorage.getItem("selectedProduct"))
+                            .overallRating == 0.5 ? (
                             <div className="rating">
                               <i className="fa fa-star-half-o text-warning"></i>
                             </div>
                           ) : (
                             <>
-                              {item.overallRating == 1 ? (
+                              {JSON.parse(
+                                localStorage.getItem("selectedProduct")
+                              ).overallRating == 1 ? (
                                 <div className="rating">
                                   <i className="fa fa-star"></i>
                                 </div>
                               ) : (
                                 <>
-                                  {item.overallRating == 1.5 ? (
+                                  {JSON.parse(
+                                    localStorage.getItem("selectedProduct")
+                                  ).overallRating == 1.5 ? (
                                     <div className="rating">
                                       <i className="fa fa-star"></i>
 
@@ -130,14 +204,20 @@ const ProductDetail = () => {
                                     </div>
                                   ) : (
                                     <>
-                                      {item.overallRating == 2 ? (
+                                      {JSON.parse(
+                                        localStorage.getItem("selectedProduct")
+                                      ).overallRating == 2 ? (
                                         <div className="rating">
                                           <i className="fa fa-star"></i>
                                           <i className="fa fa-star"></i>
                                         </div>
                                       ) : (
                                         <>
-                                          {item.overallRating == 2.5 ? (
+                                          {JSON.parse(
+                                            localStorage.getItem(
+                                              "selectedProduct"
+                                            )
+                                          ).overallRating == 2.5 ? (
                                             <div className="rating">
                                               <i className="fa fa-star"></i>
 
@@ -146,7 +226,11 @@ const ProductDetail = () => {
                                             </div>
                                           ) : (
                                             <>
-                                              {item.overallRating == 3 ? (
+                                              {JSON.parse(
+                                                localStorage.getItem(
+                                                  "selectedProduct"
+                                                )
+                                              ).overallRating == 3 ? (
                                                 <div className="rating">
                                                   <i className="fa fa-star"></i>
                                                   <i className="fa fa-star"></i>
@@ -154,7 +238,11 @@ const ProductDetail = () => {
                                                 </div>
                                               ) : (
                                                 <>
-                                                  {item.overallRating == 3.5 ? (
+                                                  {JSON.parse(
+                                                    localStorage.getItem(
+                                                      "selectedProduct"
+                                                    )
+                                                  ).overallRating == 3.5 ? (
                                                     <div className="rating">
                                                       <i className="fa fa-star"></i>
                                                       <i className="fa fa-star"></i>
@@ -164,8 +252,11 @@ const ProductDetail = () => {
                                                     </div>
                                                   ) : (
                                                     <>
-                                                      {item.overallRating ==
-                                                      4 ? (
+                                                      {JSON.parse(
+                                                        localStorage.getItem(
+                                                          "selectedProduct"
+                                                        )
+                                                      ).overallRating == 4 ? (
                                                         <div className="rating">
                                                           <i className="fa fa-star"></i>
                                                           <i className="fa fa-star"></i>
@@ -174,7 +265,11 @@ const ProductDetail = () => {
                                                         </div>
                                                       ) : (
                                                         <>
-                                                          {item.overallRating ==
+                                                          {JSON.parse(
+                                                            localStorage.getItem(
+                                                              "selectedProduct"
+                                                            )
+                                                          ).overallRating ==
                                                           4.5 ? (
                                                             <div className="rating">
                                                               <i className="fa fa-star"></i>
@@ -185,7 +280,11 @@ const ProductDetail = () => {
                                                             </div>
                                                           ) : (
                                                             <>
-                                                              {item.overallRating ==
+                                                              {JSON.parse(
+                                                                localStorage.getItem(
+                                                                  "selectedProduct"
+                                                                )
+                                                              ).overallRating ==
                                                               5 ? (
                                                                 <div className="rating">
                                                                   <i className="fa fa-star"></i>
@@ -227,10 +326,21 @@ const ProductDetail = () => {
                         </>
                       )}
                       <br></br>
-                      <a href="product-page(no-sidebar).html">
-                        <h6>{item.productName}</h6>
+                      <a>
+                        <h6>
+                          {JSON.parse(localStorage.getItem("selectedProduct"))
+                            .productName &&
+                            JSON.parse(localStorage.getItem("selectedProduct"))
+                              .productName}
+                        </h6>
                       </a>
-                      <h4>€{item.sellingPrice}</h4>
+                      <h4>
+                        €
+                        {JSON.parse(localStorage.getItem("selectedProduct"))
+                          .sellingPrice &&
+                          JSON.parse(localStorage.getItem("selectedProduct"))
+                            .sellingPrice}
+                      </h4>
                       {/* <ul className="color-variant">
                             <li className="bg-light0"></li>
                             <li className="bg-light1"></li>
@@ -243,7 +353,18 @@ const ProductDetail = () => {
                       <span class="label-text">in fashion</span>
                     </div> */}
                     <h3 class="price-detail">
-                      €32.96 <del>€459.00</del>
+                      €
+                      {
+                        JSON.parse(localStorage.getItem("selectedProduct"))
+                          .discountedPrice
+                      }
+                      <del>
+                        €
+                        {
+                          JSON.parse(localStorage.getItem("selectedProduct"))
+                            .sellingPrice
+                        }
+                      </del>
                       {/* <span> 55% off</span> */}
                     </h3>
                     {/* <ul class="color-variant">
@@ -352,7 +473,9 @@ const ProductDetail = () => {
                     <br></br>
                     <div class="product-buttons">
                       <a
-                        href="javascript:void(0)"
+                        onClick={() => {
+                          addtoCart();
+                        }}
                         id="cartEffect"
                         class="btn btn-solid hover-solid btn-animation"
                       >
@@ -393,12 +516,18 @@ const ProductDetail = () => {
                       </div>
                     </div> */}
                     <div class="border-product">
-                      <h6 class="product-title">shipping info</h6>
+                      <h6 class="product-title">Product Info</h6>
                       <ul class="shipping-info">
-                        <li>100% Original Products</li>
+                        {/* <li>100% Original Products</li>
                         <li>Free Delivery on order above Rs. 799</li>
                         <li>Pay on delivery is available</li>
-                        <li>Easy 30 days returns and exchanges</li>
+                        <li>Easy 30 days returns and exchanges</li> */}
+                        <p>
+                          {
+                            JSON.parse(localStorage.getItem("selectedProduct"))
+                              .productDescription
+                          }
+                        </p>
                       </ul>
                     </div>
                     {/* <div class="border-product">
