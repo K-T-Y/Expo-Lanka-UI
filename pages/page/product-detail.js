@@ -105,13 +105,137 @@ const ProductDetail = () => {
                     </div> */}
                     {item && <h2>{item.productName}</h2>}
 
-                    <div class="rating-section">
-                      <div class="rating">
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>{" "}
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>{" "}
-                        <i class="fa fa-star"></i>
-                      </div>
-                      {/* <h6>120 ratings</h6> */}
+                    <div className="product-detail">
+                      {item.overallRating && item.overallRating == "" ? (
+                        <h4>Ratings Not Available.</h4>
+                      ) : (
+                        <>
+                          {item.overallRating == 0.5 ? (
+                            <div className="rating">
+                              <i className="fa fa-star-half-o text-warning"></i>
+                            </div>
+                          ) : (
+                            <>
+                              {item.overallRating == 1 ? (
+                                <div className="rating">
+                                  <i className="fa fa-star"></i>
+                                </div>
+                              ) : (
+                                <>
+                                  {item.overallRating == 1.5 ? (
+                                    <div className="rating">
+                                      <i className="fa fa-star"></i>
+
+                                      <i className="fa fa-star-half-o text-warning"></i>
+                                    </div>
+                                  ) : (
+                                    <>
+                                      {item.overallRating == 2 ? (
+                                        <div className="rating">
+                                          <i className="fa fa-star"></i>
+                                          <i className="fa fa-star"></i>
+                                        </div>
+                                      ) : (
+                                        <>
+                                          {item.overallRating == 2.5 ? (
+                                            <div className="rating">
+                                              <i className="fa fa-star"></i>
+
+                                              <i className="fa fa-star"></i>
+                                              <i className="fa fa-star-half-o text-warning"></i>
+                                            </div>
+                                          ) : (
+                                            <>
+                                              {item.overallRating == 3 ? (
+                                                <div className="rating">
+                                                  <i className="fa fa-star"></i>
+                                                  <i className="fa fa-star"></i>
+                                                  <i className="fa fa-star"></i>
+                                                </div>
+                                              ) : (
+                                                <>
+                                                  {item.overallRating == 3.5 ? (
+                                                    <div className="rating">
+                                                      <i className="fa fa-star"></i>
+                                                      <i className="fa fa-star"></i>
+                                                      <i className="fa fa-star"></i>
+
+                                                      <i className="fa fa-star-half-o text-warning"></i>
+                                                    </div>
+                                                  ) : (
+                                                    <>
+                                                      {item.overallRating ==
+                                                      4 ? (
+                                                        <div className="rating">
+                                                          <i className="fa fa-star"></i>
+                                                          <i className="fa fa-star"></i>
+                                                          <i className="fa fa-star"></i>
+                                                          <i className="fa fa-star"></i>
+                                                        </div>
+                                                      ) : (
+                                                        <>
+                                                          {item.overallRating ==
+                                                          4.5 ? (
+                                                            <div className="rating">
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star"></i>
+                                                              <i className="fa fa-star-half-o text-warning"></i>
+                                                            </div>
+                                                          ) : (
+                                                            <>
+                                                              {item.overallRating ==
+                                                              5 ? (
+                                                                <div className="rating">
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                  <i className="fa fa-star"></i>
+                                                                </div>
+                                                              ) : (
+                                                                <h4
+                                                                  style={{
+                                                                    fontWeight:
+                                                                      "normal",
+                                                                  }}
+                                                                >
+                                                                  {/* Ratings
+                                                                                Not
+                                                                                Available. */}
+                                                                </h4>
+                                                              )}
+                                                            </>
+                                                          )}
+                                                        </>
+                                                      )}
+                                                    </>
+                                                  )}
+                                                </>
+                                              )}
+                                            </>
+                                          )}
+                                        </>
+                                      )}
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </>
+                          )}
+                        </>
+                      )}
+                      <br></br>
+                      <a href="product-page(no-sidebar).html">
+                        <h6>{item.productName}</h6>
+                      </a>
+                      <h4>€{item.sellingPrice}</h4>
+                      {/* <ul className="color-variant">
+                            <li className="bg-light0"></li>
+                            <li className="bg-light1"></li>
+                            <li className="bg-light2"></li>
+                          </ul> */}
                     </div>
                     <br></br>
                     {/* <div class="label-section">
@@ -119,7 +243,7 @@ const ProductDetail = () => {
                       <span class="label-text">in fashion</span>
                     </div> */}
                     <h3 class="price-detail">
-                      $32.96 <del>$459.00</del>
+                      €32.96 <del>€459.00</del>
                       {/* <span> 55% off</span> */}
                     </h3>
                     {/* <ul class="color-variant">
