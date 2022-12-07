@@ -4,6 +4,7 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { Slider3 } from "../../../services/script";
+
 import {
   Media,
   Container,
@@ -72,136 +73,142 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                   </div>
                 )}
               </div>
-              {promotionDetails &&
-                promotionDetails.map((item) => {
-                  if (item.promotionDetails.length > 0) {
-                    return (
-                      <>
-                        <Card>
-                          <CardHeader
-                            style={{
-                              textAlign: "center",
-                              fontSize: "20px",
-                              fontWeight: "bolder",
-                            }}
-                          >
-                            {item.promotionName}
-                          </CardHeader>
-                          <CardBody>
-                            {" "}
-                            <div className="row mx-0 margin-default">
-                              {item.promotionDetails.map((subitem) => {
-                                return (
-                                  <>
-                                    {subitem.product.productImages &&
-                                      subitem.product.productImages.map(
-                                        (imagrItem, index) => {
-                                          return (
-                                            <div
-                                              className="col-xl-3 col-lg-4 col-6"
-                                              key={index}
-                                            >
-                                              <div className="product-box">
+              <section className="p-0">
+                <Slider className="slide-1 home-slider">
+                  {promotionDetails &&
+                    promotionDetails.map((item) => {
+                      if (item.promotionDetails.length > 0) {
+                        return (
+                          <>
+                            <Card>
+                              <CardHeader
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "20px",
+                                  fontWeight: "bolder",
+                                }}
+                              >
+                                {item.promotionName}
+                              </CardHeader>
+                              <CardBody>
+                                <div className="row mx-0 margin-default">
+                                  {item.promotionDetails.map((subitem) => {
+                                    return (
+                                      <>
+                                        {subitem.product.productImages &&
+                                          subitem.product.productImages.map(
+                                            (imagrItem, index) => {
+                                              return (
                                                 <div
-                                                  className="img-wrapper"
-                                                  // onClick={() => {
-                                                  //   selectProduct(item);
-                                                  // }}
+                                                  className="col-xl-3 col-lg-4 col-6"
+                                                  key={index}
                                                 >
-                                                  <div className="front">
-                                                    <a>
-                                                      <img
-                                                        src={imagrItem.imageUrl}
-                                                        className="img-fluid blur-up lazyload bg-img"
-                                                        alt=""
-                                                      />
-                                                    </a>
-                                                  </div>
-                                                  <div className="back">
-                                                    <a>
-                                                      <img
-                                                        src={imagrItem.imageUrl}
-                                                        className="img-fluid blur-up lazyload bg-img"
-                                                        alt=""
-                                                      />
-                                                    </a>
-                                                  </div>
-                                                  <div className="cart-info cart-wrap">
-                                                    <button
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#addtocart"
-                                                      title="Add to cart"
+                                                  <div className="product-box">
+                                                    <div
+                                                      className="img-wrapper"
+                                                      // onClick={() => {
+                                                      //   selectProduct(item);
+                                                      // }}
                                                     >
-                                                      <i className="ti-shopping-cart"></i>
-                                                    </button>
-                                                    <a title="Add to Wishlist">
-                                                      <i
-                                                        className="ti-heart"
-                                                        aria-hidden="true"
-                                                      ></i>
-                                                    </a>
-                                                    <a
-                                                      href="#"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#quick-view"
-                                                      title="Quick View"
-                                                    >
-                                                      <i
-                                                        className="ti-search"
-                                                        aria-hidden="true"
-                                                      ></i>
-                                                    </a>
-                                                    <a
-                                                      href="compare.html"
-                                                      title="Compare"
-                                                    >
-                                                      <i
-                                                        className="ti-reload"
-                                                        aria-hidden="true"
-                                                      ></i>
-                                                    </a>
+                                                      <div className="front">
+                                                        <a>
+                                                          <img
+                                                            src={
+                                                              imagrItem.imageUrl
+                                                            }
+                                                            className="img-fluid blur-up lazyload bg-img"
+                                                            alt=""
+                                                          />
+                                                        </a>
+                                                      </div>
+                                                      <div className="back">
+                                                        <a>
+                                                          <img
+                                                            src={
+                                                              imagrItem.imageUrl
+                                                            }
+                                                            className="img-fluid blur-up lazyload bg-img"
+                                                            alt=""
+                                                          />
+                                                        </a>
+                                                      </div>
+                                                      <div className="cart-info cart-wrap">
+                                                        <button
+                                                          data-bs-toggle="modal"
+                                                          data-bs-target="#addtocart"
+                                                          title="Add to cart"
+                                                        >
+                                                          <i className="ti-shopping-cart"></i>
+                                                        </button>
+                                                        <a title="Add to Wishlist">
+                                                          <i
+                                                            className="ti-heart"
+                                                            aria-hidden="true"
+                                                          ></i>
+                                                        </a>
+                                                        <a
+                                                          href="#"
+                                                          data-bs-toggle="modal"
+                                                          data-bs-target="#quick-view"
+                                                          title="Quick View"
+                                                        >
+                                                          <i
+                                                            className="ti-search"
+                                                            aria-hidden="true"
+                                                          ></i>
+                                                        </a>
+                                                        <a
+                                                          href="compare.html"
+                                                          title="Compare"
+                                                        >
+                                                          <i
+                                                            className="ti-reload"
+                                                            aria-hidden="true"
+                                                          ></i>
+                                                        </a>
+                                                      </div>
+                                                    </div>
+                                                    <br></br>
+                                                    <div className="product-buttons"></div>
                                                   </div>
                                                 </div>
-                                                <br></br>
-                                                <div className="product-buttons"></div>
-                                              </div>
-                                            </div>
-                                          );
-                                        }
-                                      )}
-                                  </>
-                                );
-                              })}
-                            </div>
-                          </CardBody>
-                          <CardFooter>
-                            <Row>
-                              <Col sm="5">Discounted Price :$100</Col>
-                              <Col>
-                                <a
-                                  // onClick={() => {
-                                  //   addtoCart(item.id);
-                                  // }}
-                                  id="cartEffect"
-                                  className="btn btn-solid hover-solid btn-animation"
-                                >
-                                  <i
-                                    className="fa fa-shopping-cart me-1"
-                                    aria-hidden="true"
-                                  ></i>
-                                  Add to cart
-                                </a>
-                              </Col>
-                            </Row>
-                          </CardFooter>
-                        </Card>
-                        <br></br>
-                        <br></br>
-                      </>
-                    );
-                  }
-                })}
-
+                                              );
+                                            }
+                                          )}
+                                      </>
+                                    );
+                                  })}
+                                </div>
+                              </CardBody>
+                              <CardFooter>
+                                <Row>
+                                  <Col sm="5">Discounted Price :$100</Col>
+                                  <Col>
+                                    <a
+                                      // onClick={() => {
+                                      //   addtoCart(item.id);
+                                      // }}
+                                      id="cartEffect"
+                                      className="btn btn-solid hover-solid btn-animation"
+                                    >
+                                      <i
+                                        className="fa fa-shopping-cart me-1"
+                                        aria-hidden="true"
+                                      ></i>
+                                      Add to cart
+                                    </a>
+                                  </Col>
+                                </Row>
+                              </CardFooter>
+                            </Card>
+                            <br></br>
+                            <br></br>
+                          </>
+                        );
+                      }
+                    })}
+                </Slider>
+              </section>
               {/* <Slider {...Slider3} className="slide-3 no-arrow ">
                 {data &&
                   data.blog.map((item, index) => (
