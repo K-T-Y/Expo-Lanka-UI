@@ -4,7 +4,20 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { Slider3 } from "../../../services/script";
-import { Media, Container, Row, Col } from "reactstrap";
+import {
+  Media,
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from "reactstrap";
+import { useState } from "react";
+import axios from "axios";
+import { ApiUrl } from "../../../config/api-config";
+import { useEffect } from "react";
 
 const GET_PRODUCTS = gql`
   query blog($type: String!) {
@@ -24,7 +37,6 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
       type: type,
     },
   });
-
   return (
     <Fragment>
       <section className={sectionClass}>
@@ -42,7 +54,7 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                   </div>
                 )}
               </div>
-              {/* <Slider {...Slider3} className="slide-3 no-arrow ">
+              <Slider {...Slider3} className="slide-3 no-arrow ">
                 {data &&
                   data.blog.map((item, index) => (
                     <Col md="12" key={index}>
@@ -62,8 +74,7 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                       </div>
                     </Col>
                   ))}
-              </Slider> */}
-              <div className="row mx-0 margin-default"></div>
+              </Slider>
             </Col>
           </Row>
         </Container>

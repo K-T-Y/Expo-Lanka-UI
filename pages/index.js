@@ -17,10 +17,22 @@ import MasterFooter from "../components/footers/common/MasterFooter";
 import Category from "../components/common/Category/category";
 import axios from "axios";
 import { ApiUrl } from "../config/api-config";
+import {
+  Carousel,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselItem,
+} from "reactstrap";
 
 const Fashion = () => {
   const [User, setUser] = useState("");
-
+  const items = [
+    { id: 1, title: "item #1" },
+    { id: 2, title: "item #2" },
+    { id: 3, title: "item #3" },
+    { id: 4, title: "item #4" },
+    { id: 5, title: "item #5" },
+  ];
   useEffect(() => {
     if (localStorage.getItem("User")) {
       setUser(JSON.parse(localStorage.getItem("User")));
@@ -107,6 +119,7 @@ const Fashion = () => {
       {/* <div className="section-b-space">
         <LogoBlock />
       </div> */}
+
       <MasterFooter
         footerClass={`footer-light`}
         footerLayOut={"light-layout upper-footer"}

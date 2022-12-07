@@ -44,11 +44,11 @@ const CartPage = () => {
   const updateQty = (item, qty) => {
     console.log("Update Item==>", item, "Qty==>", qty);
   };
-  const deleteItem = (item) => {
+  const deleteItem = async (item) => {
     const session = JSON.parse(localStorage.getItem("ShoppingSession"));
     console.log("Delete Item==>", item);
 
-    axios
+    await axios
       .put(
         ApiUrl +
           "/shopping-session/remove/cart-item/" +
@@ -75,15 +75,21 @@ const CartPage = () => {
   };
   const getCarttot = () => {
     let total = 0;
-    JSON.parse(
+    if (
+      localStorage.getItem("ShoppingSession") != "" ||
       localStorage.getItem("ShoppingSession")
-    ).data.cartItemList.forEach((element) => {
-      total = total + element.qty * element.product.sellingPrice;
-    });
+    ) {
+      JSON.parse(
+        localStorage.getItem("ShoppingSession")
+      ).data.cartItemList.forEach((element) => {
+        total = total + element.qty * element.product.sellingPrice;
+      });
+    }
+
     setCartTotal(total);
   };
-  const getSession = () => {
-    axios
+  const getSession = async () => {
+    await axios
       .get(
         ApiUrl +
           "/shopping-session/get/session/" +
@@ -91,11 +97,12 @@ const CartPage = () => {
       )
       .then((sessionresponse) => {
         if (sessionresponse.status == 200) {
+          console.log("Session_Refresh==>", sessionresponse.data);
+          setCartItems(sessionresponse.data.data.cartItemList);
           localStorage.setItem(
             "ShoppingSession",
             JSON.stringify(sessionresponse.data)
           );
-          setCartItems(response.data.data.cartItemList);
         }
       })
       .catch((error) => {
@@ -107,8 +114,13 @@ const CartPage = () => {
     //getSession();
     if (localStorage.getItem("User") != "") {
       if (cartItems == "") {
-        let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
-        setCartItems(temp.data.cartItemList);
+        if (
+          localStorage.getItem("ShoppingSession") != "" ||
+          localStorage.getItem("ShoppingSession")
+        ) {
+          let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
+          setCartItems(temp.data.cartItemList);
+        }
       }
     }
 
