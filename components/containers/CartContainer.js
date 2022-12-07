@@ -4,6 +4,8 @@ import CartHeader from "../headers/common/cart-header";
 import CartContext from "../../helpers/cart";
 import { Media } from "reactstrap";
 import { CurrencyContext } from "../../helpers/Currency/CurrencyContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const CartContainer = ({ icon }) => {
   const context = useContext(CartContext);
@@ -11,18 +13,34 @@ const CartContainer = ({ icon }) => {
   const symbol = currContext.state.symbol;
   const cartList = context.state;
   const total = context.cartTotal;
-
+  const [cart, setCart] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("ShoppingSession") != "") {
+      setCart(JSON.parse(localStorage.getItem("ShoppingSession")));
+    }
+  });
   return (
     <Fragment>
       <li className="onhover-div mobile-cart">
-        <div className="cart-qty-cls">{cartList.length}</div>
+        {cart && (
+          <>
+            {cart ? (
+              <div className="cart-qty-cls">
+                {cart.data.cartItemList.length}
+              </div>
+            ) : (
+              <div className="cart-qty-cls">0</div>
+            )}
+          </>
+        )}
+
         <Link href={`/page/account/cart`}>
           <div href={null}>
             <Media src={icon} className="img-fluid" alt="" />
             <i className="fa fa-shopping-cart"></i>
           </div>
         </Link>
-        <ul className="show-div shopping-cart">
+        {/* <ul className="show-div shopping-cart">
           {cartList.map((item, index) => (
             <CartHeader key={index} item={item} total={total} symbol={symbol} />
           ))}
@@ -55,7 +73,7 @@ const CartContainer = ({ icon }) => {
               <h5>Your cart is currently empty.</h5>
             </li>
           )}
-        </ul>
+        </ul> */}
       </li>
     </Fragment>
   );
