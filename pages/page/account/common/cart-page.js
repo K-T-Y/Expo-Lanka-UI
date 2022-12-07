@@ -72,11 +72,17 @@ const CartPage = () => {
   };
   const getCarttot = () => {
     let total = 0;
-    JSON.parse(
+    if (
+      localStorage.getItem("ShoppingSession") != "" ||
       localStorage.getItem("ShoppingSession")
-    ).data.cartItemList.forEach((element) => {
-      total = total + element.qty * element.product.sellingPrice;
-    });
+    ) {
+      JSON.parse(
+        localStorage.getItem("ShoppingSession")
+      ).data.cartItemList.forEach((element) => {
+        total = total + element.qty * element.product.sellingPrice;
+      });
+    }
+
     setCartTotal(total);
   };
   const getSession = () => {
@@ -103,8 +109,13 @@ const CartPage = () => {
     //getSession();
     if (localStorage.getItem("User") != "") {
       if (cartItems == "") {
-        let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
-        setCartItems(temp.data.cartItemList);
+        if (
+          localStorage.getItem("ShoppingSession") != "" ||
+          localStorage.getItem("ShoppingSession")
+        ) {
+          let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
+          setCartItems(temp.data.cartItemList);
+        }
       }
     }
 
