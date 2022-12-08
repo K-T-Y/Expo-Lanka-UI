@@ -1,3 +1,7 @@
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   Container,
   Row,
@@ -9,8 +13,29 @@ import {
   Input,
 } from "reactstrap";
 import CommonLayout from "../../components/shop/common-layout";
+import { ApiUrl } from "../../config/api-config";
 
 const OrderHistory = () => {
+  const [oderDetails, setOrderDetails] = useState("");
+  const getOrderDetails = () => {
+    console.log("Started");
+    axios
+      .post(ApiUrl + "/orders/search?page=0&size=10", {
+        customerId: JSON.parse(localStorage.getItem("User")).id,
+      })
+      .then((response) => {
+        console.log("Response", response.data.data.content);
+        setOrderDetails(response.data.data.content);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+  useEffect(() => {
+    if (localStorage.getItem("User") != "") {
+      getOrderDetails();
+    }
+  }, []);
   return (
     <CommonLayout parent="home" title="Order History">
       <section className="order history section-b-space">
@@ -24,7 +49,11 @@ const OrderHistory = () => {
                       <div className="card-header px-4 py-5">
                         <h5 className="text-muted mb-0">
                           Thanks for your Order,{" "}
-                          <span style={{ color: "#a8729a" }}>Anna</span>!
+                          <span style={{ color: "#a8729a" }}>
+                            {oderDetails &&
+                              oderDetails[0].billingDetails.fullName}
+                          </span>
+                          !
                         </h5>
                       </div>
                       <div className="card-body p-4">
@@ -39,37 +68,40 @@ const OrderHistory = () => {
                             Receipt Voucher : 1KAU9-84UIL
                           </p>
                         </div>
-                        <div className="card shadow-0 border mb-4">
-                          <div className="card-body">
-                            <div className="row">
-                              <div className="col-md-2">
-                                <img
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                  className="img-fluid"
-                                  alt="Phone"
-                                />
+                        {oderDetails && (
+                          <div className="card shadow-0 border mb-4">
+                            <div className="card-body">
+                              <div className="row">
+                                <div className="col-md-2">
+                                  <img
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
+                                    className="img-fluid"
+                                    alt="Phone"
+                                  />
+                                </div>
+                                <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  <p className="text-muted mb-0">
+                                    Samsung Galaxy
+                                  </p>
+                                </div>
+                                <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  <p className="text-muted mb-0 small">White</p>
+                                </div>
+                                <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  <p className="text-muted mb-0 small">
+                                    Capacity: 64GB
+                                  </p>
+                                </div>
+                                <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  <p className="text-muted mb-0 small">
+                                    Qty: 1
+                                  </p>
+                                </div>
+                                <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  <p className="text-muted mb-0 small">$499</p>
+                                </div>
                               </div>
-                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                <p className="text-muted mb-0">
-                                  Samsung Galaxy
-                                </p>
-                              </div>
-                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                <p className="text-muted mb-0 small">White</p>
-                              </div>
-                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                <p className="text-muted mb-0 small">
-                                  Capacity: 64GB
-                                </p>
-                              </div>
-                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                <p className="text-muted mb-0 small">Qty: 1</p>
-                              </div>
-                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                <p className="text-muted mb-0 small">$499</p>
-                              </div>
-                            </div>
-                            {/* <hr
+                              {/* <hr
                               className="mb-4"
                               style={{
                                 backgroundColor: "#e0e0e0",
@@ -77,7 +109,7 @@ const OrderHistory = () => {
                               }}
                               // style="background-color: #e0e0e0; opacity: 1;"
                             /> */}
-                            {/* <div className="row d-flex align-items-center">
+                              {/* <div className="row d-flex align-items-center">
                               <div className="col-md-2">
                                 <p className="text-muted mb-0 small">
                                   Track Order
@@ -116,8 +148,9 @@ const OrderHistory = () => {
                                 </div>
                               </div>
                             </div> */}
+                            </div>
                           </div>
-                        </div>
+                        )}
                         {/* <div className="card shadow-0 border mb-4">
                           <div className="card-body">
                             <div className="row">
