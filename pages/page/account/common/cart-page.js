@@ -22,6 +22,7 @@ const CartPage = () => {
 
   const [cartItems, setCartItems] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
+
   const handleQtyUpdate = (item, quantity) => {
     if (quantity >= 1) {
       setQuantityError(false);
@@ -112,6 +113,7 @@ const CartPage = () => {
 
   useEffect(() => {
     //getSession();
+    getCarttot();
     if (localStorage.getItem("User") != "") {
       if (cartItems == "") {
         if (
@@ -123,9 +125,7 @@ const CartPage = () => {
         }
       }
     }
-
-    getCarttot();
-  }, []);
+  });
 
   return (
     <div>
