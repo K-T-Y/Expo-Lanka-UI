@@ -45,8 +45,8 @@ const OrderHistory = () => {
           <div className=" px-4 py-5">
             <h5 className="text-muted mb-0">
               {oderDetails.length > 0 && oderDetails.length > 0
-                ? " Thanks for your Order,  "
-                : "No Orders to Show  !"}
+                ? " Thanks for your orders,  "
+                : "No orders to show!"}
               <span style={{ color: "black" }}>
                 {oderDetails.length > 0 &&
                   oderDetails[0].billingDetails.fullName}
