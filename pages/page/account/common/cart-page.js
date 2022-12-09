@@ -226,7 +226,7 @@ const CartPage = () => {
                           </td>
                           <td>
                             <i
-                              className="fa fa-times"
+                              className="fa fa-trash-o btn btn-danger"
                               onClick={() => deleteItem(item)}
                             ></i>
                           </td>

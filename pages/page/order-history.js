@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment/moment";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -41,13 +42,16 @@ const OrderHistory = () => {
     <CommonLayout parent="home" title="Order History">
       <section className="order history section-b-space">
         <Container>
-          <div className="card-header px-4 py-5">
+          <div className=" px-4 py-5">
             <h5 className="text-muted mb-0">
-              Thanks for your Order,
+              {oderDetails.length > 0 && oderDetails.length > 0
+                ? " Thanks for your Order,  "
+                : "No Orders to Show  !"}
               <span style={{ color: "black" }}>
-                {oderDetails && oderDetails[0].billingDetails.fullName}
+                {oderDetails.length > 0 &&
+                  oderDetails[0].billingDetails.fullName}
+                !
               </span>
-              !
             </h5>
           </div>
           <Row>
@@ -57,74 +61,71 @@ const OrderHistory = () => {
                   if (index < 4) {
                     return (
                       <div className="container  h-100">
-                        {/* {item.oderDetails.map((subitem) => {
-                          return (
-                            <> */}
-                        <div className="row d-flex justify-content-center align-items-center h-100">
-                          <div className="col-lg-10 col-xl-8">
-                            <div
-                              className="card"
-                              style={{ borderRadius: "10px" }}
-                            >
-                              <div className="card-body p-4">
-                                <div className="d-flex justify-content-between align-items-center mb-4">
-                                  <p
-                                    className="lead fw-normal mb-0"
-                                    style={{ color: "black" }}
-                                  >
-                                    Receipt details
-                                  </p>
-                                  {/* <p className="small text-muted mb-0">
+                        <>
+                          <div className="row d-flex justify-content-center align-items-center h-100">
+                            <div className="col-lg-10 col-xl-8">
+                              <div
+                                className="card"
+                                style={{ borderRadius: "10px" }}
+                              >
+                                <div className="card-body p-4">
+                                  <div className="d-flex justify-content-between align-items-center mb-4">
+                                    <p
+                                      className="lead fw-normal mb-0"
+                                      style={{ color: "black" }}
+                                    >
+                                      Receipt details
+                                    </p>
+                                    {/* <p className="small text-muted mb-0">
                                       Receipt Voucher : 1KAU9-84UIL
                                   </p> */}
-                                </div>
-
-                                <div className="card shadow-0 border mb-4">
-                                  <div className="card-body">
-                                    <div className="row">
-                                      <div className="col-md-2">
-                                        <img
-                                          src={
-                                            oderDetails &&
-                                            oderDetails[0].orderDetails[0]
-                                              .product.productImages[0].imageUrl
-                                          }
-                                          className="img-fluid"
-                                          alt="Phone"
-                                        />
-                                      </div>
-                                      <div className="col-md-5  d-flex justify-content-center align-items-center">
-                                        <p className="text-muted mb-0">
-                                          {oderDetails &&
-                                            oderDetails[0].orderDetails[0]
-                                              .product.productName}
-                                        </p>
-                                      </div>
-                                      {/* <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                  </div>
+                                  {item.orderDetails &&
+                                    item.orderDetails.map((subitem) => {
+                                      return (
+                                        <div className="card shadow-0 border mb-4">
+                                          <div className="card-body">
+                                            <div className="row">
+                                              <div className="col-md-2">
+                                                <img
+                                                  src={
+                                                    subitem.product
+                                                      .productImages.length >
+                                                      0 &&
+                                                    subitem.product
+                                                      .productImages[0].imageUrl
+                                                  }
+                                                  className="img-fluid"
+                                                  alt="Phone"
+                                                />
+                                              </div>
+                                              <div className="col-md-5  d-flex justify-content-center align-items-center">
+                                                <p className="text-muted mb-0">
+                                                  {subitem &&
+                                                    subitem.product.productName}
+                                                </p>
+                                              </div>
+                                              {/* <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
                                   <p className="text-muted mb-0 small">White</p>
                                  </div> */}
-                                      {/* <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                              {/* <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
                                   <p className="text-muted mb-0 small">
                                     Capacity: 64GB
                                   </p>
                                  </div> */}
-                                      <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p className="text-muted mb-0 small">
-                                          Qty:
-                                          {oderDetails &&
-                                            oderDetails[0].orderDetails[0].qty}
-                                        </p>
-                                      </div>
-                                      <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p className="text-muted mb-0 small">
-                                          €{" "}
-                                          {oderDetails &&
-                                            oderDetails[0].orderDetails[0]
-                                              .price}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    {/* <hr
+                                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p className="text-muted mb-0 small">
+                                                  Qty:
+                                                  {subitem && subitem.qty}
+                                                </p>
+                                              </div>
+                                              <div className="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                                <p className="text-muted mb-0 small">
+                                                  € {subitem && subitem.price}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            {/* <hr
                                  className="mb-4"
                                  style={{
                                  backgroundColor: "#e0e0e0",
@@ -132,7 +133,7 @@ const OrderHistory = () => {
                                   }}
                                  // style="background-color: #e0e0e0; opacity: 1;"
                                   /> */}
-                                    {/* <div className="row d-flex align-items-center">
+                                            {/* <div className="row d-flex align-items-center">
                                  <div className="col-md-2">
                                  <p className="text-muted mb-0 small">
                                   Track Order
@@ -171,10 +172,11 @@ const OrderHistory = () => {
                                   </div>
                                    </div>
                                  </div> */}
-                                  </div>
-                                </div>
-
-                                {/* <div className="card shadow-0 border mb-4">
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  {/* <div className="card shadow-0 border mb-4">
                                     <div className="card-body">
                                   <div className="row">
                                 <div className="col-md-2">
@@ -254,82 +256,80 @@ const OrderHistory = () => {
                           </div>
                         </div> */}
 
-                                <div className="d-flex justify-content-between pt-2">
-                                  <p className="fw-bold mb-0">Order Details</p>
-                                  {/* <p className="text-muted mb-0 mt-3">
+                                  <div className="d-flex justify-content-between pt-2">
+                                    <p className="fw-bold mb-0">
+                                      Order Details
+                                    </p>
+                                    {/* <p className="text-muted mb-0 mt-3">
                             <span className="fw-bold me-4">Total : </span> €
                             {oderDetails && oderDetails[0].payableAmount}
                           </p> */}
-                                </div>
-                                <br></br>
+                                  </div>
+                                  <br></br>
 
-                                <div className="d-flex justify-content-between pt-2">
-                                  <p className="text-muted mb-0">
-                                    Invoice Number :{" "}
-                                    {oderDetails && oderDetails[0].referenceNo}
-                                  </p>
+                                  <div className="d-flex justify-content-between pt-2">
+                                    <p className="text-muted mb-0">
+                                      Invoice Number :{" "}
+                                      {item && item.referenceNo}
+                                    </p>
 
-                                  <p className="text-muted mb-0  mt-3">
-                                    <span className="fw-bold me-4">
-                                      Discount :{" "}
-                                    </span>
-                                    €{" "}
-                                    {oderDetails &&
-                                      oderDetails[0].discountAmount}
-                                  </p>
-                                </div>
+                                    <p className="text-muted mb-0  mt-3">
+                                      <span className="fw-bold me-4">
+                                        Discount :{" "}
+                                      </span>
+                                      € {item && item.discountAmount}
+                                    </p>
+                                  </div>
 
-                                <div className="d-flex justify-content-between">
-                                  <p className="text-muted mb-0">
-                                    Invoice Date :
-                                    {oderDetails &&
-                                      oderDetails[0].billingDetails.createdAt}
-                                  </p>
-                                  {/* <p className="text-muted mb-0">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-muted mb-0">
+                                      Invoice Date :
+                                      {item &&
+                                        moment(
+                                          item.billingDetails.createdAt
+                                        ).format("DD-MMM-yy")}
+                                    </p>
+                                    {/* <p className="text-muted mb-0">
                             <span className="fw-bold me-4">GST 18%</span> 123
                           </p> */}
-                                </div>
+                                  </div>
 
-                                <div className="d-flex justify-content-between mb-2">
-                                  <p className="text-muted mb-0">
-                                    {/* Recepits Voucher : 18KU-62IIK */}
-                                  </p>
-                                  <p className="text-muted mb-0">
-                                    <span className="fw-bold me-4">
-                                      Delivery Charges :
-                                    </span>
-                                    €{" "}
-                                    {oderDetails && oderDetails[0].shippingCost}
-                                  </p>
+                                  <div className="d-flex justify-content-between mb-2">
+                                    <p className="text-muted mb-0">
+                                      {/* Recepits Voucher : 18KU-62IIK */}
+                                    </p>
+                                    <p className="text-muted mb-0">
+                                      <span className="fw-bold me-4">
+                                        Delivery Charges :
+                                      </span>
+                                      € {item && item.shippingCost}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                              <div
-                                className="card-footer border-5"
-                                style={{
-                                  backgroundColor: "#FF4C3B",
-                                  borderBottomLeftRadius: "10px",
-                                  borderBottomRightRadius: "10px",
-                                }}
-                                // style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"
-                              >
-                                <h5 className="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
-                                  Total paid :
-                                  <span
-                                    className="h3 mb-0 ms-2"
-                                    style={{ color: "black" }}
-                                  >
-                                    €{" "}
-                                    {oderDetails &&
-                                      oderDetails[0].payableAmount}
-                                  </span>
-                                </h5>
+                                <div
+                                  className="card-footer border-5"
+                                  style={{
+                                    backgroundColor: "#FF4C3B",
+                                    borderBottomLeftRadius: "10px",
+                                    borderBottomRightRadius: "10px",
+                                  }}
+                                  // style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"
+                                >
+                                  <h5 className="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">
+                                    Total paid :
+                                    <span
+                                      className="h3 mb-0 ms-2"
+                                      style={{ color: "black" }}
+                                    >
+                                      € {item && item.payableAmount}
+                                    </span>
+                                  </h5>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        {/* </>
-                          );
-                        })} */}
+                        </>
+                        <br></br>
                       </div>
                     );
                   }

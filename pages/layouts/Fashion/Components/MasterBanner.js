@@ -112,6 +112,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
               </div>
             </Col>
             <Col className="pt-4 ">
+              <br></br> <br></br>
               <Card className="mt-5 ml-4 " style={{ borderRadius: "25px" }}>
                 <CardBody>
                   <Row>
