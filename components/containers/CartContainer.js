@@ -26,7 +26,9 @@ const CartContainer = ({ icon }) => {
           <>
             {cart ? (
               <div className="cart-qty-cls">
-                {cart.data.cartItemList.length}
+                {cart.data.cartItemList && cart.data.cartItemList.length > 0
+                  ? cart.data.cartItemList.length
+                  : 0}
               </div>
             ) : (
               <div className="cart-qty-cls">0</div>

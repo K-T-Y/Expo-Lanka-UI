@@ -61,7 +61,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
       width: width,
     };
     axios
-      .post("http://185.196.21.84:8088/quote/create", model)
+      .post(ApiUrl + "/orders/sendQuote", model)
       .then((response) => {
         if (response.status == 200) {
           toast.success(
