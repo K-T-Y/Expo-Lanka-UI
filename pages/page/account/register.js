@@ -83,14 +83,15 @@ const Register = () => {
               toast.warn("Email Already Registered !!");
             } else {
               toast.success("Registered Successfully !!");
-              setFirstName("");
-              setlastName("");
-              setEmail("");
-              setAddress1("");
-              setAddress2("");
-              setPassword("");
-              setmobile("");
-              setCity("");
+              // setFirstName("");
+              // setlastName("");
+              // setEmail("");
+              // setAddress1("");
+              // setAddress2("");
+              // setPassword("");
+              // setmobile("");
+              // setCity("");
+              router.push("/page/account/login");
             }
           } else {
             toast.error("Error While Registering !!");

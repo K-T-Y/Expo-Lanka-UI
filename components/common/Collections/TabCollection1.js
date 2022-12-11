@@ -156,6 +156,7 @@ const SpecialProducts = ({
 
   const [featuredProduct, setFeaturedProduct] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const getSession = () => {
     axios
       .get(
@@ -190,34 +191,37 @@ const SpecialProducts = ({
     }
   };
   const addtoCart = (itemId) => {
-    const model = {
-      id: JSON.parse(localStorage.getItem("User")).id,
-      productId: itemId,
-      qty: 1,
-    };
-    axios
-      .post(
+    if (localStorage.getItem("User") == "") {
+      router.push("page/account/login");
+    } else {
+      const model = {
+        id: JSON.parse(localStorage.getItem("User")).id,
+        productId: itemId,
+        qty: 1,
+      };
+      axios
+        .post(
+          ApiUrl +
+            "/shopping-session/add/cart-item/" +
+            JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+          model
+        )
+        .then((response) => {
+          if (response.status == 200) {
+            toast.success("Item Added To Cart !!");
+            getSession();
+          }
+        })
+        .then((error) => {
+          console.log("ERROR_ADDING_CART==>", error);
+        });
+      console.log(
+        "APIURL",
         ApiUrl +
           "/shopping-session/add/cart-item/" +
-          JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
-        model
-      )
-      .then((response) => {
-        if (response.status == 200) {
-          toast.success("Item Added To Cart !!");
-          getSession();
-        }
-      })
-      .then((error) => {
-        console.log("ERROR_ADDING_CART==>", error);
-      });
-    console.log(
-      "APIURL",
-      ApiUrl +
-        "/shopping-session/add/cart-item/" +
-        JSON.parse(localStorage.getItem("ShoppingSession")).data.id
-    );
-    console.log("Model", model);
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+      );
+    }
   };
   const router = useRouter();
   const selectProduct = (item) => {

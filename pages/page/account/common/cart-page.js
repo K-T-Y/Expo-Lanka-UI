@@ -80,11 +80,15 @@ const CartPage = () => {
       localStorage.getItem("ShoppingSession") != "" ||
       localStorage.getItem("ShoppingSession")
     ) {
-      JSON.parse(
-        localStorage.getItem("ShoppingSession")
-      ).data.cartItemList.forEach((element) => {
-        total = total + element.qty * element.product.sellingPrice;
-      });
+      if (
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList >
+        0
+      )
+        JSON.parse(
+          localStorage.getItem("ShoppingSession")
+        ).data.cartItemList.forEach((element) => {
+          total = total + element.qty * element.product.sellingPrice;
+        });
     }
 
     setCartTotal(total);
@@ -104,6 +108,7 @@ const CartPage = () => {
             "ShoppingSession",
             JSON.stringify(sessionresponse.data)
           );
+          getCarttot();
         }
       })
       .catch((error) => {
@@ -115,14 +120,12 @@ const CartPage = () => {
     //getSession();
     getCarttot();
     if (localStorage.getItem("User") != "") {
-      if (cartItems == "") {
-        if (
-          localStorage.getItem("ShoppingSession") != "" ||
-          localStorage.getItem("ShoppingSession")
-        ) {
-          let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
-          setCartItems(temp.data.cartItemList);
-        }
+      if (
+        localStorage.getItem("ShoppingSession") != "" ||
+        localStorage.getItem("ShoppingSession")
+      ) {
+        let temp = JSON.parse(localStorage.getItem("ShoppingSession"));
+        setCartItems(temp.data.cartItemList);
       }
     }
   });
@@ -216,6 +219,7 @@ const CartPage = () => {
                                   }
                                   className="form-control input-number"
                                   defaultValue={item.qty}
+                                  value={item.qty}
                                   style={{
                                     borderColor: quantityError && "red",
                                   }}
