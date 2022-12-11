@@ -19,6 +19,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ApiUrl } from "../../../config/api-config";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const GET_PRODUCTS = gql`
   query blog($type: String!) {
@@ -33,6 +34,8 @@ const GET_PRODUCTS = gql`
 `;
 
 const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
+  const [buttonDisable, setButtonDisable] = useState(false);
+
   var { data } = useQuery(GET_PRODUCTS, {
     variables: {
       type: type,
@@ -49,6 +52,50 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
       .catch((error) => {
         console.log("ERROR_GETTING_PROMOTIONS", error);
       });
+  };
+
+  const addtoCart = (itemId) => {
+    setButtonDisable(true);
+    if (localStorage.getItem("User") == "") {
+      router.push("page/account/login");
+    } else {
+      console.log("item promotion", itemId);
+      const model = {
+        id: JSON.parse(localStorage.getItem("User")).id,
+        productId: itemId.id,
+        qty: 1,
+      };
+      axios
+        .post(
+          ApiUrl +
+            "/shopping-session/add/cart-item/" +
+            JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+          model
+        )
+        .then((response) => {
+          setTimeout(function () {}, 2000);
+          if (response.status == 200) {
+            toast.success("Item Added To Cart !!");
+            getSession();
+            setButtonDisable(false);
+          }
+        })
+        .then((error) => {
+          console.log("ERROR_ADDING_CART==>", error);
+        });
+      console.log(
+        "APIURL",
+        ApiUrl +
+          "/shopping-session/add/cart-item/" +
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+      );
+    }
+  };
+
+  const router = useRouter();
+  const selectProduct = (item) => {
+    localStorage.setItem("selectedProduct", JSON.stringify(item));
+    router.push("/page/product-detail");
   };
 
   useEffect(() => {
@@ -106,9 +153,9 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                                                   <div className="product-box">
                                                     <div
                                                       className="img-wrapper"
-                                                      // onClick={() => {
-                                                      //   selectProduct(item);
-                                                      // }}
+                                                      onClick={() => {
+                                                        selectProduct(item);
+                                                      }}
                                                     >
                                                       <div className="front">
                                                         <a>
@@ -184,10 +231,11 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                                 <Row>
                                   <Col sm="5">Discounted Price :$100</Col>
                                   <Col>
-                                    <a
-                                      // onClick={() => {
-                                      //   addtoCart(item.id);
-                                      // }}
+                                    <button
+                                      onClick={() => {
+                                        addtoCart(item);
+                                      }}
+                                      disabled={buttonDisable}
                                       id="cartEffect"
                                       className="btn btn-solid hover-solid btn-animation"
                                     >
@@ -196,7 +244,7 @@ const BlogSection = ({ type, sectionClass, title, inner, hrClass }) => {
                                         aria-hidden="true"
                                       ></i>
                                       Add to cart
-                                    </a>
+                                    </button>
                                   </Col>
                                 </Row>
                               </CardFooter>
