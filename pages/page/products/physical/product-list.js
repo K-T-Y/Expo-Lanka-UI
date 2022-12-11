@@ -66,7 +66,7 @@ const Product_list = () => {
         productId: itemId,
         qty: 1,
       };
-
+      console.log("Modal", model);
       axios
         .post(
           ApiUrl +

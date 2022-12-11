@@ -8,6 +8,8 @@ import { stringifyForDisplay } from "@apollo/client/utilities";
 import { use } from "i18next";
 import axios from "axios";
 import { ApiUrl } from "../../../../config/api-config";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const CartPage = () => {
   const context = useContext(CartContext);
@@ -48,19 +50,34 @@ const CartPage = () => {
   const deleteItem = async (item) => {
     const session = JSON.parse(localStorage.getItem("ShoppingSession"));
     console.log("Delete Item==>", item);
-
+    console.log(
+      "LINK",
+      ApiUrl +
+        "/shopping-session/remove/cart-item/" +
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.id +
+        "/" +
+        item.id
+    );
     await axios
       .put(
         ApiUrl +
           "/shopping-session/remove/cart-item/" +
-          session.data.id +
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id +
           "/" +
           item.id
       )
       .then((response) => {
         console.log(response);
         if (response.status == 200) {
-          getSession();
+          setTimeout(function () {}, 2000);
+          setCartItems(response.data.data.cartItemList);
+
+          localStorage.setItem(
+            "ShoppingSession",
+            JSON.stringify(response.data)
+          );
+          getCarttot();
+          //getSession();
         }
       })
       .catch((error) => {
@@ -102,6 +119,7 @@ const CartPage = () => {
       )
       .then((sessionresponse) => {
         if (sessionresponse.status == 200) {
+          setTimeout(function () {}, 2000);
           console.log("Session_Refresh==>", sessionresponse.data);
           setCartItems(sessionresponse.data.data.cartItemList);
           localStorage.setItem(
@@ -129,7 +147,48 @@ const CartPage = () => {
       }
     }
   });
-
+  const router = useRouter();
+  const addtoCart = (itemId, qty) => {
+    //setButtonDisable(true);
+    console.log("Item", itemId);
+    // debugger;
+    if (localStorage.getItem("User") == "") {
+      router.push("/page/account/login");
+    } else {
+      console.log("ELSE");
+      const model = {
+        id: JSON.parse(localStorage.getItem("User")).id,
+        productId: itemId.product.id,
+        qty: Number(qty),
+      };
+      console.log("Modal", model);
+      axios
+        .post(
+          ApiUrl +
+            "/shopping-session/add/cart-item/" +
+            JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+          model
+        )
+        .then((response) => {
+          setTimeout(function () {}, 2000);
+          console.log("Upate Cart", response);
+          if (response.status == 200) {
+            //setButtonDisable(false);
+            toast.success("Cart Updated Successfully!!");
+            getSession();
+          }
+        })
+        .then((error) => {
+          console.log("ERROR_ADDING_CART==>", error);
+        });
+      console.log(
+        "APIURL",
+        ApiUrl +
+          "/shopping-session/add/cart-item/" +
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+      );
+    }
+  };
   return (
     <div>
       {cartItems && cartItems.length > 0 ? (
@@ -215,11 +274,10 @@ const CartPage = () => {
                                   type="number"
                                   name="quantity"
                                   onChange={(e) =>
-                                    updateQty(item, e.target.value)
+                                    addtoCart(item, e.target.value)
                                   }
                                   className="form-control input-number"
                                   defaultValue={item.qty}
-                                  value={item.qty}
                                   style={{
                                     borderColor: quantityError && "red",
                                   }}
