@@ -145,7 +145,7 @@ const SpecialProducts = ({
   const curContext = useContext(CurrencyContext);
   const currency = curContext.state;
   const quantity = context.quantity;
-
+  const [buttonDisable, setButtonDisable] = useState(false);
   // var { loading, data } = useQuery(GET_PRODUCTS, {
   //   variables: {
   //     type: activeTab,
@@ -191,6 +191,7 @@ const SpecialProducts = ({
     }
   };
   const addtoCart = (itemId) => {
+    setButtonDisable(true);
     if (localStorage.getItem("User") == "") {
       router.push("page/account/login");
     } else {
@@ -207,9 +208,11 @@ const SpecialProducts = ({
           model
         )
         .then((response) => {
+          setTimeout(function () {}, 2000);
           if (response.status == 200) {
             toast.success("Item Added To Cart !!");
             getSession();
+            setButtonDisable(false);
           }
         })
         .then((error) => {
@@ -367,10 +370,11 @@ const SpecialProducts = ({
                         </div>
                         <br></br>
                         <div className="product-buttons">
-                          <a
+                          <button
                             onClick={() => {
                               addtoCart(item.id);
                             }}
+                            disabled={buttonDisable}
                             id="cartEffect"
                             className="btn btn-solid hover-solid btn-animation"
                           >
@@ -379,7 +383,7 @@ const SpecialProducts = ({
                               aria-hidden="true"
                             ></i>
                             Add to cart
-                          </a>
+                          </button>
                         </div>
 
                         <div className="product-detail">

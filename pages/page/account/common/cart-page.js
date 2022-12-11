@@ -21,7 +21,7 @@ const CartPage = () => {
   //const updateQty = context.updateQty;
 
   const [cartItems, setCartItems] = useState("");
-  const [cartTotal, setCartTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState("");
 
   const handleQtyUpdate = (item, quantity) => {
     if (quantity >= 1) {
@@ -81,8 +81,8 @@ const CartPage = () => {
       localStorage.getItem("ShoppingSession")
     ) {
       if (
-        JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList >
-        0
+        JSON.parse(localStorage.getItem("ShoppingSession")).data.cartItemList
+          .length > 0
       )
         JSON.parse(
           localStorage.getItem("ShoppingSession")
