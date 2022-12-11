@@ -12,7 +12,7 @@ import FilterPage from "../../../shop/common/filter";
 
 const Product_list = () => {
   const [allProducts, setAllProducts] = useState("");
-
+  const [buttonDisable, setButtonDisable] = useState(false);
   const router = new useRouter();
 
   const getAllProducts = (page, size) => {
@@ -54,14 +54,19 @@ const Product_list = () => {
   };
 
   const addtoCart = (itemId) => {
+    setButtonDisable(true);
+    console.log("Started");
+    debugger;
     if (localStorage.getItem("User") == "") {
       router.push("/page/account/login");
     } else {
+      console.log("ELSE");
       const model = {
         id: JSON.parse(localStorage.getItem("User")).id,
         productId: itemId,
         qty: 1,
       };
+
       axios
         .post(
           ApiUrl +
@@ -70,7 +75,9 @@ const Product_list = () => {
           model
         )
         .then((response) => {
+          setTimeout(function () {}, 2000);
           if (response.status == 200) {
+            setButtonDisable(false);
             toast.success("Item Added To Cart !!");
             getSession();
           }
@@ -300,7 +307,8 @@ const Product_list = () => {
                                     Add to cart
                                   </Button> */}
                                   <div class="product-buttons">
-                                    <a
+                                    <button
+                                      disabled={buttonDisable}
                                       onClick={() => {
                                         addtoCart(item.id);
                                       }}
@@ -312,7 +320,7 @@ const Product_list = () => {
                                         aria-hidden="true"
                                       ></i>{" "}
                                       add to cart
-                                    </a>{" "}
+                                    </button>{" "}
                                   </div>
 
                                   <div className="product-detail">
