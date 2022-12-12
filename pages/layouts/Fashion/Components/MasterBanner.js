@@ -90,11 +90,13 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
       .get(ApiUrl + "/orders/track?reference=" + refNumber)
       .then((response) => {
         setTimeout(function () {}, 2000);
-        console.log("TRACKING_RESPONSE", response.data.data);
+
+        response.data.data.refNumber = refNumber;
         setButtonLoader(false);
         setButtonValue("TRACK NOW");
-
+        console.log("TRACKING_RESPONSE", response.data.data);
         localStorage.setItem("Tracking", JSON.stringify(response.data.data));
+
         router.push("/page/tracking");
       })
       .catch((error) => {
