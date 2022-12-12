@@ -56,7 +56,7 @@ const Product_list = () => {
   const addtoCart = (itemId) => {
     setButtonDisable(true);
     console.log("Started");
-    debugger;
+
     if (localStorage.getItem("User") == "") {
       router.push("/page/account/login");
     } else {
@@ -94,72 +94,72 @@ const Product_list = () => {
     }
   };
 
-  const data = [
-    {
-      //image: IMG34,
-      title: "Slim Fit Cotton Shirt",
-      price: "$500.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      // image: IMG1,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      //image: IMG4,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "new",
-      discount: "on sale",
-    },
-    {
-      //image: IMG17,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      //image: IMG3,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      //image: IMG001,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      //image: IMG10,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-    {
-      // image: IMG04,
-      title: "Slim Fit Cotton Shirt",
-      price: "$400.00",
-      discount_price: "$600.00",
-      tag: "old",
-      discount: "not on sale",
-    },
-  ];
+  // const data = [
+  //   {
+  //     //image: IMG34,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$500.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     // image: IMG1,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     //image: IMG4,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "new",
+  //     discount: "on sale",
+  //   },
+  //   {
+  //     //image: IMG17,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     //image: IMG3,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     //image: IMG001,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     //image: IMG10,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  //   {
+  //     // image: IMG04,
+  //     title: "Slim Fit Cotton Shirt",
+  //     price: "$400.00",
+  //     discount_price: "$600.00",
+  //     tag: "old",
+  //     discount: "not on sale",
+  //   },
+  // ];
   const [sidebarView, setSidebarView] = useState(false);
 
   const openCloseSidebar = () => {
@@ -184,27 +184,29 @@ const Product_list = () => {
   };
 
   useEffect(() => {
-    if (allProducts == "") {
-      getAllProducts(0, 10);
-    }
-    if (categoryList == "") {
-      getAllCategories();
-    }
-    if (localStorage.getItem("Category_Item") != "") {
-      setAllProducts(JSON.parse(localStorage.getItem("Category_Item")));
-      localStorage.setItem("Category_Item", "");
-    } else if (
-      localStorage.getItem("Category_Item") == "" ||
-      !localStorage.getItem("Category_Item") ||
-      localStorage.getItem("Category_Item") == []
-    ) {
-      // toast.warn("No Products In Selected Category !!");
-    }
     if (
       localStorage.getItem("Search") &&
       localStorage.getItem("Search") != ""
     ) {
       setAllProducts(JSON.parse(localStorage.getItem("Search")));
+      localStorage.setItem("Search", "");
+    } else {
+      if (allProducts == "") {
+        getAllProducts(0, 10);
+      }
+      if (categoryList == "") {
+        getAllCategories();
+      }
+      if (localStorage.getItem("Category_Item") != "") {
+        setAllProducts(JSON.parse(localStorage.getItem("Category_Item")));
+        localStorage.setItem("Category_Item", "");
+      } else if (
+        localStorage.getItem("Category_Item") == "" ||
+        !localStorage.getItem("Category_Item") ||
+        localStorage.getItem("Category_Item") == []
+      ) {
+        // toast.warn("No Products In Selected Category !!");
+      }
     }
   }, []);
 
