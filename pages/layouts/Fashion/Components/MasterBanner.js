@@ -33,7 +33,9 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
   const [height, setHeight] = useState("");
   const [length, setLength] = useState("");
   const [weight, setWeight] = useState("");
-
+  const router = useRouter();
+  const [buttonLoader, setButtonLoader] = useState(false);
+  const [buttonValue, setButtonValue] = useState("TRACK NOW");
   //Select Quote UI
   const selectQuote = () => {
     setSelected("Quote");
@@ -80,12 +82,18 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
         console.log("QUOTE_ERROR==>", error);
       });
   };
-  const router = useRouter();
+
   const parcelSearch = () => {
+    setButtonLoader(true);
+    setButtonValue("Loading ....");
     axios
       .get(ApiUrl + "/orders/track?reference=" + refNumber)
       .then((response) => {
+        setTimeout(function () {}, 2000);
         console.log("TRACKING_RESPONSE", response.data.data);
+        setButtonLoader(false);
+        setButtonValue("TRACK NOW");
+
         localStorage.setItem("Tracking", JSON.stringify(response.data.data));
         router.push("/page/tracking");
       })
@@ -93,6 +101,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
         console.log("TRACKING_ERROR", error);
       });
   };
+
   return (
     <div>
       <div className={`home ${img} ${classes ? classes : "text-center"}`}>
@@ -287,8 +296,9 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                               parcelSearch();
                             }}
                             className="btn btn-solid"
+                            disabled={buttonLoader}
                           >
-                            Track Now
+                            {buttonValue}
                           </Button>
                         </Col>
                         <Col className="md-4"></Col>
