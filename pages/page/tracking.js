@@ -97,6 +97,7 @@ const Tracking = () => {
         setTrackingDetails(JSON.parse(localStorage.getItem("Tracking")));
 
         if (JSON.parse(localStorage.getItem("Tracking")).status) {
+          setRefNumber(JSON.parse(localStorage.getItem("Tracking")).refNumber);
           if (JSON.parse(localStorage.getItem("Tracking")).status == 1) {
             setAcceptedClass("step active");
             setParcelStatus("Parcel Accepted");
