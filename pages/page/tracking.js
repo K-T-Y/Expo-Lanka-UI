@@ -32,46 +32,52 @@ const Tracking = () => {
     } else {
     }
 
+    setButtonLoader(true);
+    setButtonValue("Loading ....");
+
     axios
       .get(ApiUrl + "/orders/track?reference=" + refNumber)
       .then((response) => {
+        setTimeout(function () {}, 2000);
         console.log("TRACKING_RESPONSE", response.data.data);
         setTrackingDetails(response.data.data);
+        setButtonLoader(false);
+        setButtonValue("TRACK NOW");
 
         if (response.data.data.status) {
           if (response.data.data.status == 1) {
-            console.log("st");
             setAcceptedClass("step active");
-          }
-          if (response.data.data.status == 2) {
+            setParcelStatus("Parcel Accepted");
+          } else if (response.data.data.status == 2) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
-          }
-          if (response.data.data.status == 3) {
+            setParcelStatus("Parcel Dispatched");
+          } else if (response.data.data.status == 3) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
-          }
-          if (response.data.data.status == 11) {
+            setParcelStatus("Parcel In Transit");
+          } else if (response.data.data.status == 11) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
-          }
-          if (response.data.data.status == 5) {
+            setParcelStatus("Parcel On Clearance");
+          } else if (response.data.data.status == 5) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
             setDeliveryClass("step active");
-          }
-          if (response.data.data.status == 6) {
+            setParcelStatus("Parcel In Delivery");
+          } else if (response.data.data.status == 6) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
             setDeliveryClass("step active");
             setDeliveredClass("step active");
+            setParcelStatus("Parcel In Delivered");
           }
         }
       })
@@ -79,6 +85,11 @@ const Tracking = () => {
         console.log("TRACKING_ERROR", error);
       });
   };
+
+  const [parcelStatus, setParcelStatus] = useState("");
+
+  const [buttonLoader, setButtonLoader] = useState(false);
+  const [buttonValue, setButtonValue] = useState("TRACK NOW");
 
   useEffect(() => {
     if (localStorage.getItem("Tracking")) {
@@ -88,36 +99,39 @@ const Tracking = () => {
         if (JSON.parse(localStorage.getItem("Tracking")).status) {
           if (JSON.parse(localStorage.getItem("Tracking")).status == 1) {
             setAcceptedClass("step active");
-          }
-          if (JSON.parse(localStorage.getItem("Tracking")).status == 2) {
+            setParcelStatus("Parcel Accepted");
+          } else if (JSON.parse(localStorage.getItem("Tracking")).status == 2) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
-          }
-          if (JSON.parse(localStorage.getItem("Tracking")).status == 3) {
+            setParcelStatus("Parcel Dispatched");
+          } else if (JSON.parse(localStorage.getItem("Tracking")).status == 3) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
-          }
-          if (JSON.parse(localStorage.getItem("Tracking")).status == 11) {
+            setParcelStatus("Parcel In Transit");
+          } else if (
+            JSON.parse(localStorage.getItem("Tracking")).status == 11
+          ) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
-          }
-          if (JSON.parse(localStorage.getItem("Tracking")).status == 5) {
+            setParcelStatus("Parcel On Clearance");
+          } else if (JSON.parse(localStorage.getItem("Tracking")).status == 5) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
             setDeliveryClass("step active");
-          }
-          if (JSON.parse(localStorage.getItem("Tracking")).status == 6) {
+            setParcelStatus("Parcel In Delivery");
+          } else if (JSON.parse(localStorage.getItem("Tracking")).status == 6) {
             setAcceptedClass("step active");
             setDispatchedClass("step active");
             setTransitClass("step active");
             setClearanceClass("step active");
             setDeliveryClass("step active");
             setDeliveredClass("step active");
+            setParcelStatus("Parcel In Delivered");
           }
         }
         localStorage.setItem("Tracking", "");
@@ -156,14 +170,16 @@ const Tracking = () => {
                       <Button
                         onClick={() => parcelSearch()}
                         className="btn btn-solid"
+                        disabled={buttonLoader}
                       >
-                        Track
+                        {buttonValue}
                       </Button>
                     </Col>
                   </Row>
                 </Form>
               </Col>
             </Row>
+            <br></br>
             <Row>
               {/* strat*/}
               {trackingDetails && (
@@ -173,24 +189,30 @@ const Tracking = () => {
                       My Orders / Tracking
                     </header>
                     <div className="card-body">
-                      <h6>Order ID: OD45345345435</h6>
+                      <h6>
+                        Order ID : <b>{refNumber}</b>
+                      </h6>
                       <article className="card">
                         <div className="card-body row">
                           <div className="col">
                             <strong>Estimated Delivery time:</strong> <br></br>
-                            29 nov 2019
+                            {trackingDetails.etaDate != null &&
+                              moment(trackingDetails.etaDate).format(
+                                "DD-MMM-yy"
+                              )}
                           </div>
                           <div className="col">
-                            <strong>Shipping BY:</strong> <br></br> BLUEDART, |
+                            <strong>Contact :</strong> <br></br>
+                            {/* BLUEDART, | */}
                             <i className="fa fa-phone"></i>{" "}
                             {JSON.parse(localStorage.getItem("User")).mobile}
                           </div>
                           <div className="col">
-                            <strong>Status:</strong> <br></br> Picked by the
-                            courier
+                            <strong>Status:</strong> <br></br>
+                            {parcelStatus}
                           </div>
                           <div className="col">
-                            <strong>Tracking #:</strong> <br></br>
+                            <strong>Tracking :</strong> <br></br>
                             {refNumber}
                           </div>
                         </div>
@@ -218,7 +240,7 @@ const Tracking = () => {
                           <span className="icon">
                             <i className="fa fa-archive"></i>
                           </span>
-                          <span className="text">Pacel On Clearance</span>
+                          <span className="text">Parcel On Clearance</span>
                         </div>
                         <div className={deliveryClass}>
                           <span className="icon">
@@ -234,7 +256,7 @@ const Tracking = () => {
                         </div>
                       </div>
                       <hr></hr>
-                      <ul className="row">
+                      {/* <ul className="row">
                         <li className="col-md-4">
                           <figure className="itemside mb-3">
                             <div className="aside">
@@ -283,8 +305,8 @@ const Tracking = () => {
                             </figcaption>
                           </figure>
                         </li>
-                      </ul>
-                      <hr></hr>
+                      </ul> */}
+                      {/* <hr></hr> */}
                       <a href="#" className="btn btn-warning" data-abc="true">
                         <i className="fa fa-chevron-left"></i> Back to orders
                       </a>
