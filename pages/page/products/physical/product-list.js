@@ -451,7 +451,7 @@ const Product_list = () => {
                                       </>
                                     )}
                                     <br></br>
-                                    <a href="product-page(no-sidebar).html">
+                                    <a>
                                       <h6>{item.productName}</h6>
                                     </a>
                                     <br></br>
