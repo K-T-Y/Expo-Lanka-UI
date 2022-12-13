@@ -298,7 +298,7 @@ const Register = () => {
                         Mobile
                       </Label>
                       <Input
-                        type="text"
+                        type="number"
                         className="form-control"
                         id="mobile"
                         placeholder="Mobile"

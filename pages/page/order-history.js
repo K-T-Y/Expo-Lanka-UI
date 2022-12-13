@@ -42,7 +42,7 @@ const OrderHistory = () => {
     <CommonLayout parent="home" title="Order History">
       <section className="order history section-b-space">
         <Container>
-          <div className=" px-4 py-5">
+          <div className=" px-4 py-0">
             <h5 className="text-muted mb-0">
               {oderDetails.length > 0 && oderDetails.length > 0
                 ? " Thanks for your orders,  "
@@ -55,7 +55,7 @@ const OrderHistory = () => {
             </h5>
           </div>
           <Row>
-            <section className="h-100">
+            <section className="py-4 h-100">
               {oderDetails &&
                 oderDetails.map((item, index) => {
                   if (index < 4) {

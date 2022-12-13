@@ -23,6 +23,8 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
   const [TrackingButtonColor, setTrackingButtonColor] = useState("white");
   const [quotTextColor, setQuoteTextColor] = useState("white");
   const [trackingTextColor, setTrackingTextColor] = useState("black");
+  const [trackingBorderColor, setTrackingBorderColor] = useState("#565e64");
+  const [quoteBorderColor, setQuoteBorderColor] = useState("#FF4C3B");
   const [refNumber, setRefNumber] = useState("");
   const [trackingDetails, setTrackingDetails] = useState("");
   //Quote Form Variables
@@ -43,6 +45,8 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
     setTrackingButtonColor("white");
     setQuoteTextColor("white");
     setTrackingTextColor("black");
+    setTrackingBorderColor("#565e64");
+    setQuoteBorderColor("#FF4C3B");
   };
   const selectTrack = () => {
     setSelected("Track");
@@ -50,6 +54,8 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
     setTrackingButtonColor("#FF4C3B");
     setQuoteTextColor("black");
     setTrackingTextColor("white");
+    setTrackingBorderColor("#FF4C3B");
+    setQuoteBorderColor("#565e64");
   };
 
   const QuoteSubmit = () => {
@@ -122,8 +128,8 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                 </div>
               </div>
             </Col>
-            <Col className="pt-4 ">
-              <Card className="mt-5 ml-4 " style={{ borderRadius: "25px" }}>
+            <Col className="pt-2 ">
+              <Card className="mt-4 ml-4 " style={{ borderRadius: "25px" }}>
                 <CardBody>
                   <Row>
                     <Col md="6">
@@ -133,7 +139,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                         }}
                         style={{
                           background: quoteButtonColor,
-                          border: "none",
+                          borderColor: quoteBorderColor,
                         }}
                       >
                         <a
@@ -142,7 +148,6 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                           }}
                           style={{
                             color: quotTextColor,
-                            border: "none",
                           }}
                         >
                           Quote
@@ -154,7 +159,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                         }}
                         style={{
                           background: TrackingButtonColor,
-                          border: "none",
+                          borderColor: trackingBorderColor,
                         }}
                       >
                         <a
@@ -163,7 +168,6 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                           }}
                           style={{
                             color: trackingTextColor,
-                            border: "none",
                           }}
                         >
                           Tracking
@@ -189,6 +193,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                           <FormGroup style={{ textAlign: "left" }}>
                             <Label style={{ fontWeight: "bold" }}>Mobile</Label>
                             <Input
+                              type="number"
                               value={mobile}
                               placeholder="Enter your mobile"
                               onChange={(e) => {
@@ -256,7 +261,7 @@ const MasterBanner = ({ img, title, desc, link, classes, btn, btnClass }) => {
                             <Label style={{ fontWeight: "bold" }}>Weight</Label>
                             <Input
                               value={weight}
-                              placeholder="Enter weight"
+                              placeholder="Enter weight (kg)"
                               onChange={(e) => {
                                 setWeight(e.target.value);
                               }}
