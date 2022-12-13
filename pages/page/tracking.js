@@ -202,12 +202,12 @@ const Tracking = () => {
                                 "DD-MMM-yy"
                               )}
                           </div>
-                          <div className="col">
+                          {/* <div className="col">
                             <strong>Contact :</strong> <br></br>
-                            {/* BLUEDART, | */}
                             <i className="fa fa-phone"></i>{" "}
                             {JSON.parse(localStorage.getItem("User")).mobile}
-                          </div>
+                          </div> */}
+
                           <div className="col">
                             <strong>Status:</strong> <br></br>
                             {parcelStatus}
