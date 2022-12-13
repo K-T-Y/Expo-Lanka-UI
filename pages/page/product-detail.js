@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CommonLayout from "../../components/shop/common-layout";
@@ -6,40 +7,82 @@ import { ApiUrl } from "../../config/api-config";
 
 const ProductDetail = () => {
   const [item, setItem] = useState();
+
+  const router = new useRouter();
+
   useEffect(() => {
     setItem(JSON.parse(localStorage.getItem("selectedProduct")));
   }, []);
 
-  const addtoCart = () => {
-    const model = {
-      id: JSON.parse(localStorage.getItem("User")).id,
-      productId: JSON.parse(localStorage.getItem("selectedProduct")).id,
-      qty: 1,
-    };
-    axios
-      .post(
+  // const addtoCart = () => {
+  //   const model = {
+  //     id: JSON.parse(localStorage.getItem("User")).id,
+  //     productId: JSON.parse(localStorage.getItem("selectedProduct")).id,
+  //     qty: 1,
+  //   };
+  //   axios
+  //     .post(
+  //       ApiUrl +
+  //         "/shopping-session/add/cart-item/" +
+  //         JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+  //       model
+  //     )
+  //     .then((response) => {
+  //       console.log("Response", response);
+  //       if (response.status == 200) {
+  //         toast.success("Item Added To Cart !!");
+  //         getSession();
+  //       }
+  //     })
+  //     .then((error) => {
+  //       console.log("ERROR_ADDING_CART==>", error);
+  //     });
+  //   console.log(
+  //     "APIURL",
+  //     ApiUrl +
+  //       "/shopping-session/add/cart-item/" +
+  //       JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+  //   );
+  //   console.log("Model", model);
+  // };
+  const addtoCart = (itemId) => {
+    console.log("Started");
+
+    if (localStorage.getItem("User") == "") {
+      router.push("/page/account/login");
+    } else {
+      setButtonDisable(true);
+      const model = {
+        id: JSON.parse(localStorage.getItem("User")).id,
+        productId: itemId,
+        qty: 1,
+      };
+      console.log("Modal", model);
+      axios
+        .post(
+          ApiUrl +
+            "/shopping-session/add/cart-item/" +
+            JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
+          model
+        )
+        .then((response) => {
+          setTimeout(function () {}, 2000);
+          if (response.status == 200) {
+            setButtonDisable(false);
+            toast.success("Item Added To Cart !!");
+            getSession();
+          }
+        })
+        .then((error) => {
+          console.log("ERROR_ADDING_CART==>", error);
+        });
+      console.log(
+        "APIURL",
         ApiUrl +
           "/shopping-session/add/cart-item/" +
-          JSON.parse(localStorage.getItem("ShoppingSession")).data.id,
-        model
-      )
-      .then((response) => {
-        console.log("Response", response);
-        if (response.status == 200) {
-          toast.success("Item Added To Cart !!");
-          getSession();
-        }
-      })
-      .then((error) => {
-        console.log("ERROR_ADDING_CART==>", error);
-      });
-    console.log(
-      "APIURL",
-      ApiUrl +
-        "/shopping-session/add/cart-item/" +
-        JSON.parse(localStorage.getItem("ShoppingSession")).data.id
-    );
-    console.log("Model", model);
+          JSON.parse(localStorage.getItem("ShoppingSession")).data.id
+      );
+    }
   };
   const getSession = () => {
     axios
@@ -472,9 +515,9 @@ const ProductDetail = () => {
                     <br></br>
                     <br></br>
                     <div class="product-buttons">
-                      <a
+                      <button
                         onClick={() => {
-                          addtoCart();
+                          addtoCart(item.id);
                         }}
                         id="cartEffect"
                         class="btn btn-solid hover-solid btn-animation"
@@ -484,7 +527,7 @@ const ProductDetail = () => {
                           aria-hidden="true"
                         ></i>{" "}
                         add to cart
-                      </a>{" "}
+                      </button>{" "}
                       <br></br>
                       <br></br>
                       {/* <a href="#" class="btn btn-solid">

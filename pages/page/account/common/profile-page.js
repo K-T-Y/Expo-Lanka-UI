@@ -6,26 +6,117 @@ const ProfilePage = () => {
   useEffect(() => {
     if (localStorage.getItem("User") != "") {
       setUser(JSON.parse(localStorage.getItem("User")));
-      if (User != "") {
+      if (User) {
         setFirstName(User.firstName);
-        setLastName(User.lastName);
+        setlastName(User.lastName);
         setEmail(User.email);
         setAddress1(User.addLine1);
         setAddress2(User.addLine2);
         setCity(User.city);
-        setMobile(User.mobile);
+        setmobile(User.mobile);
+        setPassword(User.password);
+      } else {
+        setUser(JSON.parse(localStorage.getItem("User")));
+        setFirstName(User.firstName);
+        setlastName(User.lastName);
+        setEmail(User.email);
+        setAddress1(User.addLine1);
+        setAddress2(User.addLine2);
+        setCity(User.city);
+        setmobile(User.mobile);
         setPassword(User.password);
       }
     }
-  }, []);
+  });
+
+  //Form Variables
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
-  const [addLine1, setAddress1] = useState("");
-  const [addLine2, setAddress2] = useState("");
-  const [city, setCity] = useState("");
-  const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [mobile, setmobile] = useState("");
+
+  //Validation Variables
+  const [firstNameValidation, setFirstNameValidation] = useState("");
+  const [lastNameValidation, setlastNameValidation] = useState("");
+  const [emailValidation, setEmailValidation] = useState("");
+  const [passwordValidation, setPasswordValidation] = useState("");
+  const [address1Validation, setAddress1Validation] = useState("");
+  const [address2Validation, setAddress2Validation] = useState("");
+  const [cityValidation, setCityValidation] = useState("");
+  const [mobileValidation, setmobileValidation] = useState("");
+
+  const postRegister = () => {
+    setFirstNameValidation("");
+    setlastNameValidation("");
+    setEmailValidation("");
+    setPasswordValidation("");
+    setAddress1Validation("");
+    setAddress2Validation("");
+    setCityValidation("");
+    setmobileValidation("");
+    if (firstName == "") {
+      setFirstNameValidation("  First Name Required !!");
+    } else if (lastName == "") {
+      setlastNameValidation("  Last Name Required !!");
+    } else if (email == "") {
+      setEmailValidation("  Email Required !!");
+    } else if (password == "") {
+      setPasswordValidation("  Password Required !!");
+    } else if (address1 == "") {
+      setAddress1Validation("  Address Line 1 Required !!");
+    } else if (address2 == "") {
+      setAddress2Validation("  Address Line 2 Required !!");
+    } else if (city == "") {
+      setCityValidation("  City Required !!");
+    } else if (mobile == "") {
+      setmobileValidation("  Mobile Number Required !!");
+    } else if (password.length < 8) {
+      setPasswordValidation(
+        "  Password Length Requires More Than 8 Characters !! "
+      );
+    } else {
+      const model = {
+        firstName: firstName,
+        lastName: lastName,
+        mobile: mobile,
+        addLine1: address1,
+        addLine2: address2,
+        city: city,
+        email: email,
+        password: password,
+      };
+      axios
+        .post(ApiUrl + "/customers/update", model)
+        .then((response) => {
+          console.log("Response while updating", response);
+          if (response.status == 200) {
+            if (response.data.responseCode == 500) {
+              toast.warn("Email Already Registered !!");
+            } else {
+              toast.success("Updated Successfully !!");
+              // setFirstName("");
+              // setlastName("");
+              // setEmail("");
+              // setAddress1("");
+              // setAddress2("");
+              // setPassword("");
+              // setmobile("");
+              // setCity("");
+              router.push("/page/account/login");
+            }
+          } else {
+            toast.error("Error While Updating !!");
+          }
+        })
+        .catch((error) => {
+          toast.error("Connection Error !!");
+        });
+    }
+  };
 
   return (
     <>
@@ -46,6 +137,9 @@ const ProfilePage = () => {
                       className="form-control"
                       id="firstName"
                       placeholder="First name"
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
                       required=""
                     />
                   </Col>
@@ -54,7 +148,10 @@ const ProfilePage = () => {
                       Last Name
                     </Label>
                     <Input
-                      value={lastName}
+                      value={lastName && lastName}
+                      onChange={(e) => {
+                        setlastName(e.target.value);
+                      }}
                       type="text"
                       className="form-control"
                       id="lastName"
@@ -69,6 +166,9 @@ const ProfilePage = () => {
                     <Input
                       value={email}
                       type="text"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                       className="form-control"
                       id="email"
                       placeholder="Email"
@@ -80,8 +180,11 @@ const ProfilePage = () => {
                       Mobile
                     </Label>
                     <Input
+                      onChange={(e) => {
+                        setmobile(e.target.value);
+                      }}
                       value={mobile}
-                      type="text"
+                      type="number"
                       className="form-control"
                       id="review"
                       placeholder="Mobile number"
@@ -93,7 +196,10 @@ const ProfilePage = () => {
                       Address 1
                     </Label>
                     <Input
-                      value={addLine1}
+                      onChange={(e) => {
+                        setAddress1(e.target.value);
+                      }}
+                      value={address1}
                       type="text"
                       className="form-control"
                       id="email"
@@ -106,7 +212,10 @@ const ProfilePage = () => {
                       Address 2
                     </Label>
                     <Input
-                      value={addLine2}
+                      value={address2}
+                      onChange={(e) => {
+                        setAddress2(e.target.value);
+                      }}
                       type="text"
                       className="form-control"
                       id="email"
@@ -119,6 +228,9 @@ const ProfilePage = () => {
                       City
                     </Label>
                     <Input
+                      onChange={(e) => {
+                        setCity(e.target.value);
+                      }}
                       value={city}
                       type="text"
                       className="form-control"
@@ -132,8 +244,11 @@ const ProfilePage = () => {
                       Password
                     </Label>
                     <Input
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
                       value={password}
-                      type="text"
+                      type="password"
                       className="form-control"
                       id="email"
                       placeholder="Password"
@@ -236,7 +351,11 @@ const ProfilePage = () => {
                     />
                   </Col>
                   <div className="col-md-12">
-                    <button className="btn btn-sm btn-solid" type="submit">
+                    <button
+                      className="btn btn-sm btn-solid"
+                      type="submit"
+                      onClick={() => postRegister()}
+                    >
                       Save setting
                     </button>
                   </div>
