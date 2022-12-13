@@ -54,13 +54,12 @@ const Product_list = () => {
   };
 
   const addtoCart = (itemId) => {
-    setButtonDisable(true);
     console.log("Started");
 
     if (localStorage.getItem("User") == "") {
       router.push("/page/account/login");
     } else {
-      console.log("ELSE");
+      setButtonDisable(true);
       const model = {
         id: JSON.parse(localStorage.getItem("User")).id,
         productId: itemId,

@@ -191,10 +191,10 @@ const SpecialProducts = ({
     }
   };
   const addtoCart = (itemId) => {
-    setButtonDisable(true);
     if (localStorage.getItem("User") == "") {
       router.push("page/account/login");
     } else {
+      setButtonDisable(true);
       const model = {
         id: JSON.parse(localStorage.getItem("User")).id,
         productId: itemId,
